@@ -1,6 +1,4 @@
-package com.example;
-
-import java.time.LocalDateTime;
+package com.forsrc.boot.ui.gwt;
 
 import org.apache.catalina.filters.RequestDumperFilter;
 import org.springframework.boot.SpringApplication;
@@ -9,28 +7,11 @@ import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+
 @SpringBootApplication
 @EnableZuulProxy
 @EnableOAuth2Sso
 public class UiApplication {
-
-    @Controller
-    static class HomeController {
-
-        @RequestMapping("/")
-        String home(Model model) {
-            return "index";
-        }
-    }
-
-    public static class Message {
-        public String text;
-        public String username;
-        public LocalDateTime createdAt;
-    }
 
 
     public static void main(String[] args) {
