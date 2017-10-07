@@ -209,10 +209,6 @@
                 <!--</execution> -->
                 <!--</executions> -->
             </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
         </plugins>
     </build>
 
@@ -309,11 +305,11 @@
         </dependency>
 
         <!-- GWT -->
-        <dependency>
+<!--         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-servlet</artifactId>
             <version>${gwt.version}</version>
-        </dependency>
+        </dependency> -->
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-user</artifactId>
@@ -322,15 +318,9 @@
         </dependency>
         <dependency>
             <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-codeserver</artifactId>
-            <version>${gwt.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.gwt</groupId>
             <artifactId>gwt-dev</artifactId>
             <version>${gwt.version}</version>
-            <scope>provided</scope>
+            <scope>test</scope>
         </dependency>
 
         <!-- GWTP Components -->
@@ -340,7 +330,7 @@
             <version>${gwtp.version}</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
+<!--         <dependency>
             <groupId>com.gwtplatform</groupId>
             <artifactId>gwtp-dispatch-rpc-client</artifactId>
             <version>${gwtp.version}</version>
@@ -355,7 +345,7 @@
             <groupId>com.gwtplatform</groupId>
             <artifactId>gwtp-dispatch-rpc-shared</artifactId>
             <version>${gwtp.version}</version>
-        </dependency>
+        </dependency> -->
         <dependency>
             <groupId>com.gwtplatform</groupId>
             <artifactId>gwtp-dispatch-rest</artifactId>

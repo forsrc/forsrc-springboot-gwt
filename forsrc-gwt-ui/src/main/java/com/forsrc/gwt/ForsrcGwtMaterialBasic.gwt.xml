@@ -27,7 +27,8 @@
     <inherits name='com.google.gwt.inject.Inject'/>
 
     <!--GWTP-->
-    <inherits name='com.gwtplatform.dispatch.Dispatch'/>
+    <!-- <inherits name='com.gwtplatform.dispatch.Dispatch'/> -->
+    <inherits name="com.gwtplatform.dispatch.rest.DispatchRest"/>
     <inherits name='com.gwtplatform.mvp.MvpWithEntryPoint'/>
 
     <!--GWT Material-->
