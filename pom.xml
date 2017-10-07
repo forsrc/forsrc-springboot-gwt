@@ -18,7 +18,8 @@
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
 
-   <modules>
+    <modules>
+        <module>forsrc-gwt-ui</module>
         <module>forsrc-springboot-gwt-authorization</module>
         <module>forsrc-springboot-gwt-resource</module>
         <module>forsrc-springboot-gwt-ui</module>
@@ -86,6 +87,16 @@
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
+        </repository>
+        <repository>
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+        <repository>
+            <id>sonatype-nexus-snapshot</id>
+            <name>Sonatype Nexus snapshot repository</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </repository>
     </repositories>
 

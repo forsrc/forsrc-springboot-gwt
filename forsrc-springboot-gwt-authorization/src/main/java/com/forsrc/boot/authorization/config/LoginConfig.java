@@ -12,11 +12,11 @@ public class LoginConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .formLogin()
-                    .loginPage("/login")
+                    .loginPage("/#login")
                     .permitAll()
                 .and()
                     .requestMatchers()
-                    .antMatchers("/", "/login", "/oauth/authorize", "/oauth/confirm_access")
+                    .antMatchers("/index.html", "/", "/#login", "/oauth/authorize", "/oauth/confirm_access")
                 .and()
                     .authorizeRequests()
                     .anyRequest()

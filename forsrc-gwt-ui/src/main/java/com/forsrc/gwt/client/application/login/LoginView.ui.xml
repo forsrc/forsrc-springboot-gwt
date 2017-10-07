@@ -1,0 +1,50 @@
+<!--
+  #%L
+  GwtMaterial
+  %%
+  Copyright (C) 2015 - 2016 GwtMaterialDesign
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" 
+       xmlns:g="urn:import:com.google.gwt.user.client.ui"
+       xmlns:m="urn:import:gwt.material.design.client.ui"
+       xmlns:m.html="urn:import:gwt.material.design.client.ui.html"
+       xmlns:ma="urn:import:gwt.material.design.addins.client">
+
+    <ui:with field="res" type="com.forsrc.gwt.client.resources.AppResources"/>
+    <g:HTMLPanel>
+
+        <m:MaterialContainer ui:field="loginContainer" padding="77" style="margin-left: auto;margin-right: auto;margin-top: 77px;width: 888px;">
+            <m:MaterialRow textAlign="CENTER">
+                <m:MaterialColumn grid="s12 m12 l6">
+                    <m:MaterialPanel padding="12" shadow="1" >
+                        <m:MaterialPanel>
+                            <m:MaterialImage type="CIRCLE" addStyleNames="z-depth-1" width="96" height="96" url="https://lh3.googleusercontent.com/-nGpPOoLCzBs/AAAAAAAAAAI/AAAAAAAAAAA/ACnBePbE-Yhw8HuCDAoRVa3_OFxQn1wEGg/s96-c-mo/photo.jpg"/>
+                            <m:MaterialTextBox ui:field="email" name="email" iconType="ACCOUNT_CIRCLE" label="Email" placeholder="You email" validateOnBlur="true" allowBlank="false"/>
+                            <m:MaterialTextBox ui:field="password" name="password" type="PASSWORD" iconType="LOCK" placeholder="You password" label="Password" validateOnBlur="true" allowBlank="false"/>
+                            <m:MaterialButton ui:field="login" waves="LIGHT" text="Login" width="100%" marginTop="20"/>
+                            <m:MaterialRow marginTop="20">
+                                <m:MaterialColumn grid="s12 m12 l6">
+                                <m:MaterialCheckBox text="Remember me"/>
+                            </m:MaterialColumn>
+                         </m:MaterialRow>
+                        </m:MaterialPanel>
+                    </m:MaterialPanel>
+                </m:MaterialColumn>
+            </m:MaterialRow>
+        </m:MaterialContainer>
+            
+    </g:HTMLPanel>
+</ui:UiBinder>
