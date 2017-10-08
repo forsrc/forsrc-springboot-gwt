@@ -23,12 +23,11 @@
     </properties>
 
     <dependencies>
-        <dependency>
+        <!-- <dependency>
             <groupId> com.forsrc</groupId>
             <artifactId>forsrc-gwt-ui</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <!-- <type>war</type> -->
-        </dependency>
+        </dependency> -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -70,6 +69,17 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.forsrc.gwt.server.GwtApplication</mainClass>
+                            <addResources>false</addResources>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
         </plugins>

@@ -29,10 +29,11 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients
             .inMemory()
-            .withClient("demo")
-            .secret("demo")
+            .withClient("forsrc")
+            .secret("forsrc")
             .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
-            .scopes("read", "write").accessTokenValiditySeconds((int) TimeUnit.HOURS.toSeconds(1))
+            .scopes("read", "write")
+            .accessTokenValiditySeconds((int) TimeUnit.HOURS.toSeconds(1))
             .autoApprove(true);
     }
 

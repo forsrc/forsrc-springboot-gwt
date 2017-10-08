@@ -4,7 +4,7 @@
        xmlns:m.html="urn:import:gwt.material.design.client.ui.html"
        xmlns:ma="urn:import:gwt.material.design.addins.client">
 
-    <ui:with field='i18n' type='com.forsrc.gwt.client.resources.i18n.Messages' />
+    <ui:with field="i18n" type="com.forsrc.gwt.client.resources.i18n.Messages" />
 
     <g:HTMLPanel>
 
