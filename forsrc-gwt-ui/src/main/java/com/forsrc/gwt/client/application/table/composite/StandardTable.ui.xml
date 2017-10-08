@@ -31,7 +31,8 @@
         </m:MaterialRow>
 
         <m.table:MaterialDataTable
-            ui:field="table" shadow="1"
+            ui:field="table"
+            shadow="1"
             rowHeight="60"
             height="calc(100vh - 131px)"
             useStickyHeader="true"

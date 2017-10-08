@@ -6,11 +6,13 @@
   <g:HTMLPanel>
     <m:MaterialButton text="Go to first page" ui:field="btnGotoFirstPage"/>
     <m:MaterialButton text="Go to last page" ui:field="btnGotoLastPage" />
-    <m.table:MaterialDataTable shadow="1" marginTop="20" ui:field="table"
-                               height="100%"
-                               useStickyHeader="true"
-                               useCategories="false"
-                               useRowExpansion="true"
-                               selectionType="MULTIPLE"/>
+    <m.table:MaterialDataTable shadow="1"
+                                marginTop="20"
+                                ui:field="table"
+                                height="100%"
+                                useStickyHeader="true"
+                                useCategories="false"
+                                useRowExpansion="true"
+                                selectionType="MULTIPLE"/>
     </g:HTMLPanel>
 </ui:UiBinder>
