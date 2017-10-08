@@ -10,12 +10,6 @@
 
     <name>forsrc-gwt-ui</name>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.7.RELEASE</version>
-        <relativePath /> <!-- lookup parent from repository -->
-    </parent>
 
     <properties>
         <app.id>forsrc-gwt-ui</app.id>
@@ -41,7 +35,7 @@
         <!-- Maven -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
-        <staticResourcesDirectory>${project.build.outputDirectory}/ForsrcGwtUi</staticResourcesDirectory>
+        <staticResourcesDirectory>${project.build.directory}/${project.build.finalName}</staticResourcesDirectory>
         <appengine.version>1.9.24</appengine.version>
         <junit.version>4.12</junit.version>
         <maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
@@ -173,7 +167,7 @@
                     <i18nMessagesBundle>com.forsrc.gwt.client.resources.i18n.Messages</i18nMessagesBundle>
                     <!-- mvn gwt:run-codeserver - won't have to use the bookmarklet -->
                     <launcherDir>${webappDirectory}</launcherDir>
-                    <outputDirectory>${project.build.outputDirectory}/ForsrcGwtUi</outputDirectory>
+                    <!-- <outputDirectory>${webappDirectory}</outputDirectory> -->
                 </configuration>
 
                 <!--Replaced the existing executions block -->
@@ -369,20 +363,5 @@
             <scope>provided</scope>
         </dependency>
 
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jetty</artifactId>
-        </dependency>
     </dependencies>
 </project>
