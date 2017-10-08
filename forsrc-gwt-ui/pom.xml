@@ -173,7 +173,7 @@
                     <i18nMessagesBundle>com.forsrc.gwt.client.resources.i18n.Messages</i18nMessagesBundle>
                     <!-- mvn gwt:run-codeserver - won't have to use the bookmarklet -->
                     <launcherDir>${webappDirectory}</launcherDir>
-                    <outputDirectory>${project.build.directory}/${project.build.finalName}/ForsrcGwtUi</outputDirectory>
+                    <outputDirectory>${project.build.outputDirectory}/static</outputDirectory>
                 </configuration>
 
                 <!--Replaced the existing executions block -->
