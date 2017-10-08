@@ -10,12 +10,12 @@
 
     <name>forsrc-gwt-ui</name>
 
-    <parent>
+    <!-- <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.5.7.RELEASE</version>
-        <relativePath /> <!-- lookup parent from repository -->
-    </parent>
+        <relativePath />
+    </parent> -->
 
     <properties>
         <app.id>forsrc-gwt-ui</app.id>
@@ -173,7 +173,7 @@
                     <i18nMessagesBundle>com.forsrc.gwt.client.resources.i18n.Messages</i18nMessagesBundle>
                     <!-- mvn gwt:run-codeserver - won't have to use the bookmarklet -->
                     <launcherDir>${webappDirectory}</launcherDir>
-                    <outputDirectory>${project.build.outputDirectory}/ForsrcGwtUi</outputDirectory>
+                    <outputDirectory>${project.build.directory}/${project.build.finalName}/ForsrcGwtUi</outputDirectory>
                 </configuration>
 
                 <!--Replaced the existing executions block -->
@@ -225,11 +225,11 @@
                 </executions>
             </plugin>
 
-            <plugin>
+            <!-- <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
 
-            </plugin>
+            </plugin> -->
         </plugins>
     </build>
 
@@ -302,8 +302,11 @@
         </dependency>
 
         <!-- GWT -->
-        <!-- <dependency> <groupId>com.google.gwt</groupId> <artifactId>gwt-servlet</artifactId> <version>${gwt.version}</version> 
-            </dependency> -->
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-servlet</artifactId>
+            <version>${gwt.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-user</artifactId>
@@ -361,6 +364,7 @@
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
             <version>${javax-validation.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.github.nmorel.gwtjackson</groupId>
@@ -373,16 +377,14 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <version>1.5.7.RELEASE</version>
+            <scope>provided</scope>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-tomcat</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jetty</artifactId>
         </dependency>
     </dependencies>
 </project>
