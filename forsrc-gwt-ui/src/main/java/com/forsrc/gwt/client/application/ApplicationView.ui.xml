@@ -5,11 +5,13 @@
        xmlns:ma="urn:import:gwt.material.design.addins.client">
 
     <ui:with field="res" type="com.forsrc.gwt.client.resources.AppResources"/>
+    <ui:with field='i18n' type='com.forsrc.gwt.client.resources.i18n.Messages' />
+
     <g:HTMLPanel>
         <m:MaterialPanel>
             <m:MaterialHeader ui:field="header">
                 <m:MaterialNavBar ui:field="navBar" activates="sidenavCard" backgroundColor="BLUE" shadow="1">
-                    <m:MaterialNavBrand paddingLeft="60" text="forsrc-gwt-material" />
+                    <m:MaterialNavBrand paddingLeft="60" text="forsrc-gwt-material {i18n.app_title}" />
                     <m:MaterialNavSection float="RIGHT">
                         <m:MaterialLink text="Login" href="#login"/>
                         <m:MaterialLink text="Signup" href="#signup"/>

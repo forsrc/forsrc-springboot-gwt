@@ -69,6 +69,7 @@
                 </includes>
                 <excludes>
                     <exclude>**/gwt/server/**</exclude>
+                    <exclude>**/gwt/server/*.java</exclude>
                     <exclude>**/gwt/server/**/*.java</exclude>
                 </excludes>
             </resource>
@@ -179,7 +180,7 @@
                     <modules>
                         <module>com.forsrc.gwt.ForsrcGwtUi</module>
                     </modules>
-
+                    <i18nMessagesBundle>com.forsrc.gwt.client.resources.i18n.Messages</i18nMessagesBundle>
                     <!-- mvn gwt:run-codeserver - won't have to use the bookmarklet -->
                     <launcherDir>${webappDirectory}</launcherDir>
                     <outputDirectory>${webappDirectory}</outputDirectory>
@@ -190,6 +191,7 @@
                     <execution>
                         <goals>
                             <goal>compile</goal>
+                            <goal>i18n</goal>
                             <goal>test</goal>
                         </goals>
                     </execution>
@@ -204,6 +206,43 @@
                 <!--</goals> -->
                 <!--</execution> -->
                 <!--</executions> -->
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.build.directory}/generated-sources/java</source>
+                                <source>${project.build.directory}/generated-sources/gwt</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.lesscss</groupId>
+                <artifactId>lesscss-maven-plugin</artifactId>
+                <version>1.7.0.1.1</version>
+                <executions>
+                    <execution>
+                        <id>interserohless</id>
+                        <configuration>
+                            <sourceDirectory>${project.basedir}/src/main/resources/com/forsrc/gwt/client/resources/css/</sourceDirectory>
+                            <outputDirectory>${project.build.directory}/classes/com/forsrc/gwt/client/resources/css/</outputDirectory>
+                            <compress>true</compress>
+                        </configuration>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
@@ -258,42 +297,18 @@
         </dependency>
 
         <!-- App Engine -->
-<!--         <dependency>
-            <groupId>com.google.appengine</groupId>
-            <artifactId>appengine-api-1.0-sdk</artifactId>
-            <version>${appengine.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.appengine</groupId>
-            <artifactId>appengine-endpoints</artifactId>
-            <version>${appengine.version}</version>
-        </dependency> -->
+        <!-- <dependency> <groupId>com.google.appengine</groupId> <artifactId>appengine-api-1.0-sdk</artifactId> 
+            <version>${appengine.version}</version> </dependency> <dependency> <groupId>com.google.appengine</groupId> 
+            <artifactId>appengine-endpoints</artifactId> <version>${appengine.version}</version> </dependency> -->
 
         <!-- Testing -->
-<!--         <dependency>
-            <groupId>com.google.appengine</groupId>
-            <artifactId>appengine-api-labs</artifactId>
-            <version>${appengine.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.appengine</groupId>
-            <artifactId>appengine-api-stubs</artifactId>
-            <version>${appengine.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.appengine</groupId>
-            <artifactId>appengine-testing</artifactId>
-            <version>${appengine.version}</version>
-            <scope>test</scope>
-        </dependency>
- -->
-<!--         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
-            <scope>provided</scope>
-        </dependency> -->
+        <!-- <dependency> <groupId>com.google.appengine</groupId> <artifactId>appengine-api-labs</artifactId> 
+            <version>${appengine.version}</version> </dependency> <dependency> <groupId>com.google.appengine</groupId> 
+            <artifactId>appengine-api-stubs</artifactId> <version>${appengine.version}</version> <scope>test</scope> 
+            </dependency> <dependency> <groupId>com.google.appengine</groupId> <artifactId>appengine-testing</artifactId> 
+            <version>${appengine.version}</version> <scope>test</scope> </dependency> -->
+        <!-- <dependency> <groupId>javax.servlet</groupId> <artifactId>javax.servlet-api</artifactId> 
+            <version>3.1.0</version> <scope>provided</scope> </dependency> -->
         <dependency>
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>
@@ -301,11 +316,8 @@
         </dependency>
 
         <!-- GWT -->
-<!--         <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-servlet</artifactId>
-            <version>${gwt.version}</version>
-        </dependency> -->
+        <!-- <dependency> <groupId>com.google.gwt</groupId> <artifactId>gwt-servlet</artifactId> <version>${gwt.version}</version> 
+            </dependency> -->
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-user</artifactId>
@@ -326,22 +338,11 @@
             <version>${gwtp.version}</version>
             <scope>provided</scope>
         </dependency>
-<!--         <dependency>
-            <groupId>com.gwtplatform</groupId>
-            <artifactId>gwtp-dispatch-rpc-client</artifactId>
-            <version>${gwtp.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.gwtplatform</groupId>
-            <artifactId>gwtp-dispatch-rpc-server-guice</artifactId>
-            <version>${gwtp.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.gwtplatform</groupId>
-            <artifactId>gwtp-dispatch-rpc-shared</artifactId>
-            <version>${gwtp.version}</version>
-        </dependency> -->
+        <!-- <dependency> <groupId>com.gwtplatform</groupId> <artifactId>gwtp-dispatch-rpc-client</artifactId> 
+            <version>${gwtp.version}</version> <scope>provided</scope> </dependency> <dependency> <groupId>com.gwtplatform</groupId> 
+            <artifactId>gwtp-dispatch-rpc-server-guice</artifactId> <version>${gwtp.version}</version> </dependency> 
+            <dependency> <groupId>com.gwtplatform</groupId> <artifactId>gwtp-dispatch-rpc-shared</artifactId> <version>${gwtp.version}</version> 
+            </dependency> -->
         <dependency>
             <groupId>com.gwtplatform</groupId>
             <artifactId>gwtp-dispatch-rest</artifactId>

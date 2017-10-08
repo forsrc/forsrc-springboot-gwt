@@ -4,9 +4,11 @@
        xmlns:m.html="urn:import:gwt.material.design.client.ui.html"
        xmlns:ma="urn:import:gwt.material.design.addins.client">
 
+    <ui:with field='i18n' type='com.forsrc.gwt.client.resources.i18n.Messages' />
+
     <g:HTMLPanel>
 
-        <p>Hello world! Home</p>
+        <p>Hello world! Home {{i18n.app_title}}</p>
         <m:MaterialLabel ui:field="searchLabel"/>
     </g:HTMLPanel>
 </ui:UiBinder>
