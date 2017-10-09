@@ -34,7 +34,8 @@ public class OAuth2AuthorizationConfig extends AuthorizationServerConfigurerAdap
             .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
             .scopes("read", "write")
             .accessTokenValiditySeconds((int) TimeUnit.HOURS.toSeconds(1))
-            .autoApprove(true);
+            .autoApprove(true)
+            ;
     }
 
     @Override

@@ -2,7 +2,9 @@ security:
   user:
     name: forsrc@gmail.com
     password: forsrc
-
+    role: ADMIN
+  basic:
+    enabled: false
 
   oauth2:
     authorization:

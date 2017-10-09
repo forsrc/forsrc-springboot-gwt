@@ -2,7 +2,14 @@ package com.forsrc.gwt.client.application.login;
 
 import javax.inject.Inject;
 
+import org.fusesource.restygwt.client.JsonCallback;
+import org.fusesource.restygwt.client.Method;
+import org.fusesource.restygwt.client.Resource;
+
 import com.forsrc.gwt.client.resources.i18n.Messages;
+import com.google.api.gwt.oauth2.client.Auth;
+import com.google.api.gwt.oauth2.client.AuthRequest;
+import com.google.gwt.core.client.Callback;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.http.client.Request;
@@ -13,6 +20,7 @@ import com.google.gwt.http.client.Response;
 import com.google.gwt.http.client.URL;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
+import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -50,6 +58,7 @@ public class LoginView extends ViewImpl implements LoginPresenter.MyView {
     protected void onAttach() {
         email.setLength(20);
         password.setLength(20);
+        test();
     }
 
     @Override
@@ -70,27 +79,40 @@ public class LoginView extends ViewImpl implements LoginPresenter.MyView {
     }
 
     @UiHandler("login")
-    public void onSearch(ClickEvent clickEvent) {
+    public void onLogin(ClickEvent clickEvent) {
         MaterialLoader.showProgress(true);
+        login(email.getValue(), password.getValue());
+    }
 
-        String url = messages.app_url_oauth() + "/oauth/token?";
-        url += "grant_type=password";
-        url += "&username=" + email.getValue();
-        url += "&password=" + password.getValue();
+    private void login(String email, String password) {
+        String url = messages.app_url_oauth() + "/oauth/token";
+        url += "?grant_type=password&client_id=forsrc&client_secret=forsrc";
+        url += "&username=" + email;
+        url += "&password=" + password;
+
+        url = "http://localhost:9999/uaa/oauth/token?grant_type=password&username=forsrc@gmail.com&password=forsrc";
         RequestBuilder builder = new RequestBuilder(RequestBuilder.POST, URL.encode(url));
-        builder.setHeader("Content-Type", "application/json; charset=utf-8");
+        builder.setHeader("Content-Type", "application/x-www-form-urlencoded");
+        // builder.setHeader("Accept", RequestFactory.JSON_CONTENT_TYPE_UTF8);
+
         // Zm9yc3JjOmZvcnNyYw==
         String authorization = new String(Base64.encode("forsrc:forsrc".getBytes()));
         builder.setHeader("Authorization", "Basic " + authorization);
-        builder.setIncludeCredentials(true);
-        //MaterialToast.fireToast(new String(Base64.encode("forsrc:forsrc".getBytes())));
+
+        // MaterialToast.fireToast(new
+        // String(Base64.encode("forsrc:forsrc".getBytes())));
         JSONObject params = new JSONObject();
+
+        params.put("client_id", new JSONString("forsrc"));
+        params.put("client_secret", new JSONString("forsrc"));
         params.put("grant_type", new JSONString("password"));
-        params.put("username", new JSONString(email.getValue()));
-        params.put("password", new JSONString(password.getValue()));
-        //MaterialToast.fireToast(params.toString());
+        params.put("username", new JSONString(email));
+        params.put("password", new JSONString(password));
+        params.put("_method", new JSONString("POST"));
+        // MaterialToast.fireToast(params.toString());
+        builder.setRequestData(params.toString());
         try {
-            Request request = builder.sendRequest(params.toString(), new RequestCallback() {
+            Request request = builder.sendRequest(null, new RequestCallback() {
                 public void onError(Request request, Throwable exception) {
                     MaterialToast.fireToast("Error:" + exception.getMessage());
                 }
@@ -99,7 +121,31 @@ public class LoginView extends ViewImpl implements LoginPresenter.MyView {
                     if (200 == response.getStatusCode()) {
                         MaterialToast.fireToast("Response:" + response.getStatusCode() + response.getText());
                     } else {
+                        MaterialToast.fireToast("Response:" + response.getStatusCode());
+                    }
+                    MaterialLoader.showProgress(false);
+                }
+            });
+        } catch (RequestException e) {
+            MaterialToast.fireToast("RequestException:" + e.getMessage());
+            MaterialLoader.showProgress(false);
+        }
+    }
+
+    public void test() {
+        String url = messages.app_url_oauth() + "/test";
+        RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URL.encode(url));
+        try {
+            Request request = builder.sendRequest(null, new RequestCallback() {
+                public void onError(Request request, Throwable exception) {
+                    MaterialToast.fireToast("Error:" + exception.getMessage());
+                }
+
+                public void onResponseReceived(Request request, Response response) {
+                    if (200 == response.getStatusCode()) {
                         MaterialToast.fireToast("Response:" + response.getStatusCode() + response.getText());
+                    } else {
+                        MaterialToast.fireToast("Response:" + response.getStatusCode());
                     }
                     MaterialLoader.showProgress(false);
                 }

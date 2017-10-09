@@ -30,6 +30,8 @@
     <inherits name="com.googlecode.gwt.charts.Charts"/>
 
     <inherits name="com.googlecode.gwt.crypto.Crypto"/>
+    <inherits name="com.google.api.gwt.oauth2.OAuth2"/>
+    <inherits name="org.fusesource.restygwt.RestyGWT"/>
 
     <!-- Specify the paths for translatable code-->
     <source path='client'/>
