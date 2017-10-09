@@ -20,7 +20,12 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**");
+        registry
+            .addMapping("/**")
+            .allowedHeaders("*")
+            .allowedMethods("*")
+            .allowedOrigins("*");
+
     }
 
     @Bean
@@ -28,7 +33,11 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**");
+                registry
+                    .addMapping("/**")
+                    .allowedHeaders("*")
+                    .allowedMethods("*")
+                    .allowedOrigins("*");
             }
         };
     }
