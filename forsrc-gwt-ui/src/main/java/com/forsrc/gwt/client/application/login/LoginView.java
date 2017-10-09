@@ -24,6 +24,7 @@ import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.gwt.crypto.bouncycastle.util.encoders.Base64;
@@ -98,6 +99,9 @@ public class LoginView extends ViewImpl implements LoginPresenter.MyView {
         // Zm9yc3JjOmZvcnNyYw==
         String authorization = new String(Base64.encode("forsrc:forsrc".getBytes()));
         builder.setHeader("Authorization", "Basic " + authorization);
+        //String crsfCookie = Cookies.getCookie("XSRF-TOKEN");
+        //MaterialToast.fireToast(crsfCookie);
+        //builder.setHeader("X-XSRF-TOKEN", crsfCookie);
 
         // MaterialToast.fireToast(new
         // String(Base64.encode("forsrc:forsrc".getBytes())));
@@ -134,7 +138,7 @@ public class LoginView extends ViewImpl implements LoginPresenter.MyView {
 
     public void test() {
         String url = messages.app_url_oauth() + "/test";
-        RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URL.encode(url));
+        RequestBuilder builder = new RequestBuilder(RequestBuilder.POST, URL.encode(url));
         try {
             Request request = builder.sendRequest(null, new RequestCallback() {
                 public void onError(Request request, Throwable exception) {

@@ -31,9 +31,10 @@ public class LoginConfig extends WebSecurityConfigurerAdapter {
                     .authorizeRequests()
                     .antMatchers("/test", "/oauth/token")
                     .permitAll()
-                //.and()
-                    //.csrf()
-                    //.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                .and()
+                    .csrf()
+                    .ignoringAntMatchers("/test", "/oauth/token")
+                    .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                     ;
     }
 
