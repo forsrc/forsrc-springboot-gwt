@@ -29,6 +29,7 @@
 
     <inherits name="com.googlecode.gwt.charts.Charts"/>
 
+    <inherits name="com.googlecode.gwt.crypto.Crypto"/>
 
     <!-- Specify the paths for translatable code-->
     <source path='client'/>

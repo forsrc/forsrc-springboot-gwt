@@ -1,6 +1,9 @@
 security:
   user:
-    password: password
+    name: forsrc@gmail.com
+    password: forsrc
+
+
   oauth2:
     authorization:
       token-key-access: permitAll()

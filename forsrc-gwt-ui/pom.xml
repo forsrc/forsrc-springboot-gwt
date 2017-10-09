@@ -10,12 +10,8 @@
 
     <name>forsrc-gwt-ui</name>
 
-    <!-- <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.7.RELEASE</version>
-        <relativePath />
-    </parent> -->
+    <!-- <parent> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-parent</artifactId> 
+        <version>1.5.7.RELEASE</version> <relativePath /> </parent> -->
 
     <properties>
         <app.id>forsrc-gwt-ui</app.id>
@@ -225,11 +221,8 @@
                 </executions>
             </plugin>
 
-            <!-- <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-
-            </plugin> -->
+            <!-- <plugin> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-maven-plugin</artifactId> 
+                </plugin> -->
         </plugins>
     </build>
 
@@ -373,6 +366,11 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.googlecode.gwt-crypto</groupId>
+            <artifactId>gwt-crypto</artifactId>
+            <version>2.3.0</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
