@@ -11,7 +11,7 @@
         <m:MaterialPanel>
             <m:MaterialHeader ui:field="header">
                 <m:MaterialNavBar ui:field="navBar" activates="sidenavCard" backgroundColor="BLUE" shadow="1">
-                    <m:MaterialNavBrand paddingLeft="60" text="forsrc-gwt-material {i18n.app_title}" />
+                    <m:MaterialNavBrand paddingLeft="60" text="{i18n.app_title}" />
                     <m:MaterialNavSection float="RIGHT">
                         <m:MaterialLink text="Login" href="#login"/>
                         <m:MaterialLink text="Signup" href="#signup"/>
