@@ -87,13 +87,13 @@ public class LoginView extends ViewImpl implements LoginPresenter.MyView {
 
     private void login(String email, String password) {
         String url = messages.app_url_oauth() + "/oauth/token";
-        url += "?grant_type=password&client_id=forsrc&client_secret=forsrc";
+        url += "?grant_type=password";
         url += "&username=" + email;
         url += "&password=" + password;
 
-        url = "http://localhost:9999/uaa/oauth/token?grant_type=password&username=forsrc@gmail.com&password=forsrc";
+        // url = "http://localhost:9999/uaa/oauth/token?grant_type=password&username=forsrc@gmail.com&password=forsrc";
         RequestBuilder builder = new RequestBuilder(RequestBuilder.POST, URL.encode(url));
-        builder.setHeader("Content-Type", "application/x-www-form-urlencoded");
+        builder.setHeader("Content-Type", "application/json; charset=utf-8");
         // builder.setHeader("Accept", RequestFactory.JSON_CONTENT_TYPE_UTF8);
 
         // Zm9yc3JjOmZvcnNyYw==
@@ -112,7 +112,6 @@ public class LoginView extends ViewImpl implements LoginPresenter.MyView {
         params.put("grant_type", new JSONString("password"));
         params.put("username", new JSONString(email));
         params.put("password", new JSONString(password));
-        params.put("_method", new JSONString("POST"));
         // MaterialToast.fireToast(params.toString());
         builder.setRequestData(params.toString());
         try {
