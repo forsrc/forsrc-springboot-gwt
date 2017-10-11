@@ -8,12 +8,12 @@
 
         <m:MaterialRow>
             <m:MaterialRow marginLeft="5" marginRight="5">
-                <m:MaterialCard backgroundColor="BLUE" grid="l10 m12 s12" float="RIGHT">
-                    <m:MaterialPanel backgroundColor="BLUE_DARKEN_2" overflow="HIDDEN" padding="12">
+                <m:MaterialCard grid="l10 m12 s12" float="RIGHT">
+                    <m:MaterialPanel backgroundColor="BLUE" overflow="HIDDEN" padding="12">
                         <m:MaterialIcon iconType="MORE_VERT" float="RIGHT" textColor="WHITE"/>
                         <m:MaterialIcon iconType="CLOSE" float="RIGHT" textColor="WHITE"/>
                     </m:MaterialPanel>
-                    <m:MaterialCardContent>
+                    <m:MaterialCardContent ui:field="cardContent">
                         <m:MaterialRow marginBottom="0">
                             <m:MaterialImage backgroundColor="BLUE_ACCENT_1" marginRight="12" marginTop="8" float="LEFT" width="40px" height="40px" shadow="1" circle="true" url="https://mir-s3-cdn-cf.behance.net/project_modules/disp/70e0a922433737.5631e83fc9429.png"/>
                             <ma:bubble.MaterialBubble backgroundColor="BLUE_ACCENT_1" position="LEFT" float="LEFT">
@@ -56,10 +56,13 @@
                                 <m:MaterialLabel text="1/2/2016" fontSize="0.6em" float="RIGHT"/>
                             </ma:bubble.MaterialBubble>
                         </m:MaterialRow>
+                        <m:MaterialPanel ui:field="chatPanel"/>
                     </m:MaterialCardContent>
                 </m:MaterialCard>
             </m:MaterialRow>
         </m:MaterialRow>
         <m:MaterialLabel ui:field="searchLabel"/>
+  
+
     </g:HTMLPanel>
 </ui:UiBinder>

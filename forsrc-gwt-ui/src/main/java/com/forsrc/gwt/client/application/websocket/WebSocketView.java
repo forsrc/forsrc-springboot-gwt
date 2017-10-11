@@ -3,14 +3,17 @@ package com.forsrc.gwt.client.application.websocket;
 
 import javax.inject.Inject;
 
+import com.forsrc.gwt.client.application.websocket.composite.ChatMessageComposite;
 import com.forsrc.gwt.client.websocket.MessageEvent;
 import com.forsrc.gwt.client.websocket.WebSocket;
+import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewImpl;
 
 import gwt.material.design.client.ui.MaterialLabel;
+import gwt.material.design.client.ui.MaterialPanel;
 
 public class WebSocketView extends ViewImpl implements WebSocketPresenter.MyView {
 
@@ -21,6 +24,9 @@ public class WebSocketView extends ViewImpl implements WebSocketPresenter.MyView
     MaterialLabel searchLabel;
 
     public WebSocket socket;
+
+    @UiField
+    MaterialPanel chatPanel;
 
     @Inject
     WebSocketView(Binder uiBinder) {
@@ -53,6 +59,9 @@ public class WebSocketView extends ViewImpl implements WebSocketPresenter.MyView
             searchLabel.setText("socket closed");
             return evt;
         };
+
+
+        chatPanel.add(new ChatMessageComposite("test", System.currentTimeMillis()));
     }
 
     @Override
