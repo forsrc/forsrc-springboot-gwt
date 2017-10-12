@@ -1,6 +1,7 @@
 package com.forsrc.boot.resource.filter;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -27,6 +28,7 @@ public class MyOncePerRequestFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         String token = request.getParameter("access_token");
         if (token != null) {
+            token = URLDecoder.decode(token, "UTF-8");
             HeaderMapRequestWrapper requestWrapper = new HeaderMapRequestWrapper(request);
             requestWrapper.addHeader("Authorization", "Bearer " + token);
         }

@@ -1,4 +1,4 @@
-package com.forsrc.gwt.client.websocket;
+package com.forsrc.gwt.client.commons.websocket;
 
 import com.google.gwt.core.client.JavaScriptObject;
 

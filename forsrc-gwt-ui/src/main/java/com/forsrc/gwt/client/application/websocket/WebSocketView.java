@@ -4,11 +4,12 @@ package com.forsrc.gwt.client.application.websocket;
 import javax.inject.Inject;
 
 import com.forsrc.gwt.client.application.websocket.composite.ChatMessageComposite;
+import com.forsrc.gwt.client.commons.websocket.MessageEvent;
+import com.forsrc.gwt.client.commons.websocket.WebSocket;
 import com.forsrc.gwt.client.resources.i18n.Messages;
-import com.forsrc.gwt.client.websocket.MessageEvent;
-import com.forsrc.gwt.client.websocket.WebSocket;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.storage.client.Storage;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
@@ -46,7 +47,12 @@ public class WebSocketView extends ViewImpl implements WebSocketPresenter.MyView
 
     @Override
     protected void onAttach() {
-        socket = new WebSocket(messages.app_url_resource_ws() + "/ws/chat");
+        Storage storage = Storage.getLocalStorageIfSupported();
+        String token = null;
+        if (storage != null) {
+            token = storage.getItem("/oauth/token/access_token");
+        }
+        socket = new WebSocket(messages.app_url_resource_ws() + "/ws/chat?access_token=" + token);
 
         socket.onmessage = (evt) -> {
             MessageEvent event = evt.cast();

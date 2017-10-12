@@ -8,6 +8,7 @@ import com.forsrc.gwt.client.event.MyEvent.MyEventHandler;
 import com.forsrc.gwt.client.place.NameTokens;
 import com.forsrc.gwt.client.resources.i18n.Messages;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.JsonUtils;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -15,7 +16,10 @@ import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.http.client.URL;
 import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONString;
+import com.google.gwt.json.client.JSONValue;
+import com.google.gwt.storage.client.Storage;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.googlecode.gwt.crypto.bouncycastle.util.encoders.Base64;
@@ -113,8 +117,16 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
                 }
                 public void onResponseReceived(Request request, Response response) {
                     if (200 == response.getStatusCode()) {
+                        JSONObject data = new JSONObject(JsonUtils.safeEval(response.getText()));
+                        Storage storage = Storage.getLocalStorageIfSupported();
+                        String token = data.get("access_token").toString();
+                        token = URL.decodeQueryString(token);
+                        if (storage != null) {
+                            storage.setItem("/oauth/token", data.toString());
+                            storage.setItem("/oauth/token/access_token", token);
+                        }
                         MaterialToast.fireToast("Response:" + response.getStatusCode());
-                        PlaceRequest placeRequest = new PlaceRequest.Builder().nameToken(NameTokens.TABLE).build();
+                        PlaceRequest placeRequest = new PlaceRequest.Builder().nameToken(NameTokens.WS).build();
                         placeManager.revealPlace(placeRequest);
                     } else {
                         MaterialToast.fireToast("Response:" + response.getStatusCode());

@@ -1,4 +1,4 @@
-package com.forsrc.gwt.client.websocket;
+package com.forsrc.gwt.client.commons.websocket;
 
 import jsinterop.annotations.JsType;
 import jsinterop.annotations.JsConstructor;
@@ -26,6 +26,11 @@ public class WebSocket extends EventTarget {
 
     @JsConstructor
     public WebSocket(String url) {
+
+    }
+
+    @JsConstructor
+    public WebSocket(String url, String[] protocol) {
 
     }
 

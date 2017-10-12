@@ -1,4 +1,4 @@
-package com.forsrc.gwt.client.websocket;
+package com.forsrc.gwt.client.commons.websocket;
 
 import static jsinterop.annotations.JsPackage.GLOBAL;
 
