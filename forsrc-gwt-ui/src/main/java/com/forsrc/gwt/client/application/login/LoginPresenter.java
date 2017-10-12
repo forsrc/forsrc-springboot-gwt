@@ -121,6 +121,7 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
                         Storage storage = Storage.getLocalStorageIfSupported();
                         String token = data.get("access_token").toString();
                         token = URL.decodeQueryString(token);
+                        token = token.substring(1, token.length() - 1);
                         if (storage != null) {
                             storage.setItem("/oauth/token", data.toString());
                             storage.setItem("/oauth/token/access_token", token);
