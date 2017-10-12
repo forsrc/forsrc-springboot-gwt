@@ -4,8 +4,10 @@ package com.forsrc.gwt.client.application.websocket;
 import javax.inject.Inject;
 
 import com.forsrc.gwt.client.application.websocket.composite.ChatMessageComposite;
+import com.forsrc.gwt.client.resources.i18n.Messages;
 import com.forsrc.gwt.client.websocket.MessageEvent;
 import com.forsrc.gwt.client.websocket.WebSocket;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -28,6 +30,8 @@ public class WebSocketView extends ViewImpl implements WebSocketPresenter.MyView
     @UiField
     MaterialPanel chatPanel;
 
+    Messages messages = GWT.create(Messages.class);
+
     @Inject
     WebSocketView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
@@ -42,7 +46,7 @@ public class WebSocketView extends ViewImpl implements WebSocketPresenter.MyView
 
     @Override
     protected void onAttach() {
-        socket = new WebSocket("ws://localhost:8088/ws-myhtmlshell");
+        socket = new WebSocket(messages.app_url_resource_ws() + "/ws/chat");
 
         socket.onmessage = (evt) -> {
             MessageEvent event = evt.cast();
