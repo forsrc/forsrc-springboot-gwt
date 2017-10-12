@@ -212,7 +212,7 @@
         });
     }
     function testWs(token) {
-        var ws = new WebSocket("ws://localhost:7777/ws/chat", ["Bearer", token]);
+        var ws = new WebSocket("ws://localhost:7777/ws/chat?access_token=" + token);
         ws.onopen = function(event) {
             console.log("Connected");
             ws.send('hello world');
