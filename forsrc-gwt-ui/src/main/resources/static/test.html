@@ -155,13 +155,17 @@
             "Authorization": "Basic " + btoa("forsrc:forsrc"),
             "Content-type" : "application/x-www-form-urlencoded; charset=UTF-8"
         },
-        onSuccess: function (html, xhr) {
+        onSuccess: function (data, xhr) {
             //alert(html);
             console.log("------------------");
-            console.log("onSuccess: " + xhr + "-->" + html);
+            console.log("onSuccess: " + xhr + "-->" + data);
             console.log(xhr);
-            console.log(html);
+            console.log(data);
             console.log("------------------");
+
+            testApi(data.access_token);
+            testWs(data.access_token);
+
         },
         onComplete: function () {
 
@@ -174,5 +178,51 @@
             console.log("------------------");
         }
     });
+
+    function testApi(token) {
+        ajax({
+            type: "GET",
+            url: "http://localhost:7777/api/messages",
+            async: true,
+            data: null,
+            timeout: 5000,
+            requestHeader: {
+                "Authorization": "Bearer " + token,
+                "Content-type" : "application/json; charset=UTF-8"
+            },
+            onSuccess: function (json, xhr) {
+                //alert(html);
+                console.log("------------------");
+                console.log("onSuccess: " + xhr + "-->" + json);
+                console.log(xhr);
+                console.log(json);
+                console.log("------------------");
+
+            },
+            onComplete: function () {
+
+            },
+            onError: function (xhr) {
+                //alert("onError: " + xhr);
+                console.log("------------------");
+                console.log("onError: " + xhr);
+                console.log(xhr);
+                console.log("------------------");
+            }
+        });
+    }
+    function testWs(token) {
+        var ws = new WebSocket("ws://localhost:7777/ws/chat", ["Bearer", token]);
+        ws.onopen = function(event) {
+            console.log("Connected");
+            ws.send('hello world');
+        };
+        ws.onmessage = function(event) {
+            console.log(event.data);
+        };
+        ws.onclose = function(event) {
+            console.log("Closed");
+        };
+    }
 </script>
 </html>
