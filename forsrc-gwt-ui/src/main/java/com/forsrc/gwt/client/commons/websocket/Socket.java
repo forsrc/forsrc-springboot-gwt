@@ -28,7 +28,7 @@ public class Socket {
     public String url;
 
     @JsProperty
-    public JavaScriptObject websocket;
+    private JavaScriptObject websocket;
 
 
     @JsConstructor
@@ -36,13 +36,15 @@ public class Socket {
         this.websocket = __getWebsocket(this, url);
     }
 
-    public native JavaScriptObject __getWebsocket(Socket socket, String url) /*-{
+    private native JavaScriptObject __getWebsocket(Socket socket, String url) /*-{
         var ws = null;
         try {
             ws = $wnd.WebSocket ? new WebSocket(url) : new MozWebSocket(url);
         } catch (e) {
-            socket.@com.forsrc.gwt.client.commons.websocket.Socket::onError(Lcom/google/gwt/core/client/JavaScriptObject;)(e);
+            socket.@com.forsrc.gwt.client.commons.websocket.Socket::onError(Lcom/google/gwt/core/client/JavaScriptObject;)(e.message);
             return;
+        } finally {
+
         }
         var self = socket;
         //var socket = self.@com.forsrc.gwt.client.commons.websocket.Socket::websocket;
@@ -74,22 +76,22 @@ public class Socket {
     }-*/;
 
     @JsMethod
-    public void onOpen(JavaScriptObject event) {
+    private void onOpen(JavaScriptObject event) {
          onopen.call(event);
     };
 
     @JsMethod
-    public void onMessage(JavaScriptObject event) {
+    private void onMessage(JavaScriptObject event) {
         onmessage.call(event);
     };
 
     @JsMethod
-    public void onClose(JavaScriptObject event) {
+    private void onClose(JavaScriptObject event) {
         onclose.call(event);
     };
 
     @JsMethod
-    public void onError(JavaScriptObject event) {
+    private void onError(JavaScriptObject event) {
         onerror.call(event);
     };
 }

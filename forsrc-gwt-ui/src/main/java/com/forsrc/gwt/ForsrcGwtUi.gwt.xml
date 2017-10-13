@@ -33,6 +33,7 @@
     <inherits name="com.google.api.gwt.oauth2.OAuth2"/>
     <inherits name="org.fusesource.restygwt.RestyGWT"/>
 
+    <inherits name="com.google.gwt.logging.Logging"/>
     <!-- Specify the paths for translatable code-->
     <source path='client'/>
     <source path='shared'/>

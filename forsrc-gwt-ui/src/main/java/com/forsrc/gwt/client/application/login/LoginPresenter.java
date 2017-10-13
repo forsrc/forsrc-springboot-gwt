@@ -118,8 +118,10 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
                 public void onResponseReceived(Request request, Response response) {
                     if (200 == response.getStatusCode()) {
                         JSONObject data = new JSONObject(JsonUtils.safeEval(response.getText()));
+                        GWT.log(data.toString());
                         Storage storage = Storage.getLocalStorageIfSupported();
                         String token = data.get("access_token").toString();
+                        GWT.log("token: " + token);
                         token = URL.decodeQueryString(token);
                         token = token.substring(1, token.length() - 1);
                         if (storage != null) {
