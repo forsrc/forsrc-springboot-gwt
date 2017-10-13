@@ -7,8 +7,8 @@ import java.util.logging.Logger;
 import javax.inject.Inject;
 
 import com.forsrc.gwt.client.application.websocket.composite.ChatMessageComposite;
-import com.forsrc.gwt.client.commons.websocket.JsErrorEvent;
-import com.forsrc.gwt.client.commons.websocket.MessageEvent;
+import com.forsrc.gwt.client.commons.event.JsErrorEvent;
+import com.forsrc.gwt.client.commons.event.MessageEvent;
 import com.forsrc.gwt.client.commons.websocket.Socket;
 import com.forsrc.gwt.client.commons.websocket.WebSocket;
 import com.forsrc.gwt.client.resources.i18n.Messages;

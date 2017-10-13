@@ -1,6 +1,10 @@
 package com.forsrc.gwt.client.commons.websocket;
 
 import jsinterop.annotations.JsType;
+
+import com.forsrc.gwt.client.commons.event.EventTarget;
+import com.forsrc.gwt.client.commons.js.Function;
+
 import jsinterop.annotations.JsConstructor;
 import jsinterop.annotations.JsMethod;
 import jsinterop.annotations.JsPackage;

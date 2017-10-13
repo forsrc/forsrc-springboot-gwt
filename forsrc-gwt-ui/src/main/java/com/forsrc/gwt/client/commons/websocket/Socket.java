@@ -2,6 +2,7 @@ package com.forsrc.gwt.client.commons.websocket;
 
 import jsinterop.annotations.JsType;
 
+import com.forsrc.gwt.client.commons.js.Function;
 import com.google.gwt.core.client.JavaScriptObject;
 
 import jsinterop.annotations.JsConstructor;
