@@ -87,4 +87,12 @@ public class AccessToken {
                && System.currentTimeMillis() - this.loginTime.getTime() < this.expiresIn
                ;
     }
+
+    @Override
+    public String toString() {
+        return "AccessToken [accessToken=" + accessToken + ", tokenType=" + tokenType + ", refreshToken=" + refreshToken
+                + ", expiresIn=" + expiresIn + ", scope=" + scope + ", jti=" + jti + ", loginTime=" + loginTime
+                + ", email=" + email + "]";
+    }
+
 }

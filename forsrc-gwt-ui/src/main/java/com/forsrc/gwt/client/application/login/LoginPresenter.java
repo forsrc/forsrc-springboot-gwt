@@ -129,8 +129,10 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
                         if (storage != null) {
                             storage.setItem("/oauth/token", data.toString());
                             storage.setItem("/oauth/token/access_token", token);
+                            storage.setItem("/oauth/token/login_time", String.valueOf(System.currentTimeMillis()));
+                            storage.setItem("/oauth/token/expires_in", String.valueOf(data.get("expires_in").isNumber().doubleValue() * 1000));
                         }
-                        getAccessToken(data);
+                        getAccessToken(email, data);
                         MaterialToast.fireToast("Response:" + response.getStatusCode());
                         PlaceRequest placeRequest = new PlaceRequest.Builder().nameToken(NameTokens.WS).build();
                         placeManager.revealPlace(placeRequest);
@@ -147,12 +149,13 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
 
     }
 
-    private void getAccessToken(JSONObject accessToken) {
+    private void getAccessToken(String email, JSONObject accessToken) {
         this.accessToken.setAccessToken(accessToken.get("access_token").isString().stringValue());
         this.accessToken.setRefreshToken(accessToken.get("refresh_token").isString().stringValue());
         this.accessToken.setTokenType(accessToken.get("token_type").isString().stringValue());
         this.accessToken.setScope(accessToken.get("scope").isString().stringValue());
         this.accessToken.setJti(accessToken.get("jti").isString().stringValue());
-        this.accessToken.setExpiresIn((long)accessToken.get("expires_in").isNumber().doubleValue());
+        this.accessToken.setExpiresIn((long)accessToken.get("expires_in").isNumber().doubleValue() * 1000);
+        this.accessToken.setEmail(email);
     }
 }
