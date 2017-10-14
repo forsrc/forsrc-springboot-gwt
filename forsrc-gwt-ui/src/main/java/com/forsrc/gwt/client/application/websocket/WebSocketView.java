@@ -10,19 +10,13 @@ import com.forsrc.gwt.client.application.websocket.composite.ChatMessageComposit
 import com.forsrc.gwt.client.commons.event.JsErrorEvent;
 import com.forsrc.gwt.client.commons.event.MessageEvent;
 import com.forsrc.gwt.client.commons.websocket.Socket;
-import com.forsrc.gwt.client.commons.websocket.WebSocket;
 import com.forsrc.gwt.client.resources.i18n.Messages;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.JavaScriptException;
-import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsonUtils;
-import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
-
 import com.gwtplatform.mvp.client.ViewImpl;
 
 import gwt.material.design.client.ui.MaterialLabel;

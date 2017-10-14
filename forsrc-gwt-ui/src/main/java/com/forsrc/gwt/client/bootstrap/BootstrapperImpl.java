@@ -17,6 +17,8 @@ import com.gwtplatform.mvp.client.annotations.UnauthorizedPlace;
 import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
+import gwt.material.design.client.ui.MaterialLoader;
+
 
 public class BootstrapperImpl implements Bootstrapper {
 
@@ -31,6 +33,7 @@ public class BootstrapperImpl implements Bootstrapper {
             AccessToken accessToken,
             @UnauthorizedPlace String unauthorizedPlace
             ) {
+        MaterialLoader.showProgress(true);
         this.accessToken = accessToken;
         this.placeManager = placeManager;
         this.unauthorizedPlace = unauthorizedPlace;

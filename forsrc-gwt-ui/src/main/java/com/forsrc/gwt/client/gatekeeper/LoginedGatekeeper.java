@@ -9,6 +9,8 @@ import com.google.gwt.user.client.Window;
 import com.gwtplatform.mvp.client.annotations.DefaultGatekeeper;
 import com.gwtplatform.mvp.client.proxy.Gatekeeper;
 
+import gwt.material.design.client.ui.MaterialLoader;
+
 
 @DefaultGatekeeper
 public class LoginedGatekeeper implements Gatekeeper {
@@ -17,6 +19,7 @@ public class LoginedGatekeeper implements Gatekeeper {
  
     @Inject
     LoginedGatekeeper(AccessToken accessToken) {
+        MaterialLoader.showProgress(true);
         this.accessToken = accessToken;
     }
 

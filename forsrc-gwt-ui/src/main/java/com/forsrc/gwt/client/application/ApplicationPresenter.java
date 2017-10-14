@@ -20,6 +20,8 @@ import com.gwtplatform.mvp.client.proxy.NavigationEvent;
 import com.gwtplatform.mvp.client.proxy.NavigationHandler;
 import com.gwtplatform.mvp.client.proxy.Proxy;
 
+import gwt.material.design.client.ui.MaterialLoader;
+
 public class ApplicationPresenter
         extends Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy>
         implements NavigationHandler, SetPageTitleHandler, MyEventUiHandlers {
@@ -47,7 +49,7 @@ public class ApplicationPresenter
             MyView view,
             MyProxy proxy) {
         super(eventBus, view, proxy, RevealType.Root);
-
+        MaterialLoader.showProgress(true);
         getView().setUiHandlers(this);
     }
 
