@@ -17,7 +17,8 @@ public class LoginedGatekeeper implements Gatekeeper {
 
     private final Logger logger = Logger.getLogger(LoginedGatekeeper.class.getSimpleName());
  
-    private AccessToken accessToken;
+    AccessToken accessToken;
+ 
     @Inject
     LoginedGatekeeper(AccessToken accessToken) {
         this.accessToken = accessToken;
