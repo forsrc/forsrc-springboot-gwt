@@ -42,7 +42,7 @@
 
              <m:MaterialContainer>
                 <g:HTMLPanel>
-                    <g:SimplePanel ui:field="mainContentPanel" />
+                    <g:SimplePanel ui:field="mainContentPanel"/>
                 </g:HTMLPanel>
 
                 <m:MaterialFAB>

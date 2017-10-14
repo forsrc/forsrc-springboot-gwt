@@ -18,10 +18,8 @@ public class LoginedGatekeeper implements Gatekeeper {
 
     @Override
     public boolean canReveal() {
-        // TODO Auto-generated method stub
-        return this.accessToken.getAccessToken() != null &&
-                System.currentTimeMillis() - this.accessToken.getLoginTime().getTime() < this.accessToken.getExpiresIn()
-                ;
+        //Window.alert("" + this.accessToken.isNotExpired());
+        return this.accessToken.isNotExpired();
     }
 
 }

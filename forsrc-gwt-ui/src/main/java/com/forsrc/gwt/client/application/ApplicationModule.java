@@ -1,5 +1,6 @@
 package com.forsrc.gwt.client.application;
 
+import com.forsrc.gwt.client.application.error.ErrorModule;
 import com.forsrc.gwt.client.application.home.HomeModule;
 import com.forsrc.gwt.client.application.login.LoginModule;
 import com.forsrc.gwt.client.application.table.TableModule;
@@ -14,6 +15,7 @@ public class ApplicationModule extends AbstractPresenterModule {
         bindPresenter(ApplicationPresenter.class, ApplicationPresenter.MyView.class, ApplicationView.class,
                 ApplicationPresenter.MyProxy.class);
 
+        install(new ErrorModule());
         install(new HomeModule());
         install(new LoginModule());
         install(new WebSocketModule());

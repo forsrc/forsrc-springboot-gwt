@@ -2,6 +2,7 @@ package com.forsrc.gwt.client.application.login;
 
 import com.forsrc.gwt.client.application.ApplicationPresenter;
 import com.forsrc.gwt.client.application.ApplicationView;
+import com.forsrc.gwt.client.commons.model.AccessToken;
 import com.forsrc.gwt.client.event.MyEvent;
 import com.forsrc.gwt.client.event.MyEvent.MyEventData;
 import com.forsrc.gwt.client.event.MyEvent.MyEventHandler;
@@ -16,9 +17,6 @@ import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.http.client.URL;
 import com.google.gwt.json.client.JSONObject;
-import com.google.gwt.json.client.JSONParser;
-import com.google.gwt.json.client.JSONString;
-import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.storage.client.Storage;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
@@ -27,6 +25,7 @@ import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
+import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
@@ -47,21 +46,25 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
 
     @ProxyStandard
     @NameToken(NameTokens.LOGIN)
+    @NoGatekeeper
     interface MyProxy extends ProxyPlace<LoginPresenter> {
     }
 
     private final PlaceManager placeManager;
+    private final AccessToken accessToken;
 
     @Inject
     LoginPresenter(
             EventBus eventBus,
             MyView view,
             MyProxy proxy,
-            PlaceManager placeManager
+            PlaceManager placeManager,
+            AccessToken accessToken
             ) {
         super(eventBus, view, proxy, ApplicationPresenter.SLOT_MAIN);
         getView().setUiHandlers(this);
         this.placeManager = placeManager;
+        this.accessToken = accessToken;
     }
 
     @Override
@@ -119,15 +122,15 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
                     if (200 == response.getStatusCode()) {
                         JSONObject data = new JSONObject(JsonUtils.safeEval(response.getText()));
                         GWT.log(data.toString());
-                        Storage storage = Storage.getLocalStorageIfSupported();
-                        String token = data.get("access_token").toString();
+                        String token = data.get("access_token").isString().stringValue();
                         GWT.log("token: " + token);
                         token = URL.decodeQueryString(token);
-                        token = token.substring(1, token.length() - 1);
+                        Storage storage = Storage.getLocalStorageIfSupported();
                         if (storage != null) {
                             storage.setItem("/oauth/token", data.toString());
                             storage.setItem("/oauth/token/access_token", token);
                         }
+                        getAccessToken(data);
                         MaterialToast.fireToast("Response:" + response.getStatusCode());
                         PlaceRequest placeRequest = new PlaceRequest.Builder().nameToken(NameTokens.WS).build();
                         placeManager.revealPlace(placeRequest);
@@ -142,5 +145,14 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
             MaterialLoader.showProgress(false);
         }
 
+    }
+
+    private void getAccessToken(JSONObject accessToken) {
+        this.accessToken.setAccessToken(accessToken.get("access_token").isString().stringValue());
+        this.accessToken.setRefreshToken(accessToken.get("refresh_token").isString().stringValue());
+        this.accessToken.setTokenType(accessToken.get("token_type").isString().stringValue());
+        this.accessToken.setScope(accessToken.get("scope").isString().stringValue());
+        this.accessToken.setJti(accessToken.get("jti").isString().stringValue());
+        this.accessToken.setExpiresIn((long)accessToken.get("expires_in").isNumber().doubleValue());
     }
 }

@@ -44,6 +44,7 @@
     <!-- allow Super Dev Mode -->
     <add-linker name="xsiframe"/>
 
+    <set-configuration-property name="gwtp.bootstrapper" value="com.forsrc.gwt.client.bootstrap.BootstrapperImpl"/>
     <set-configuration-property name="CssResource.enableGss" value="true"/>
 
     <inherits name="com.google.gwt.i18n.I18N" />

@@ -8,15 +8,17 @@ public class AccessToken {
     private String tokenType;
     private String refreshToken;
     private long expiresIn;
-    private String[] scope;
+    private String scope;
     private String jti;
     private Date loginTime;
+    private String email;
 
     public String getAccessToken() {
         return accessToken;
     }
 
     public void setAccessToken(String accessToken) {
+        this.loginTime = new Date();
         this.accessToken = accessToken;
     }
 
@@ -44,11 +46,11 @@ public class AccessToken {
         this.expiresIn = expiresIn;
     }
 
-    public String[] getScope() {
+    public String getScope() {
         return scope;
     }
 
-    public void setScope(String[] scope) {
+    public void setScope(String scope) {
         this.scope = scope;
     }
 
@@ -68,4 +70,21 @@ public class AccessToken {
         this.loginTime = loginTime;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public boolean isExpired() {
+        return !isNotExpired();
+    }
+
+    public boolean isNotExpired() {
+        return this.accessToken != null
+               && System.currentTimeMillis() - this.loginTime.getTime() < this.expiresIn
+               ;
+    }
 }

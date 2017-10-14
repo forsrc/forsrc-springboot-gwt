@@ -1,4 +1,4 @@
-package com.forsrc.gwt.client.application.home;
+package com.forsrc.gwt.client.application.error;
 
 import com.forsrc.gwt.client.application.ApplicationPresenter;
 import com.forsrc.gwt.client.application.ApplicationView;
@@ -15,7 +15,7 @@ import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 
-public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter.MyProxy>
+public class ErrorPresenter extends Presenter<ErrorPresenter.MyView, ErrorPresenter.MyProxy>
     implements MyEventHandler {
 
     interface MyView extends View {
@@ -23,13 +23,13 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
     }
 
     @ProxyStandard
-    @NameToken(NameTokens.HOME)
+    @NameToken(NameTokens.ERROR)
     @NoGatekeeper
-    interface MyProxy extends ProxyPlace<HomePresenter> {
+    interface MyProxy extends ProxyPlace<ErrorPresenter> {
     }
 
     @Inject
-    HomePresenter(
+    ErrorPresenter(
             EventBus eventBus,
             MyView view,
             MyProxy proxy) {
