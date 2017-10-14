@@ -1,21 +1,17 @@
 package com.forsrc.gwt.client.gatekeeper;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.inject.Inject;
 
 import com.forsrc.gwt.client.commons.model.AccessToken;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.storage.client.Storage;
+import com.google.gwt.user.client.Window;
 import com.gwtplatform.mvp.client.annotations.DefaultGatekeeper;
 import com.gwtplatform.mvp.client.proxy.Gatekeeper;
 
 
 @DefaultGatekeeper
 public class LoginedGatekeeper implements Gatekeeper {
-
-    private final Logger logger = Logger.getLogger(LoginedGatekeeper.class.getSimpleName());
  
     AccessToken accessToken;
  
@@ -26,19 +22,26 @@ public class LoginedGatekeeper implements Gatekeeper {
 
     @Override
     public boolean canReveal() {
-        //Window.alert("" + this.accessToken.isNotExpired());
-        logger.log(Level.INFO, this.accessToken.toString());
+
+        //Window.alert(this.accessToken.toString());
+
         if (this.accessToken == null || this.accessToken.getAccessToken() == null || this.accessToken.getAccessToken() == "undefined") {
             Storage storage = Storage.getLocalStorageIfSupported();
             if (storage != null) {
-                String loginTimeStr = storage.getItem("login_time");
-                logger.log(Level.INFO, loginTimeStr);
+                //Window.alert(storage.getItem("/oauth/token/login_time"));
+                String loginTimeStr = storage.getItem("/oauth/token/login_time");
                 if (loginTimeStr == null || loginTimeStr == "undefined") {
                     return false;
                 }
                 long loginTime = Long.parseLong(loginTimeStr);
-                String expiresInStr = storage.getItem("expires_in");
+                if (loginTime < 100000) {
+                    return  false;
+                }
+                String expiresInStr = storage.getItem("/oauth/token/expires_in");
                 long expiresIn = Long.parseLong(expiresInStr);
+                if (expiresIn < 60) {
+                    return  false;
+                }
                 return System.currentTimeMillis() - loginTime < expiresIn;
             }
         }

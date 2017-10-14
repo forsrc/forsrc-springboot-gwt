@@ -7,13 +7,13 @@ import javax.inject.Inject;
 import com.forsrc.gwt.client.commons.model.AccessToken;
 import com.gwtplatform.mvp.client.proxy.GatekeeperWithParams;
 
-public class AdminRoleGatekeeper extends LoginedGatekeeper implements GatekeeperWithParams{
+public class HasRolesGatekeeper extends LoginedGatekeeper implements GatekeeperWithParams{
 
     String[] requiredRoles;
     //User user;
 
     @Inject
-    AdminRoleGatekeeper(
+    HasRolesGatekeeper(
                 AccessToken accessToken //,
                 // User user
             ) {

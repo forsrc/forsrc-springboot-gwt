@@ -92,11 +92,12 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
 
     @Override
     public void login(String email, String password) {
-        String url = MessageFormat.format("{1}/oauth/token?grant_type=password&username={2}&password={3}",
-                messages.app_url_oauth(), email, password).toString();
+        //String url = MessageFormat.format("{1}/oauth/token?grant_type=password&username={2}&password={3}",
+        //        messages.app_url_oauth(), email, password).toString();
+        String url = messages.app_url_oauth() + "/oauth/token";
         MaterialToast.fireToast(url);
         RequestBuilder builder = new RequestBuilder(RequestBuilder.POST, URL.encode(url));
-        builder.setHeader("Content-Type", "application/json; charset=utf-8");
+        builder.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
         // Zm9yc3JjOmZvcnNyYw==
         String authorization = new String(Base64.encode("forsrc:forsrc".getBytes()));
         builder.setHeader("Authorization", "Basic " + authorization);
@@ -113,8 +114,10 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
 //        params.put("username", new JSONString(email));
 //        params.put("password", new JSONString(password));
         // MaterialToast.fireToast(params.toString());
+        String params = MessageFormat.format("grant_type=password&username={1}&password={2}",
+                email, password).toString();
         try {
-            Request request = builder.sendRequest(null, new RequestCallback() {
+            Request request = builder.sendRequest(params, new RequestCallback() {
                 public void onError(Request request, Throwable exception) {
                     MaterialToast.fireToast("Error:" + exception.getMessage());
                 }

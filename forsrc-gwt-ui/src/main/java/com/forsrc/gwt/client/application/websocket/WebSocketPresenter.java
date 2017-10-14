@@ -5,12 +5,14 @@ import com.forsrc.gwt.client.application.ApplicationView;
 import com.forsrc.gwt.client.event.MyEvent;
 import com.forsrc.gwt.client.event.MyEvent.MyEventData;
 import com.forsrc.gwt.client.event.MyEvent.MyEventHandler;
+import com.forsrc.gwt.client.gatekeeper.HasRolesGatekeeper;
 import com.forsrc.gwt.client.gatekeeper.LoginedGatekeeper;
 import com.forsrc.gwt.client.place.NameTokens;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
+import com.gwtplatform.mvp.client.annotations.GatekeeperParams;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.annotations.UseGatekeeper;
@@ -25,7 +27,9 @@ public class WebSocketPresenter extends Presenter<WebSocketPresenter.MyView, Web
 
     @ProxyStandard
     @NameToken(NameTokens.WS)
-    @UseGatekeeper(LoginedGatekeeper.class)
+    //@UseGatekeeper(LoginedGatekeeper.class)
+    @UseGatekeeper(HasRolesGatekeeper.class)
+    @GatekeeperParams({"WS"})
     interface MyProxy extends ProxyPlace<WebSocketPresenter> {
     }
 
