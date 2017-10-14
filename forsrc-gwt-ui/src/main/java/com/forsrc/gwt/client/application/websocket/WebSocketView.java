@@ -21,6 +21,7 @@ import com.gwtplatform.mvp.client.ViewImpl;
 
 import gwt.material.design.client.ui.MaterialLabel;
 import gwt.material.design.client.ui.MaterialPanel;
+import gwt.material.design.client.ui.MaterialTextArea;
 import gwt.material.design.client.ui.MaterialToast;
 
 public class WebSocketView extends ViewImpl implements WebSocketPresenter.MyView {
@@ -38,6 +39,9 @@ public class WebSocketView extends ViewImpl implements WebSocketPresenter.MyView
     @UiField
     MaterialPanel chatPanel;
 
+    @UiField
+    MaterialTextArea msg;
+
     Messages messages = GWT.create(Messages.class);
 
     @Inject
@@ -54,6 +58,7 @@ public class WebSocketView extends ViewImpl implements WebSocketPresenter.MyView
 
     @Override
     protected void onAttach() {
+        //msg.setLength(200);
         Storage storage = Storage.getLocalStorageIfSupported();
         String token = null;
         if (storage != null) {
