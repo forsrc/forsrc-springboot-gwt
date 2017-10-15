@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javax.inject.Inject;
 
 import com.forsrc.gwt.client.application.websocket.composite.ChatMessageComposite;
+import com.forsrc.gwt.client.application.websocket.vo.ChatMessage;
 import com.forsrc.gwt.client.commons.event.JsErrorEvent;
 import com.forsrc.gwt.client.commons.event.MessageEvent;
 import com.forsrc.gwt.client.commons.websocket.Socket;
@@ -92,8 +93,11 @@ public class WebSocketView extends ViewImpl implements WebSocketPresenter.MyView
             MaterialToast.fireToast("socket onerror: " + error.getType());
             return evt;
         };
+        ChatMessage test1 = new ChatMessage(1, "my", true, "test", System.currentTimeMillis(), "");
+        chatPanel.add(new ChatMessageComposite(test1));
+        ChatMessage test2 = new ChatMessage(1, "you", false, "test too", System.currentTimeMillis(), "");
+        chatPanel.add(new ChatMessageComposite(test2));
 
-        chatPanel.add(new ChatMessageComposite("test", System.currentTimeMillis()));
     }
 
     @Override

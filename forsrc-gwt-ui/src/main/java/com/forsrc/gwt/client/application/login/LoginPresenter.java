@@ -130,6 +130,7 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
                         token = URL.decodeQueryString(token);
                         Storage storage = Storage.getLocalStorageIfSupported();
                         if (storage != null) {
+                            storage.setItem("/user/email", email);
                             storage.setItem("/oauth/token", data.toString());
                             storage.setItem("/oauth/token/access_token", token);
                             storage.setItem("/oauth/token/login_time", String.valueOf(System.currentTimeMillis()));
