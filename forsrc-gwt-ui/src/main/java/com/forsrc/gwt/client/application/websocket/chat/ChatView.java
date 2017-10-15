@@ -84,8 +84,9 @@ public class ChatView extends ViewWithUiHandlers<ChatUiHandlers> implements Chat
             return;
         }
         getUiHandlers().sendMessage(msg);
-        ChatMessage chatMessage = new ChatMessage(1, "", true, msg, System.currentTimeMillis(), null);
+        ChatMessage chatMessage = new ChatMessage(0, "", true, msg, System.currentTimeMillis(), null);
         chatPanel.add(new ChatMessageComposite(chatMessage));
         MaterialLoader.showProgress(false);
+        this.msg.setText("");
     }
 }

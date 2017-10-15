@@ -38,10 +38,10 @@ public class ChatPresenter extends Presenter<ChatPresenter.MyView, ChatPresenter
     }
 
     @ProxyStandard
-    @NameToken(NameTokens.WS)
+    @NameToken(NameTokens.CHAT)
     //@UseGatekeeper(LoginedGatekeeper.class)
     @UseGatekeeper(HasRolesGatekeeper.class)
-    @GatekeeperParams({"WS"})
+    @GatekeeperParams({"CHAT_ROLE"})
     interface MyProxy extends ProxyPlace<ChatPresenter> {
     }
 

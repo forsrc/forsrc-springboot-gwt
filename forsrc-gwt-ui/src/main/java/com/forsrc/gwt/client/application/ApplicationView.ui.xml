@@ -5,7 +5,8 @@
        xmlns:ma="urn:import:gwt.material.design.addins.client">
 
     <ui:with field="res" type="com.forsrc.gwt.client.resources.AppResources"/>
-    <ui:with field='i18n' type='com.forsrc.gwt.client.resources.i18n.Messages' />
+    <ui:with field='i18n' type='com.forsrc.gwt.client.resources.i18n.Messages'/>
+    <ui:with field='nameTokens' type='com.forsrc.gwt.client.place.NameTokens'/>
 
     <g:HTMLPanel>
         <m:MaterialPanel>
@@ -13,8 +14,8 @@
                 <m:MaterialNavBar ui:field="navBar" activates="sidenavCard" backgroundColor="BLUE" shadow="1">
                     <m:MaterialNavBrand paddingLeft="60" text="{i18n.app_title}" />
                     <m:MaterialNavSection float="RIGHT">
-                        <m:MaterialLink text="Login" href="#login"/>
-                        <m:MaterialLink text="Signup" href="#signup"/>
+                        <m:MaterialLink text="Login" href="#{nameTokens.getLogin}"/>
+                        <m:MaterialLink text="Chat" href="#{nameTokens.getChat}"/>
                     </m:MaterialNavSection>
                     <m:MaterialLink ui:field="btnSearch" iconType="SEARCH" iconColor="WHITE" float="RIGHT"/>
                 </m:MaterialNavBar>
@@ -29,10 +30,11 @@
                     <m:MaterialLabel text="GWT Material" textColor="WHITE"/>
                     <m:MaterialLink text="forsrc@gmail.com" activates="dropProfile" iconType="ARROW_DROP_DOWN" iconPosition="RIGHT" textColor="WHITE"/>
                 </ma:sideprofile.MaterialSideProfile>
+                <m:MaterialLink iconType="ACCOUNT_CIRCLE" text="Login" href="#{nameTokens.getLogin}"/>
+                <m:MaterialLink iconType="CHAT" text="Chat" href="#{nameTokens.getChat}"/>
                 <m:MaterialLink iconType="INBOX" text="Inbox">
                     <m:MaterialBadge text="1 new" />
                 </m:MaterialLink>
-                <m:MaterialLink iconType="SEND" text="Send Mail"/>
                 <m:MaterialLink iconType="DRAFTS" text="Drafts"/>
                 <m:MaterialLink iconType="MAIL" text="All Mail"/>
                 <m:MaterialLink iconType="DELETE" text="Trash"/>
