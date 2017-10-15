@@ -4,7 +4,7 @@ import com.forsrc.gwt.client.application.error.ErrorModule;
 import com.forsrc.gwt.client.application.home.HomeModule;
 import com.forsrc.gwt.client.application.login.LoginModule;
 import com.forsrc.gwt.client.application.table.TableModule;
-import com.forsrc.gwt.client.application.websocket.WebSocketModule;
+import com.forsrc.gwt.client.application.websocket.chat.ChatModule;
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 
 public class ApplicationModule extends AbstractPresenterModule {
@@ -18,7 +18,7 @@ public class ApplicationModule extends AbstractPresenterModule {
         install(new ErrorModule());
         install(new HomeModule());
         install(new LoginModule());
-        install(new WebSocketModule());
+        install(new ChatModule());
         install(new TableModule());
     }
 }

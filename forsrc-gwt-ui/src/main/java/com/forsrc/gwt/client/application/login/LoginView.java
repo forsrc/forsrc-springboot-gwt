@@ -16,7 +16,7 @@ import gwt.material.design.client.ui.MaterialToast;
 import gwt.material.design.client.ui.animate.MaterialAnimation;
 import gwt.material.design.client.ui.animate.Transition;
 
-public class LoginView extends ViewWithUiHandlers<LoginUiHandlers>  implements LoginPresenter.MyView {
+public class LoginView extends ViewWithUiHandlers<LoginUiHandlers> implements LoginPresenter.MyView {
     interface Binder extends UiBinder<Widget, LoginView> {
     }
 

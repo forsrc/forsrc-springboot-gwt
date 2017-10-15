@@ -1,4 +1,6 @@
-package com.forsrc.gwt.client.application.websocket.vo;
+package com.forsrc.gwt.client.application.websocket.chat.vo;
+
+import gwt.material.design.client.constants.Color;
 
 public class ChatMessage {
 
@@ -8,6 +10,7 @@ public class ChatMessage {
     private String message;
     private long time;
     private boolean myself;
+    private Color color;
 
     public ChatMessage() {
     }
@@ -69,6 +72,14 @@ public class ChatMessage {
 
     public void setMyself(boolean myself) {
         this.myself = myself;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 
 

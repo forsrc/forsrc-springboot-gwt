@@ -1,8 +1,8 @@
-package com.forsrc.gwt.client.application.websocket.composite;
+package com.forsrc.gwt.client.application.websocket.chat.composite;
 
 import java.util.Date;
 
-import com.forsrc.gwt.client.application.websocket.vo.ChatMessage;
+import com.forsrc.gwt.client.application.websocket.chat.vo.ChatMessage;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Float;
 import com.google.gwt.i18n.client.DateTimeFormat;
@@ -57,6 +57,9 @@ public class ChatMessageComposite extends Composite {
             this.image.setBackgroundColor(Color.RED);
             this.bubble.setBackgroundColor(Color.RED);
             this.image.setMarginRight(12);
+        }
+        if (this.chatMessage.getImage() != null) {
+            this.image.setUrl(this.chatMessage.getImage());
         }
         this.bubble.reinitialize();
     }
