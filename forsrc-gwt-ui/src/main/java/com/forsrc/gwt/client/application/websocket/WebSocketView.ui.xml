@@ -14,49 +14,9 @@
                         <m:MaterialIcon iconType="CLOSE" float="RIGHT" textColor="WHITE"/>
                     </m:MaterialPanel>
                     <m:MaterialCardContent ui:field="cardContent">
-                        <m:MaterialRow marginBottom="0">
-                            <m:MaterialImage backgroundColor="BLUE_ACCENT_1" marginRight="12" marginTop="8" float="LEFT" width="40px" height="40px" shadow="1" circle="true" url="https://mir-s3-cdn-cf.behance.net/project_modules/disp/70e0a922433737.5631e83fc9429.png"/>
-                            <ma:bubble.MaterialBubble backgroundColor="BLUE_ACCENT_1" position="LEFT" float="LEFT">
-                                <m:MaterialLabel text="Hello there, How are you doing?"/>
-                                <m:MaterialLabel text="1/2/2016" fontSize="0.6em" float="RIGHT"/>
-                            </ma:bubble.MaterialBubble>
-                        </m:MaterialRow>
-                        <m:MaterialRow marginBottom="0">
-                            <m:MaterialImage backgroundColor="BLUE_DARKEN_3" marginLeft="12" marginTop="8" float="RIGHT" width="40px" height="40px" shadow="1" circle="true" url="https://mir-s3-cdn-cf.behance.net/project_modules/disp/6ba40822433737.5632180017216.png"/>
-                            <ma:bubble.MaterialBubble textColor="WHITE" backgroundColor="BLUE_DARKEN_3" position="RIGHT" float="RIGHT">
-                                <m:MaterialLabel text="Hi there, Im fine, thank you. How about you?"/>
-                                <m:MaterialLabel text="1/2/2016" fontSize="0.6em" float="RIGHT"/>
-                            </ma:bubble.MaterialBubble>
-                        </m:MaterialRow>
-                        <m:MaterialRow marginBottom="0">
-                            <m:MaterialImage backgroundColor="BLUE_DARKEN_3" marginLeft="12" marginTop="8" float="RIGHT" width="40px" height="40px" shadow="1" circle="true" url="https://mir-s3-cdn-cf.behance.net/project_modules/disp/6ba40822433737.5632180017216.png"/>
-                            <ma:bubble.MaterialBubble textColor="WHITE" backgroundColor="BLUE_DARKEN_3" position="RIGHT" float="RIGHT">
-                                <m:MaterialLabel text="Me too, Im doing good."/>
-                                <m:MaterialLabel text="1/2/2016" fontSize="0.6em" float="RIGHT"/>
-                            </ma:bubble.MaterialBubble>
-                        </m:MaterialRow>
-                        <m:MaterialRow marginBottom="0">
-                            <m:MaterialImage backgroundColor="BLUE_ACCENT_1" marginRight="12" marginTop="8" float="LEFT" width="40px" height="40px" shadow="1" circle="true" url="https://mir-s3-cdn-cf.behance.net/project_modules/disp/70e0a922433737.5631e83fc9429.png"/>
-                            <ma:bubble.MaterialBubble backgroundColor="BLUE_ACCENT_1" position="LEFT" float="LEFT">
-                                <m:MaterialLabel text="Would you want to go to Philippines?"/>
-                                <m:MaterialLabel text="1/2/2016" fontSize="0.6em" float="RIGHT"/>
-                            </ma:bubble.MaterialBubble>
-                        </m:MaterialRow>
-                        <m:MaterialRow marginBottom="0">
-                            <m:MaterialImage textColor="WHITE" backgroundColor="RED" marginRight="12" marginTop="8" float="LEFT" width="40px" height="40px" shadow="1" circle="true" url="https://mir-s3-cdn-cf.behance.net/project_modules/disp/1ccdd322433737.5631e853db4a9.png"/>
-                            <ma:bubble.MaterialBubble textColor="WHITE" backgroundColor="RED" position="LEFT" float="LEFT">
-                                <m:MaterialLabel text="Hello there, How are you doing?"/>
-                                <m:MaterialLabel text="1/2/2016" fontSize="0.6em" float="RIGHT"/>
-                            </ma:bubble.MaterialBubble>
-                        </m:MaterialRow>
-                        <m:MaterialRow marginBottom="0">
-                            <m:MaterialImage backgroundColor="BLUE_DARKEN_3" marginLeft="12" marginTop="8" float="RIGHT" width="40px" height="40px" shadow="1" circle="true" url="https://mir-s3-cdn-cf.behance.net/project_modules/disp/6ba40822433737.5632180017216.png"/>
-                            <ma:bubble.MaterialBubble textColor="WHITE" backgroundColor="BLUE_DARKEN_3" position="RIGHT" float="RIGHT">
-                                <m:MaterialLabel text="Yes of course, I want to visit Philippines and take a tour."/>
-                                <m:MaterialLabel text="1/2/2016" fontSize="0.6em" float="RIGHT"/>
-                            </ma:bubble.MaterialBubble>
-                        </m:MaterialRow>
+
                         <m:MaterialPanel ui:field="chatPanel"/>
+
                     </m:MaterialCardContent>
                     <m:MaterialProgress type="DETERMINATE" percent="100"/>
                     <m:MaterialTextArea ui:field="msg" label="Send message ..." resizeRule="AUTO"/>

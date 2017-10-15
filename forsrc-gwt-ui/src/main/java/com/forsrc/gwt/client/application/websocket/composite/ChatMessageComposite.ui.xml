@@ -7,8 +7,8 @@
     <g:HTMLPanel>
 
         <m:MaterialRow marginBottom="0">
-            <m:MaterialImage ui:field="image" backgroundColor="BLUE_DARKEN_3" marginTop="8" width="40px" height="40px" shadow="1" circle="true" url="https://mir-s3-cdn-cf.behance.net/project_modules/disp/6ba40822433737.5632180017216.png"/>
-            <ma:bubble.MaterialBubble ui:field="bubble" textColor="WHITE" backgroundColor="BLUE_DARKEN_3" position="RIGHT" float="RIGHT">
+            <m:MaterialImage ui:field="image" backgroundColor="BLUE" marginTop="8" width="40px" height="40px" shadow="1" circle="true" url="https://mir-s3-cdn-cf.behance.net/project_modules/disp/6ba40822433737.5632180017216.png"/>
+            <ma:bubble.MaterialBubble ui:field="bubble" textColor="WHITE">
                 <m:MaterialLabel ui:field="message" text="hello world"/>
                 <m:MaterialLabel ui:field="time" text="0000-00-00 00:00:00" fontSize="0.6em" float="RIGHT"/>
             </ma:bubble.MaterialBubble>

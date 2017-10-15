@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 
 import gwt.material.design.addins.client.bubble.MaterialBubble;
+import gwt.material.design.client.constants.Color;
 import gwt.material.design.client.constants.Position;
 import gwt.material.design.client.ui.MaterialImage;
 import gwt.material.design.client.ui.MaterialLabel;
@@ -45,14 +46,18 @@ public class ChatMessageComposite extends Composite {
         DateTimeFormat fmt = DateTimeFormat.getFormat("yyyy/MM/dd HH:mm:ss");
         this.time.setText(fmt.format(new Date(this.chatMessage.getTime())));
         boolean myself = this.chatMessage.isMyself();
-        this.bubble.setPosition(myself ? Position.RIGHT : Position.LEFT);
         this.bubble.setFloat(myself ? Float.RIGHT : Float.LEFT);
+        this.bubble.setPosition(myself ? Position.RIGHT : Position.LEFT);
         this.image.setFloat(myself ? Float.RIGHT : Float.LEFT);
         if (myself) {
+            this.image.setBackgroundColor(Color.BLUE);
+            this.bubble.setBackgroundColor(Color.BLUE);
             this.image.setMarginLeft(12);
         } else {
+            this.image.setBackgroundColor(Color.RED);
+            this.bubble.setBackgroundColor(Color.RED);
             this.image.setMarginRight(12);
         }
-
+        this.bubble.reinitialize();
     }
 }
