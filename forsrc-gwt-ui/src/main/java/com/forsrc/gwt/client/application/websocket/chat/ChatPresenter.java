@@ -70,7 +70,7 @@ public class ChatPresenter extends Presenter<ChatPresenter.MyView, ChatPresenter
     }
 
     private Messages messages = GWT.create(Messages.class);
-    private Socket socket;
+    private Socket socket = null;
 
     @Override
     public void startWebSocket() {
@@ -101,7 +101,7 @@ public class ChatPresenter extends Presenter<ChatPresenter.MyView, ChatPresenter
         };
 
         socket.onclose = (evt) -> {
-            MaterialToast.fireToast("socket onopen: " + JsonUtils.stringify(evt.cast()).toString());
+            MaterialToast.fireToast("socket onclose: " + JsonUtils.stringify(evt.cast()).toString());
             return evt;
         };
 
