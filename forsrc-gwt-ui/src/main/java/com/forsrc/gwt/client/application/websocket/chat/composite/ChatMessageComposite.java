@@ -6,9 +6,11 @@ import com.forsrc.gwt.client.application.websocket.chat.vo.ChatMessage;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Float;
 import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
 
 import gwt.material.design.addins.client.bubble.MaterialBubble;
@@ -16,6 +18,8 @@ import gwt.material.design.client.constants.Color;
 import gwt.material.design.client.constants.Position;
 import gwt.material.design.client.ui.MaterialImage;
 import gwt.material.design.client.ui.MaterialLabel;
+import gwt.material.design.client.ui.MaterialPanel;
+import gwt.material.design.client.ui.MaterialTextBox;
 
 public class ChatMessageComposite extends Composite {
     
@@ -32,7 +36,7 @@ public class ChatMessageComposite extends Composite {
     }
 
     @UiField
-    MaterialLabel message;
+    MaterialPanel message;
     @UiField
     MaterialLabel time;
     @UiField
@@ -42,7 +46,7 @@ public class ChatMessageComposite extends Composite {
     @Override
     protected void onLoad() {
         super.onLoad();
-        this.message.setText(this.chatMessage.getMessage());
+        this.message.add(new HTML(new SafeHtmlBuilder().appendEscapedLines(this.chatMessage.getMessage()).toSafeHtml()));
         DateTimeFormat fmt = DateTimeFormat.getFormat("yyyy/MM/dd HH:mm:ss");
         this.time.setText(fmt.format(new Date(this.chatMessage.getTime())));
         boolean myself = this.chatMessage.isMyself();

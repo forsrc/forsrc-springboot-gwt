@@ -88,7 +88,7 @@ public class ChatPresenter extends Presenter<ChatPresenter.MyView, ChatPresenter
             MessageEvent event = evt.cast();
             MaterialToast.fireToast("socket onmessage: " + event.getData());
             ChatMessage chatMessage = new ChatMessage();
-            chatMessage.setMessage(event.getData());
+            chatMessage.setMessage(event.getData().replaceAll("¥n", "<br/>"));
             chatMessage.setTime(System.currentTimeMillis());
             chatMessage.setMyself(false);
             getView().onMessage(chatMessage);

@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import com.forsrc.gwt.client.application.websocket.chat.composite.ChatMessageComposite;
 import com.forsrc.gwt.client.application.websocket.chat.vo.ChatMessage;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
