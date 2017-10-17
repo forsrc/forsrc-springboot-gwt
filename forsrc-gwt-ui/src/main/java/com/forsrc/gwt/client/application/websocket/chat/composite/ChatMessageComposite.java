@@ -50,8 +50,6 @@ public class ChatMessageComposite extends Composite {
         DateTimeFormat fmt = DateTimeFormat.getFormat("yyyy/MM/dd HH:mm:ss");
         this.time.setText(fmt.format(new Date(this.chatMessage.getTime())));
         boolean myself = this.chatMessage.isMyself();
-        this.bubble.setFloat(myself ? Float.RIGHT : Float.LEFT);
-        this.bubble.setPosition(myself ? Position.RIGHT : Position.LEFT);
         this.image.setFloat(myself ? Float.RIGHT : Float.LEFT);
         if (myself) {
             this.image.setBackgroundColor(Color.BLUE);
@@ -65,6 +63,7 @@ public class ChatMessageComposite extends Composite {
         if (this.chatMessage.getImage() != null) {
             this.image.setUrl(this.chatMessage.getImage());
         }
-        this.bubble.reinitialize();
+        this.bubble.setFloat(myself ? Float.RIGHT : Float.LEFT);
+        this.bubble.setPosition(myself ? Position.RIGHT : Position.LEFT);
     }
 }
