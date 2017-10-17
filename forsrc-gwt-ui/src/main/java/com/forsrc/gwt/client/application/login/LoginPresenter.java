@@ -138,7 +138,7 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
                         }
                         getAccessToken(email, data);
                         MaterialToast.fireToast("Response:" + response.getStatusCode());
-                        PlaceRequest placeRequest = new PlaceRequest.Builder().nameToken(NameTokens.WS).build();
+                        PlaceRequest placeRequest = new PlaceRequest.Builder().nameToken(NameTokens.CHAT).build();
                         placeManager.revealPlace(placeRequest);
                     } else {
                         MaterialToast.fireToast("Response:" + response.getStatusCode());
