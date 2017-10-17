@@ -42,7 +42,7 @@
             </m:MaterialSideNavCard>
 
 
-             <m:MaterialContainer addStyleNames="code">
+             <m:MaterialContainer>
                 <g:HTMLPanel>
                     <g:SimplePanel ui:field="mainContentPanel"/>
                 </g:HTMLPanel>
