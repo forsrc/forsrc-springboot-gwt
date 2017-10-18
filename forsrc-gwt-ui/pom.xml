@@ -170,6 +170,7 @@
                     <!-- mvn gwt:run-codeserver - won't have to use the bookmarklet -->
                     <launcherDir>${webappDirectory}</launcherDir>
                     <outputDirectory>${project.build.outputDirectory}/static</outputDirectory>
+                    <generateJsInteropExports>true</generateJsInteropExports>
                 </configuration>
 
                 <!--Replaced the existing executions block -->
