@@ -2,7 +2,6 @@ package com.forsrc.boot.authorization.config;
 
 import java.io.IOException;
 
-import javax.naming.AuthenticationException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +13,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @Order(-20)
@@ -24,9 +24,15 @@ public class LoginConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                     .loginPage("/login")
                     .permitAll()
+                 .and()
+                    .logout()
+                    .deleteCookies("JSESSIONID")
+                    .invalidateHttpSession(true)
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                    .logoutSuccessUrl("/login?logout").permitAll()
                 .and()
                     .requestMatchers()
-                    .antMatchers("/", "/index", "/login", "/oauth/authorize", "/oauth/confirm_access", "/test")
+                    .antMatchers("/login", "/logout", "/oauth/authorize", "/oauth/confirm_access", "/test")
                 .and()
                     .authorizeRequests()
                     .antMatchers("/test", "/oauth/token")
