@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jbosscache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:jboss:jbosscache-core:config:3.1">
+   <!--
+      isolation levels supported: READ_COMMITTED and REPEATABLE_READ
+      nodeLockingSchemes: mvcc, pessimistic (deprecated), optimistic (deprecated)
+   -->
+
+   <locking
+         isolationLevel="READ_COMMITTED"
+         lockParentForChildInsertRemove="false"
+         lockAcquisitionTimeout="1000"
+         nodeLockingScheme="mvcc"
+         writeSkewCheck="false"
+         concurrencyLevel="2000"/>
+
+   <!--
+      Used to register a transaction manager and participate in ongoing transactions.
+      -->
+
+   <transaction
+         transactionManagerLookupClass="org.jboss.cache.transaction.GenericTransactionManagerLookup"
+         syncRollbackPhase="false"
+         syncCommitPhase="false"/>
+
+   <!--
+      Used to register JMX statistics in any available MBean server
+      -->
+
+   <jmxStatistics
+         enabled="false"/>
+
+
+
+   <!--
+      If region based marshalling is used, defines whether new regions are inactive on startup.
+   -->
+
+   <startup
+         regionsInactiveOnStartup="true"/>
+
+
+
+   <!--
+      Used to register JVM shutdown hooks.
+      hookBehavior: DEFAULT, REGISTER, DONT_REGISTER
+   -->
+
+   <shutdown
+         hookBehavior="DEFAULT"/>
+
+   <!--
+      Used to define async listener notification thread pool size
+   -->
+
+   <listeners
+         asyncPoolSize="1"
+         asyncQueueSize="100000"/>
+
+   <!--
+      Used to enable invocation batching and allow the use of Cache.startBatch()/endBatch() methods.
+   -->
+
+   <invocationBatching
+         enabled="false"/>
+
+
+
+   <!--
+      serialization related configuration, used for replication and cache loading
+   -->
+
+   <serialization
+         objectInputStreamPoolSize="12"
+         objectOutputStreamPoolSize="14"
+         version="3.0.0"
+         useLazyDeserialization="false"
+         useRegionBasedMarshalling="false"/>
+
+
+
+   <!--
+      This element specifies that the cache is clustered.
+      modes supported: replication (r) or invalidation (i).
+   -->
+
+   <clustering mode="replication" clusterName="forsrc-cache">
+
+      <!--
+         Defines whether to retrieve state on startup
+      -->
+
+      <stateRetrieval timeout="20000" fetchInMemoryState="true"/>
+
+
+      <!--
+         Network calls are synchronous.
+      -->
+
+      <!-- <sync replTimeout="20000"/> -->
+
+      <!--
+         Uncomment this for async replication.
+      -->
+
+     <async useReplQueue="true" replQueueInterval="10000" replQueueMaxElements="500" serializationExecutorPoolSize="20" serializationExecutorQueueSize="5000000"/>
+
+      <!--
+         Configures the JGroups channel.  Looks up a JGroups config file on the classpath or filesystem.  udp.xml
+         ships with jgroups.jar and will be picked up by the class loader.
+      -->
+
+      <!--<jgroupsConfig configFile="udp2.xml">
+
+         <PING timeout="2000" num_initial_members="3"/>
+         <MERGE2 max_interval="30000" min_interval="10000"/>
+         <FD_SOCK/>
+         <FD timeout="10000" max_tries="5" shun="true"/>
+         <VERIFY_SUSPECT timeout="1500"/>
+         <pbcast.NAKACK use_mcast_xmit="false" gc_lag="0"
+                        retransmit_timeout="300,600,1200,2400,4800"
+                        discard_delivered_msgs="true"/>
+         <UNICAST timeout="300,600,1200,2400,3600"/>
+         <pbcast.STABLE stability_delay="1000" desired_avg_gossip="50000"
+                        max_bytes="400000"/>
+         <pbcast.GMS print_local_addr="true" join_timeout="5000" shun="false"
+                     view_bundling="true" view_ack_collection_timeout="5000"/>
+         <FRAG2 frag_size="60000"/>
+         <pbcast.STREAMING_STATE_TRANSFER use_reading_thread="true"/>
+         <pbcast.FLUSH timeout="0"/>
+
+      </jgroupsConfig> -->
+
+   </clustering>
+
+
+
+</jbosscache>
