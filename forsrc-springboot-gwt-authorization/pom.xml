@@ -58,7 +58,11 @@
             <scope>test</scope>
         </dependency>
 
-
+        <dependency>
+            <groupId>org.jboss.cache</groupId>
+            <artifactId>jbosscache-core</artifactId>
+            <version>3.2.11.GA</version>
+        </dependency>
 
 
 
