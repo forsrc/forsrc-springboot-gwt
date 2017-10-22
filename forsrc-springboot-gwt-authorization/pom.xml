@@ -61,8 +61,9 @@
         <dependency>
             <groupId>org.jboss.cache</groupId>
             <artifactId>jbosscache-core</artifactId>
-            <version>3.2.11.GA</version>
+            <version>3.2.2.GA</version>
         </dependency>
+
 
 
 
@@ -102,8 +103,8 @@
             </plugin>
 
         </plugins>
-    </build>
 
+    </build>
 
 
 </project>
