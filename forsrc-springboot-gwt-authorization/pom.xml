@@ -71,9 +71,10 @@
 
         <dependency>
             <groupId>org.infinispan</groupId>
-            <artifactId>inifinispan-spring-boot-starter</artifactId>
-            <version>1.0.0.Alpha1</version>
+            <artifactId>spring-boot-starter-infinispan</artifactId>
+            <version>1.0.0</version>
         </dependency>
+ 
         <dependency>
             <groupId>org.infinispan</groupId>
             <artifactId>infinispan-spring-boot-starter-embedded</artifactId>

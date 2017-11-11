@@ -12,9 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 
-import infinispan.autoconfigure.embedded.InfinispanCacheConfigurer;
-import infinispan.autoconfigure.embedded.InfinispanGlobalConfigurer;
-
+import infinispan.autoconfigure.InfinispanCacheConfigurer;
+import infinispan.autoconfigure.InfinispanGlobalConfigurer;
 
 
 @org.springframework.context.annotation.Configuration
