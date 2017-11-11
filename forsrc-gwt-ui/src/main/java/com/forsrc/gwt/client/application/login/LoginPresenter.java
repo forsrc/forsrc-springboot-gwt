@@ -143,12 +143,12 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
                     } else {
                         MaterialToast.fireToast("Response:" + response.getStatusCode());
                     }
-                    MaterialLoader.showProgress(false);
+                    MaterialLoader.loading(false);
                 }
             });
         } catch (RequestException e) {
             MaterialToast.fireToast("RequestException:" + e.getMessage());
-            MaterialLoader.showProgress(false);
+            MaterialLoader.loading(false);
         }
 
     }

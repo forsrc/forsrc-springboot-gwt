@@ -78,16 +78,16 @@ public class ChatView extends ViewWithUiHandlers<ChatUiHandlers> implements Chat
 
     @UiHandler("send")
     public void send(ClickEvent clickEvent) {
-        MaterialLoader.showProgress(true);
+        MaterialLoader.loading(true);
         String msg = this.msg.getText();
         if (msg == "") {
-            MaterialLoader.showProgress(false);
+            MaterialLoader.loading(false);
             return;
         }
         getUiHandlers().sendMessage(msg);
         ChatMessage chatMessage = new ChatMessage(0, "", true, msg, System.currentTimeMillis(), null);
         chatPanel.add(new ChatMessageComposite(chatMessage));
-        MaterialLoader.showProgress(false);
+        MaterialLoader.loading(false);
         this.msg.setText("");
     }
 }

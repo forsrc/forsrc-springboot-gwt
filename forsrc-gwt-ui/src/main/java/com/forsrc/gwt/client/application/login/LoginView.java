@@ -31,7 +31,7 @@ public class LoginView extends ViewWithUiHandlers<LoginUiHandlers> implements Lo
     @Inject
     LoginView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
-        MaterialLoader.showProgress(true);
+        MaterialLoader.loading(true);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class LoginView extends ViewWithUiHandlers<LoginUiHandlers> implements Lo
 
     @UiHandler("login")
     public void onLogin(ClickEvent clickEvent) {
-        MaterialLoader.showProgress(true);
+        MaterialLoader.loading(true);
         getUiHandlers().login(email.getValue(), password.getValue());
     }
 }

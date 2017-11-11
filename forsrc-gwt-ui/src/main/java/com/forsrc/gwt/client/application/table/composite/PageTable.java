@@ -1,17 +1,15 @@
 package com.forsrc.gwt.client.application.table.composite;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Style.Display;
-import com.google.gwt.dom.client.Style.Position;
-import com.google.gwt.dom.client.Style.Unit;
-import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.dom.client.Style;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.inject.Inject;
+
 import gwt.material.design.client.base.MaterialWidget;
 import gwt.material.design.client.constants.*;
 import gwt.material.design.client.data.ListDataSource;
@@ -43,6 +41,8 @@ public class PageTable extends Composite {
     private ListDataSource<Person> dataSource;
 
     public PageTable() {
+        initWidget(ourUiBinder.createAndBindUi(this));
+
         // Generate 20 categories
         int rowIndex = 1;
         List<Person> people = new ArrayList<>();
@@ -53,19 +53,11 @@ public class PageTable extends Composite {
             }
         }
 
-        initWidget(ourUiBinder.createAndBindUi(this));
-
         dataSource = new ListDataSource<>();
         dataSource.add(0, people);
 
         pager.setTable(table);
         pager.setDataSource(dataSource);
-
-    }
-
-    @Override
-    protected void onLoad() {
-        super.onLoad();
 
         table.setVisibleRange(1, 10);
         table.add(pager);
@@ -155,15 +147,15 @@ public class PageTable extends Composite {
                 MaterialBadge badge = new MaterialBadge();
                 badge.setText("badge " + object.getId());
                 badge.setBackgroundColor(Color.BLUE);
-                badge.setLayoutPosition(Position.RELATIVE);
+                badge.setLayoutPosition(Style.Position.RELATIVE);
                 return badge;
             }
         });
 
         // Here we are adding a row expansion handler.
         // This is invoked when a row is expanded.
-        table.addRowExpandHandler((e, rowExpand) -> {
-            JQueryElement section = rowExpand.getOverlay();
+        table.addRowExpandingHandler(event -> {
+            JQueryElement section = event.getExpansion().getOverlay();
 
             // Fake Async Task
             // This is demonstrating a fake asynchronous call to load
@@ -172,15 +164,15 @@ public class PageTable extends Composite {
                 @Override
                 public void run() {
                     // Clear the content first.
-                    JQueryElement element = rowExpand.getRow().find(".content").empty();
+                    JQueryElement element = event.getExpansion().getRow().find(".content").empty();
                     // Assign the jquery element to a GMD Widget
                     MaterialWidget content = new MaterialWidget(element);
 
                     // Add new content.
                     MaterialBadge badge = new MaterialBadge("This content", Color.WHITE, Color.BLUE);
-                    badge.getElement().getStyle().setPosition(Position.RELATIVE);
-                    badge.getElement().getStyle().setRight(0, Unit.PX);
-                    badge.setFontSize(12, Unit.PX);
+                    badge.getElement().getStyle().setPosition(Style.Position.RELATIVE);
+                    badge.getElement().getStyle().setRight(0, Style.Unit.PX);
+                    badge.setFontSize(12, Style.Unit.PX);
                     content.add(badge);
 
                     MaterialButton btn = new MaterialButton("was made", ButtonType.RAISED,
@@ -189,13 +181,13 @@ public class PageTable extends Composite {
 
                     MaterialTextBox textBox = new MaterialTextBox();
                     textBox.setText(" from an asynchronous");
-                    textBox.setGwtDisplay(Display.INLINE_TABLE);
+                    textBox.setGwtDisplay(Style.Display.INLINE_TABLE);
                     textBox.setWidth("200px");
                     content.add(textBox);
 
                     MaterialIcon icon = new MaterialIcon(IconType.CALL);
-                    icon.getElement().getStyle().setPosition(Position.RELATIVE);
-                    icon.getElement().getStyle().setTop(12, Unit.PX);
+                    icon.getElement().getStyle().setPosition(Style.Position.RELATIVE);
+                    icon.getElement().getStyle().setTop(12, Style.Unit.PX);
                     content.add(icon);
 
                     // Hide the expansion elements overlay section.
@@ -203,45 +195,33 @@ public class PageTable extends Composite {
                     section.css("display", "none");
                 }
             }.schedule(2000);
-            return true;
         });
 
         // Add a row select handler, called when a user selects a row.
-        table.addRowSelectHandler((e, model, elem, selected) -> {
-            GWT.log(model.getId() + ": " + selected);
-            return true;
+        table.addRowSelectHandler(event -> {
+            GWT.log(event.getModel().getId() + ": " + event.isSelected());
         });
 
         // Add a sort column handler, called when a user sorts a column.
-        table.addSortColumnHandler((e, sortContext, columnIndex) -> {
-            GWT.log("Sorted: " + sortContext.getSortDir() + ", columnIndex: " + columnIndex);
-            table.refreshView();
-            return true;
-        });
-
-        // Add a row count change handler, called when the row count changes.
-        table.addRowCountChangeHandler((e, newCount, isExact) -> {
-            GWT.log("Row Count Changed: " + newCount + ", isExact: " + isExact);
-            return true;
+        table.addColumnSortHandler(event -> {
+            GWT.log("Sorted: " + event.getSortContext().getSortDir() + ", columnIndex: " + event.getColumnIndex());
+            table.getView().refresh();
         });
 
         // Add category opened handler, called when a category is opened.
-        table.addCategoryOpenedHandler((e, categoryName) -> {
-            GWT.log("Category Opened: " + categoryName);
-            return true;
+        table.addCategoryOpenedHandler(event -> {
+            GWT.log("Category Opened: " + event.getName());
         });
 
         // Add category closed handler, called when a category is closed.
-        table.addCategoryClosedHandler((e, categoryName) -> {
-            GWT.log("Category Closed: " + categoryName);
-            return true;
+        table.addCategoryClosedHandler(event -> {
+            GWT.log("Category Closed: " + event.getName());
         });
 
         // Add a row double click handler, called when a row is double clicked.
-        table.addRowDoubleClickHandler((e, mouseEvent, model, row) -> {
-           // GWT.log("Row Double Clicked: " + model.getId() + ", x:" + mouseEvent.getPageX() + ", y: " + mouseEvent.getPageY());
-            Window.alert("Row Double Clicked: " + model.getId());
-            return true;
+        table.addRowDoubleClickHandler(event -> {
+            // GWT.log("Row Double Clicked: " + model.getId() + ", x:" + mouseEvent.getPageX() + ", y: " + mouseEvent.getPageY());
+            Window.alert("Row Double Clicked: " + event.getModel().getId());
         });
 
         // Configure the tables long press duration configuration.
@@ -249,25 +229,12 @@ public class PageTable extends Composite {
         table.setLongPressDuration(400);
 
         // Add a row long press handler, called when a row is long pressed.
-        table.addRowLongPressHandler((e, mouseEvent, model, row) -> {
+        table.addRowLongPressHandler(event -> {
             //GWT.log("Row Long Pressed: " + model.getId() + ", x:" + mouseEvent.getPageX() + ", y: " + mouseEvent.getPageY());
-            return true;
         });
 
         // Add a row short press handler, called when a row is short pressed.
-        table.addRowShortPressHandler((e, mouseEvent, model, row) -> {
+        table.addRowShortPressHandler(event -> {
             //.log("Row Short Pressed: " + model.getId() + ", x:" + mouseEvent.getPageX() + ", y: " + mouseEvent.getPageY());
-            return true;
         });
-    }
-
-    @UiHandler("btnGotoFirstPage")
-    void onGotoFirstPage(ClickEvent e) {
-        pager.firstPage();
-    }
-
-    @UiHandler("btnGotoLastPage")
-    void onGotoLastPage(ClickEvent e) {
-        pager.lastPage();
-    }
-}
+    }}
