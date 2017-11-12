@@ -19,7 +19,7 @@ public class LoginedGatekeeper implements Gatekeeper {
  
     @Inject
     LoginedGatekeeper(AccessToken accessToken) {
-        MaterialLoader.loading(true);
+        MaterialLoader.progress(true);
         this.accessToken = accessToken;
     }
 

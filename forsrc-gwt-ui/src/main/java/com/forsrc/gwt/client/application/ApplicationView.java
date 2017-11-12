@@ -95,7 +95,7 @@ public class ApplicationView extends ViewWithUiHandlers<MyEventUiHandlers>
 
     @Override
     public void showLoading(boolean visibile) {
-        MaterialLoader.loading(visibile);
+        MaterialLoader.progress(visibile);
     }
 
     @Override

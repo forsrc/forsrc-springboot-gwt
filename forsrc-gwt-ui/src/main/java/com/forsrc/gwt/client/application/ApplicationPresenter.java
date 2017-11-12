@@ -49,7 +49,7 @@ public class ApplicationPresenter
             MyView view,
             MyProxy proxy) {
         super(eventBus, view, proxy, RevealType.Root);
-        MaterialLoader.loading(true);
+        MaterialLoader.progress(true);
         getView().setUiHandlers(this);
     }
 

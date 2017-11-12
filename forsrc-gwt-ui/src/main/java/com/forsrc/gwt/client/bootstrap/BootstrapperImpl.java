@@ -33,7 +33,7 @@ public class BootstrapperImpl implements Bootstrapper {
             AccessToken accessToken,
             @UnauthorizedPlace String unauthorizedPlace
             ) {
-        MaterialLoader.loading(true);
+        MaterialLoader.progress(true);
         this.accessToken = accessToken;
         this.placeManager = placeManager;
         this.unauthorizedPlace = unauthorizedPlace;
