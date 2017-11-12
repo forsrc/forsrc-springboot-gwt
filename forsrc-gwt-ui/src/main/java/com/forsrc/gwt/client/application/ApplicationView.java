@@ -58,9 +58,14 @@ public class ApplicationView extends ViewWithUiHandlers<MyEventUiHandlers>
     public ApplicationView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
         bindSlot(ApplicationPresenter.SLOT_MAIN, mainContentPanel);
+    }
+ 
+    @Override
+    protected void onAttach() {
+        super.onAttach();
         init();
     }
-    
+ 
     private void init() {
         navBarSearch.setVisible(false);
 
