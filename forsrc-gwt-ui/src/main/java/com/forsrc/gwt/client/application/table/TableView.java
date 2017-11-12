@@ -45,9 +45,13 @@ public class TableView extends ViewImpl implements TablePresenter.MyView {
     @Inject
     TableView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
-        pagedTable.add(new PageTable());
     }
 
+    @Override
+    protected void onAttach() {
+        super.onAttach();
+        pagedTable.add(new PageTable());
+    }
     @Override
     public void onSearch(String text) {
 

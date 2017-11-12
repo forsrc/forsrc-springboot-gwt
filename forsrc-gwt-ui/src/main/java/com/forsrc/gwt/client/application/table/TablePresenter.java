@@ -11,6 +11,7 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
+import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 
@@ -20,7 +21,7 @@ public class TablePresenter extends Presenter<TablePresenter.MyView, TablePresen
     interface MyView extends View {
         public void onSearch(String text);
     }
-
+    @NoGatekeeper
     @ProxyStandard
     @NameToken(NameTokens.TABLE)
     interface MyProxy extends ProxyPlace<TablePresenter> {
