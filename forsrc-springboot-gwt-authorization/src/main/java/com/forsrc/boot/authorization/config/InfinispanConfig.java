@@ -6,6 +6,7 @@ import org.infinispan.configuration.cache.CacheMode;
 import org.infinispan.configuration.cache.Configuration;
 import org.infinispan.configuration.cache.ConfigurationBuilder;
 import org.infinispan.configuration.global.GlobalConfigurationBuilder;
+import org.infinispan.manager.DefaultCacheManager;
 import org.infinispan.spring.provider.SpringEmbeddedCacheManagerFactoryBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,12 +40,16 @@ public class InfinispanConfig {
     public InfinispanCacheConfigurer cacheConfigurer() {
         logger.info("Defining {} configuration", CACHE_NAME);
         return manager -> {
-            Configuration ispnConfig = new ConfigurationBuilder()
-                  .clustering().cacheMode(CacheMode.DIST_SYNC)
-                  .build();
-
+            Configuration ispnConfig = getConfiguration();
             manager.defineConfiguration(CACHE_NAME, ispnConfig);
         };
+    }
+
+    @Bean Configuration getConfiguration() {
+        return new ConfigurationBuilder()
+                .clustering()
+                .cacheMode(CacheMode.DIST_SYNC)
+                .build();
     }
 
     @Bean

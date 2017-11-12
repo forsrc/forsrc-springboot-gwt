@@ -1,12 +1,16 @@
 package com.forsrc.boot.authorization.web.test;
 
 import java.io.Serializable;
+import java.lang.invoke.MethodHandles;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 import org.infinispan.Cache;
 import org.infinispan.manager.EmbeddedCacheManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,6 +29,9 @@ public class TestController {
     @Autowired
     private EmbeddedCacheManager cacheManager;
 
+    private static final Logger logger = LoggerFactory.getLogger(TestController.class);
+
+
     @RequestMapping(value = "/test", method = { RequestMethod.GET, RequestMethod.POST }, produces = {
             MediaType.APPLICATION_JSON_UTF8_VALUE })
     public ResponseEntity<Map<String, String>> get(UriComponentsBuilder ucBuilder) {
@@ -33,6 +40,17 @@ public class TestController {
         cache.put("time", new Date().toString());
         map.put("test", "hello world");
         map.put("time", cache.get("time"));
+
+        cacheManager.executor().submitConsumer(localManager -> {
+            Cache<String, String> c = localManager.getCache(InfinispanConfig.CACHE_NAME);
+            System.out.println("--> " + c.get("time"));
+            return c.get("time");
+         }, (address, value, throwable) -> {
+             if (throwable != null) {
+                 logger.error("Cache startup encountered exception on node " + address, value);
+             }
+         }).join();
+
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
