@@ -12,6 +12,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 
@@ -74,6 +75,7 @@ public class ChatView extends ViewWithUiHandlers<ChatUiHandlers> implements Chat
     @Override
     public void onMessage(ChatMessage chatMessage) {
         this.chatPanel.add(new ChatMessageComposite(chatMessage));
+        Window.scrollTo(0, Window.getScrollTop() + Window.getClientHeight());
     }
 
     @UiHandler("send")
