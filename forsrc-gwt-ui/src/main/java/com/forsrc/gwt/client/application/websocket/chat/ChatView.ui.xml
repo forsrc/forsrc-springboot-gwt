@@ -5,23 +5,29 @@
        xmlns:ma="urn:import:gwt.material.design.addins.client">
 
     <g:HTMLPanel>
+
         <m:MaterialRow>
-            <m:MaterialRow marginLeft="5" marginRight="5">
-                <m:MaterialCard grid="l10 m12 s12" height="800" float="RIGHT" shadow="1">
-                    <m:MaterialPanel backgroundColor="BLUE" overflow="HIDDEN" padding="12">
-                        <m:MaterialIcon iconType="MORE_VERT" float="RIGHT" textColor="WHITE"/>
-                        <m:MaterialIcon iconType="CLOSE" float="RIGHT" textColor="WHITE"/>
-                    </m:MaterialPanel>
-                    <m:MaterialCardContent ui:field="cardContent">
-                        <m:MaterialPanel ui:field="chatPanel"/>
-                    </m:MaterialCardContent>
-                    <m:MaterialProgress type="DETERMINATE" percent="100"/>
-                    <m:MaterialTextArea ui:field="msg" label="Send message ..." resizeRule="AUTO"/>
-                    <m:MaterialButton ui:field="send" waves="LIGHT" text="Send" width="100%"/>
-                    <m:MaterialProgress type="DETERMINATE" percent="0"/>
-                </m:MaterialCard>
+            <m:MaterialRow margin="5" grid="l10 m12 s12">
+                <ma:subheader.MaterialSubHeaderContainer shadow="1" height="600px" grid="l10 m12 s12" type="PINNED" float="RIGHT">
+                    <m:MaterialCard shadow="1" margin="5">
+                        <m:MaterialPanel backgroundColor="BLUE" overflow="HIDDEN" padding="12">
+                            <m:MaterialIcon iconType="MORE_VERT" float="RIGHT" textColor="WHITE"/>
+                            <m:MaterialIcon iconType="CLOSE" float="RIGHT" textColor="WHITE"/>
+                        </m:MaterialPanel>
+
+                        <m:MaterialCardContent ui:field="cardContent">
+                            <m:MaterialPanel ui:field="chatPanel"/>
+                        </m:MaterialCardContent>
+
+                        <m:MaterialProgress type="DETERMINATE" percent="100"/>
+                        <m:MaterialTextArea ui:field="msg" label="Send message ..." resizeRule="AUTO"/>
+                        <m:MaterialButton ui:field="send" waves="LIGHT" text="Send" width="100%"/>
+                        <m:MaterialProgress type="DETERMINATE" percent="0"/>
+                    </m:MaterialCard>
+                </ma:subheader.MaterialSubHeaderContainer>
             </m:MaterialRow>
         </m:MaterialRow>
         <m:MaterialLabel ui:field="searchLabel"/>
+
     </g:HTMLPanel>
 </ui:UiBinder>
