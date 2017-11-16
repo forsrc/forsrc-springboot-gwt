@@ -32,3 +32,7 @@
 ::-webkit-scrollbar-thumb {
     background: #039be5;
 }
+
+.bubble {
+    max-width: 90% !important;
+}
