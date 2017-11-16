@@ -8,7 +8,7 @@
 
         <m:MaterialRow>
             <m:MaterialRow margin="5" grid="l10 m12 s12">
-                <ma:subheader.MaterialSubHeaderContainer shadow="1" height="600px" grid="l10 m12 s12" type="PINNED" float="RIGHT">
+                <ma:subheader.MaterialSubHeaderContainer ui:field="subHeaderContainer" shadow="1" height="600px" grid="l10 m12 s12" type="PINNED" float="RIGHT">
                     <m:MaterialCard shadow="1" margin="5">
                         <m:MaterialPanel backgroundColor="BLUE" overflow="HIDDEN" padding="12">
                             <m:MaterialIcon iconType="MORE_VERT" float="RIGHT" textColor="WHITE"/>
