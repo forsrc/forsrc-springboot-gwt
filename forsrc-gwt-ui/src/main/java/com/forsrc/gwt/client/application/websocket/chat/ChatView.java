@@ -7,15 +7,15 @@ import javax.inject.Inject;
 
 import com.forsrc.gwt.client.application.websocket.chat.composite.ChatMessageComposite;
 import com.forsrc.gwt.client.application.websocket.chat.vo.ChatMessage;
-import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 
+import gwt.material.design.addins.client.subheader.MaterialSubHeaderContainer;
 import gwt.material.design.client.ui.MaterialButton;
 import gwt.material.design.client.ui.MaterialLabel;
 import gwt.material.design.client.ui.MaterialLoader;
@@ -32,8 +32,6 @@ public class ChatView extends ViewWithUiHandlers<ChatUiHandlers> implements Chat
     @UiField
     MaterialLabel searchLabel;
 
-
-
     @UiField
     MaterialPanel chatPanel;
 
@@ -42,6 +40,9 @@ public class ChatView extends ViewWithUiHandlers<ChatUiHandlers> implements Chat
 
     @UiField
     MaterialButton send;
+
+    @UiField
+    MaterialSubHeaderContainer subHeaderContainer;
 
     @Inject
     ChatView(Binder uiBinder) {
@@ -71,11 +72,12 @@ public class ChatView extends ViewWithUiHandlers<ChatUiHandlers> implements Chat
         getUiHandlers().stopWebSocket();
     }
 
-    
     @Override
     public void onMessage(ChatMessage chatMessage) {
         this.chatPanel.add(new ChatMessageComposite(chatMessage));
-        Window.scrollTo(0, Window.getScrollTop() + Window.getClientHeight());
+        //Window.scrollTo(0, Window.getScrollTop() + Window.getClientHeight());
+        Element element = subHeaderContainer.getElement();
+        element.setScrollTop(element.getScrollTop() + element.getClientHeight());
     }
 
     @UiHandler("send")
