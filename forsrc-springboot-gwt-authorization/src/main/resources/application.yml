@@ -14,7 +14,7 @@ server:
   context-path: /uaa
 logging:
   level:
-    org.springframework.security: DEBUG
+    org.springframework.security: INFO
     org.jgroups.protocols: WARN
 
 # openssl genrsa -out private.pem 2048

@@ -30,9 +30,9 @@ public class LoginConfig extends WebSecurityConfigurerAdapter {
                     .invalidateHttpSession(true)
                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                     .logoutSuccessUrl("/login?logout").permitAll()
-                .and()
-                    .requestMatchers()
-                    .antMatchers("/login", "/logout", "/oauth/authorize", "/oauth/confirm_access", "/test")
+                //.and()
+                    //.requestMatchers()
+                    //.antMatchers("/", "/login", "/logout", "/oauth/authorize", "/oauth/confirm_access", "/test")
                 .and()
                     .authorizeRequests()
                     .antMatchers("/test", "/oauth/token")
@@ -41,6 +41,9 @@ public class LoginConfig extends WebSecurityConfigurerAdapter {
                     .csrf()
                     .ignoringAntMatchers("/test", "/oauth/token")
                     .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                .and()
+                    .authorizeRequests()
+                    .anyRequest().authenticated();
                     ;
     }
 
