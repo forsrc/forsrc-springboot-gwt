@@ -1,25 +1,32 @@
 # forsrc-springboot-gwt
 
-
+* build
 ```shell
 mvn clean package -DskipTests=true
 ```
-
+* run forsrc-gwt-ui
+  * http://127.0.0.1:8888/
 ```shell
 cd forsrc-gwt-ui
 mvn clean package gwt:run
 ```
 
+* run forsrc-springboot-gwt-authorization
+  * http://127.0.0.1:9999/uaa/
 ```shell
 cd forsrc-springboot-gwt-authorization
 mvn clean package spring-boot:run
 ```
 
+* run forsrc-springboot-gwt-resource
+  * http://127.0.0.1:7777/api/
 ```shell
 cd forsrc-springboot-gwt-resource
 mvn clean package spring-boot:run
 ```
 
+* run forsrc-springboot-gwt-ui
+  * http://127.0.0.1:8080/
 ```shell
 cd forsrc-springboot-gwt-ui
 mvn clean package spring-boot:run
