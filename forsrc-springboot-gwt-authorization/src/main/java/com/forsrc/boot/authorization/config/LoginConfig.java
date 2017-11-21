@@ -33,24 +33,19 @@ public class LoginConfig extends WebSecurityConfigurerAdapter {
                     .permitAll()
                 .and()
                     .requestMatchers()
-                    .antMatchers("/login", "/logout", "/oauth/authorize", "/oauth/confirm_access", "/test")
+                    .antMatchers("/", "/login", "/logout", "/oauth/authorize", "/oauth/confirm_access", "/test")
                 .and()
-                    .antMatcher("/**")
                     .authorizeRequests()
-                    .antMatchers("/oauth/token_key")
+                    .antMatchers("/test", "/oauth/token")
                     .permitAll()
-                 .and()
-                    .antMatcher("/**")
-                    .authorizeRequests()
-                    .anyRequest()
-                    .authenticated()
                 .and()
                     .csrf()
                     .ignoringAntMatchers("/test", "/oauth/token")
                     .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                 .and()
                     .authorizeRequests()
-                    .anyRequest().authenticated();
+                    .anyRequest()
+                    .authenticated();
                     ;
     }
 
