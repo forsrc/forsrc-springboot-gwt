@@ -12,6 +12,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 
@@ -44,6 +45,9 @@ public class ChatView extends ViewWithUiHandlers<ChatUiHandlers> implements Chat
     @UiField
     MaterialSubHeaderContainer subHeaderContainer;
 
+    @UiField
+    MaterialSubHeaderContainer parentSubHeaderContainer;
+
     @Inject
     ChatView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
@@ -75,9 +79,10 @@ public class ChatView extends ViewWithUiHandlers<ChatUiHandlers> implements Chat
     @Override
     public void onMessage(ChatMessage chatMessage) {
         this.chatPanel.add(new ChatMessageComposite(chatMessage));
-        //Window.scrollTo(0, Window.getScrollTop() + Window.getClientHeight());
+        ///Window.scrollTo(0, Window.getScrollTop() + Window.getClientHeight());
         Element element = subHeaderContainer.getElement();
         element.setScrollTop(element.getScrollTop() + element.getClientHeight());
+        element.scrollIntoView();
     }
 
     @UiHandler("send")
@@ -93,5 +98,8 @@ public class ChatView extends ViewWithUiHandlers<ChatUiHandlers> implements Chat
         chatPanel.add(new ChatMessageComposite(chatMessage));
         MaterialLoader.progress(false);
         this.msg.setText("");
+        Element element = subHeaderContainer.getElement();
+        element.setScrollTop(element.getScrollTop() + element.getClientHeight());
+        element.scrollIntoView();
     }
 }

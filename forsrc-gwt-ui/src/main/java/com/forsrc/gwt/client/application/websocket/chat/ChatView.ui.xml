@@ -7,26 +7,32 @@
     <g:HTMLPanel>
 
         <m:MaterialRow>
-            <m:MaterialRow margin="5" grid="l10 m12 s12">
-                <ma:subheader.MaterialSubHeaderContainer ui:field="subHeaderContainer" shadow="1" height="600px" grid="l10 m12 s12" type="PINNED" float="RIGHT">
-                    <m:MaterialCard shadow="1" margin="5">
-                        <m:MaterialPanel backgroundColor="BLUE" overflow="HIDDEN" padding="12">
-                            <m:MaterialIcon iconType="MORE_VERT" float="RIGHT" textColor="WHITE"/>
-                            <m:MaterialIcon iconType="CLOSE" float="RIGHT" textColor="WHITE"/>
-                        </m:MaterialPanel>
-
-                        <m:MaterialCardContent ui:field="cardContent">
-                            <m:MaterialPanel ui:field="chatPanel"/>
-                        </m:MaterialCardContent>
-
-                        <m:MaterialProgress type="DETERMINATE" percent="100"/>
-                        <m:MaterialTextArea ui:field="msg" label="Send message ..." resizeRule="AUTO"/>
-                        <m:MaterialButton ui:field="send" waves="LIGHT" text="Send" width="100%"/>
-                        <m:MaterialProgress type="DETERMINATE" percent="0"/>
-                    </m:MaterialCard>
+            <m:MaterialRow margin="5">
+                <ma:subheader.MaterialSubHeaderContainer ui:field="parentSubHeaderContainer" shadow="1" height="600px" grid="l10 m12 s12" float="RIGHT">
+                    <ma:subheader.MaterialSubHeaderContainer ui:field="subHeaderContainer" shadow="0" height="400px" type="PINNED">
+                        <m:MaterialCard shadow="0">
+                            <m:MaterialPanel shadow="1" backgroundColor="BLUE" overflow="HIDDEN" padding="12">
+                                <m:MaterialLabel text="Chat" float="LEFT" textColor="WHITE"></m:MaterialLabel>
+                                <m:MaterialIcon iconType="MORE_VERT" float="RIGHT" textColor="WHITE"/>
+                                <m:MaterialIcon iconType="CLOSE" float="RIGHT" textColor="WHITE"/>
+                            </m:MaterialPanel>
+    
+                            <m:MaterialCardContent ui:field="cardContent" minHeight="100%">
+                                <m:MaterialPanel ui:field="chatPanel"/>
+                            </m:MaterialCardContent>
+                        </m:MaterialCard>
+                    </ma:subheader.MaterialSubHeaderContainer>
+                    <ma:subheader.MaterialSubHeaderContainer ui:field="sendSubHeaderContainer" shadow="0" height="200px">
+                        <m:MaterialRow>
+                            <m:MaterialProgress type="DETERMINATE" percent="100"/>
+                            <m:MaterialTextArea ui:field="msg" label="Send message ..." resizeRule="AUTO"/>
+                            <m:MaterialButton ui:field="send" waves="LIGHT" text="Send" width="100%"/>
+                        </m:MaterialRow>
+                    </ma:subheader.MaterialSubHeaderContainer>
                 </ma:subheader.MaterialSubHeaderContainer>
             </m:MaterialRow>
         </m:MaterialRow>
+
         <m:MaterialLabel ui:field="searchLabel"/>
 
     </g:HTMLPanel>
