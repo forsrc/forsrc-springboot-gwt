@@ -78,11 +78,13 @@ public class ChatView extends ViewWithUiHandlers<ChatUiHandlers> implements Chat
 
     @Override
     public void onMessage(ChatMessage chatMessage) {
-        this.chatPanel.add(new ChatMessageComposite(chatMessage));
+        ChatMessageComposite chatMessageComposite = new ChatMessageComposite(chatMessage);
+        this.chatPanel.add(chatMessageComposite);
         ///Window.scrollTo(0, Window.getScrollTop() + Window.getClientHeight());
         Element element = subHeaderContainer.getElement();
-        element.setScrollTop(element.getScrollTop() + element.getClientHeight());
+        //element.setScrollTop(element.getScrollTop() + element.getClientHeight());
         element.scrollIntoView();
+        chatMessageComposite.getElement().scrollIntoView();
     }
 
     @UiHandler("send")
@@ -95,11 +97,13 @@ public class ChatView extends ViewWithUiHandlers<ChatUiHandlers> implements Chat
         }
         getUiHandlers().sendMessage(msg);
         ChatMessage chatMessage = new ChatMessage(0, "", true, msg, System.currentTimeMillis(), null);
-        chatPanel.add(new ChatMessageComposite(chatMessage));
+        ChatMessageComposite chatMessageComposite = new ChatMessageComposite(chatMessage);
+        chatPanel.add(chatMessageComposite);
         MaterialLoader.progress(false);
         this.msg.setText("");
         Element element = subHeaderContainer.getElement();
-        element.setScrollTop(element.getScrollTop() + element.getClientHeight());
+        //element.setScrollTop(element.getScrollTop() + element.getClientHeight());
         element.scrollIntoView();
+        chatMessageComposite.getElement().scrollIntoView();
     }
 }
