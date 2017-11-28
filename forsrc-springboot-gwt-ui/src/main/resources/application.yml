@@ -1,4 +1,4 @@
-auth-server: http://localhost:9999/uaa
+auth-server: http://forsrc.local:9999/uaa
 server:
   port: 8080
 security:
@@ -24,4 +24,4 @@ zuul:
   routes:
     message:
       path: /api/messages/**
-      url: http://localhost:7777/api/messages
+      url: http://forsrc.local:7777/api/messages

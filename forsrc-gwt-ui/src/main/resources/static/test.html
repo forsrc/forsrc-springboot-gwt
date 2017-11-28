@@ -147,7 +147,7 @@
 
     ajax({
         type: "POST",
-        url: "http://localhost:9999/uaa/oauth/token?grant_type=password&username=forsrc@gmail.com&password=forsrc",
+        url: "http://forsrc.local:9999/uaa/oauth/token?grant_type=password&username=forsrc@gmail.com&password=forsrc",
         async: true,
         data: null,
         timeout: 5000,
@@ -182,7 +182,7 @@
     function testApi(token) {
         ajax({
             type: "GET",
-            url: "http://localhost:7777/api/messages",
+            url: "http://forsrc.local:7777/api/messages",
             async: true,
             data: null,
             timeout: 5000,
@@ -212,7 +212,7 @@
         });
     }
     function testWs(token) {
-        var ws = new WebSocket("ws://localhost:7777/ws/chat?access_token=" + token);
+        var ws = new WebSocket("ws://forsrc.local:7777/ws/chat?access_token=" + token);
         ws.onopen = function(event) {
             console.log("Connected");
             ws.send('hello world');
