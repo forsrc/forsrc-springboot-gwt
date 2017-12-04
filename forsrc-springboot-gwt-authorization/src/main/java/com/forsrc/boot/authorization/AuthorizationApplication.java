@@ -14,6 +14,18 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @EnableConfigurationProperties({ AuthorizationServerProperties.class })
 public class AuthorizationApplication {
 
+    /*
+    @Bean
+    public PropertySourcesPlaceholderConfigurer properties() {
+
+        PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer = new PropertySourcesPlaceholderConfigurer();
+        YamlPropertiesFactoryBean yaml = new YamlPropertiesFactoryBean();
+        yaml.setResources(new ClassPathResource[] { new ClassPathResource("*.yml")});
+        propertySourcesPlaceholderConfigurer.setProperties(yaml.getObject());
+        return propertySourcesPlaceholderConfigurer;
+    }
+    */
+
     public static void main(String[] args) {
         SpringApplication.run(AuthorizationApplication.class, args);
     }
