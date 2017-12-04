@@ -52,4 +52,9 @@
     <extend-property name="locale" values="zh_CN" />
     <set-property-fallback name="locale" value="en_US" />
     <set-property name="locale" value="zh_CN" />
+
+
+    <inherits name='org.geomajas.codemirror.CodeMirror'/>
+
+
 </module>

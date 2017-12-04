@@ -1,5 +1,6 @@
 package com.forsrc.gwt.client.application;
 
+import com.forsrc.gwt.client.application.codemirror.CodemirrorModule;
 import com.forsrc.gwt.client.application.error.ErrorModule;
 import com.forsrc.gwt.client.application.home.HomeModule;
 import com.forsrc.gwt.client.application.login.LoginModule;
@@ -20,5 +21,6 @@ public class ApplicationModule extends AbstractPresenterModule {
         install(new LoginModule());
         install(new ChatModule());
         install(new TableModule());
+        install(new CodemirrorModule());
     }
 }

@@ -8,6 +8,8 @@ public class NameTokens {
     public static final String CHAT = "/chat";
     public static final String TABLE = "/table";
     public static final String ERROR = "/error";
+    public static final String CODE = "/code";
+    
 
     public static String getHome() {
         return HOME;
