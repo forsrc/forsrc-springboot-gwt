@@ -7,7 +7,7 @@ import org.geomajas.codemirror.client.widget.CodeMirrorPanel;
 
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.user.client.Command;
-
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.TextArea;
 
 @Api(allMethods = true)
@@ -21,7 +21,7 @@ public class MyCodeMirrorPanel extends CodeMirrorPanel {
      * Create an new codemirrorpanel with the default configuration.
      */
     public MyCodeMirrorPanel() {
-        super();
+        this(Config.forXml());
     }
 
     /**
@@ -31,7 +31,8 @@ public class MyCodeMirrorPanel extends CodeMirrorPanel {
      *            the initial content.
      */
     public MyCodeMirrorPanel(String initialData) {
-        super(initialData);
+        this(Config.forXml());
+        setInitialData(initialData);
     }
 
     /**
@@ -41,7 +42,12 @@ public class MyCodeMirrorPanel extends CodeMirrorPanel {
      *            the configuration.
      */
     public MyCodeMirrorPanel(Config config) {
-        super(config);
+        super();
+        this.config = config;
+        setWidth("100%");
+        setHeight("100%");
+        textArea = new TextArea();
+        setWidget(textArea);
     }
 
     /**
