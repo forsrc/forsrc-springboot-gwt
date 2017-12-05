@@ -8,10 +8,9 @@
 
     <g:HTMLPanel>
 
-        <p>Hello world! Home {{i18n.app_title}}</p>
         <m:MaterialLabel ui:field="searchLabel"/>
 
-        <g:HTMLPanel ui:field="html">
+        <g:HTMLPanel ui:field="codeMirrorHtmlPanel">
         </g:HTMLPanel>
     </g:HTMLPanel>
 
