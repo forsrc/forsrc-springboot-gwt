@@ -60,7 +60,7 @@ public class CodemirrorView extends ViewImpl implements CodemirrorPresenter.MyVi
             public void execute() {
                 if (codeMirrorPanel == null) {
                     Config config = Config.getDefault();
-                    config.setOption(Config.MODE, "clike");
+                    config.setOption(Config.MODE, "text/x-java");
                     config.setOption("autoCloseTags", true);
                     config.setOption("collapseRange", true);
                     codeMirrorPanel = new MyCodeMirrorPanel(config);
