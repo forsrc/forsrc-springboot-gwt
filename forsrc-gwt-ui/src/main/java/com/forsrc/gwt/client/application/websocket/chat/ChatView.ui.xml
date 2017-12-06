@@ -35,5 +35,7 @@
 
         <m:MaterialLabel ui:field="searchLabel"/>
 
+
     </g:HTMLPanel>
+
 </ui:UiBinder>

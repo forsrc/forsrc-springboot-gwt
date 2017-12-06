@@ -42,7 +42,7 @@ public class MyCodeMirrorPanel extends CodeMirrorPanel {
      *            the configuration.
      */
     public MyCodeMirrorPanel(Config config) {
-        super();
+        super(config);
         this.config = config;
         setWidth("100%");
         setHeight("100%");

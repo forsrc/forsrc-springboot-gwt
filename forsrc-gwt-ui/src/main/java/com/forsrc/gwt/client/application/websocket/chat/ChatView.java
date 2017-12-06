@@ -5,6 +5,8 @@ import java.util.logging.Logger;
 
 import javax.inject.Inject;
 
+import org.geomajas.codemirror.client.widget.CodeMirrorPanel;
+
 import com.forsrc.gwt.client.application.websocket.chat.composite.ChatMessageComposite;
 import com.forsrc.gwt.client.application.websocket.chat.vo.ChatMessage;
 import com.google.gwt.dom.client.Element;
@@ -13,6 +15,8 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 
@@ -48,6 +52,8 @@ public class ChatView extends ViewWithUiHandlers<ChatUiHandlers> implements Chat
     @UiField
     MaterialSubHeaderContainer parentSubHeaderContainer;
 
+
+    
     @Inject
     ChatView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
@@ -68,7 +74,6 @@ public class ChatView extends ViewWithUiHandlers<ChatUiHandlers> implements Chat
 //        chatPanel.add(new ChatMessageComposite(test1));
 //        ChatMessage test2 = new ChatMessage(1, "you", false, "test too", System.currentTimeMillis(), null);
 //        chatPanel.add(new ChatMessageComposite(test2));
-
     }
 
     @Override

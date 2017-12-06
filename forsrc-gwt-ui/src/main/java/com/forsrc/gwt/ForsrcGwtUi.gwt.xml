@@ -53,6 +53,7 @@
     <set-property-fallback name="locale" value="en_US" />
     <set-property name="locale" value="zh_CN" />
 
+    <inherits name="com.google.gwt.resources.Resources" />
 
     <inherits name='org.geomajas.codemirror.CodeMirror'/>
 
