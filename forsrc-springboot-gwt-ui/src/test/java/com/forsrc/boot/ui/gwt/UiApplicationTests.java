@@ -12,5 +12,13 @@ public class UiApplicationTests {
     @Test
     public void contextLoads() {
     }
-
+    /*
+    public static void main(String[] args) throws Exception {
+		SpringApplication application = new SpringApplication(AutoDeployBatch.class);
+		application.setWebEnvironment(false);
+		ApplicationContext context = application.run();
+		// X x = context.getBean(X.class);
+		SpringApplication.exit(context);
+	}
+    */
 }
