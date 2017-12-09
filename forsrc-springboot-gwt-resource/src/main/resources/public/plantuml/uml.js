@@ -9,7 +9,9 @@
     for(; i < length; i++) {
         img = images[i];
         uml = img.getAttribute("uml");
-        img.setAttribute("src", url + encodeURI(uml));
+        if (uml) {
+            img.setAttribute("src", url + encodeURI(uml));
+        }
     }
 
 })();
