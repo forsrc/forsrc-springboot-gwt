@@ -20,23 +20,33 @@ public class PlantumlMaterialImage extends MaterialWidget implements HasText, Ha
     private ImageMixin<PlantumlMaterialImage> imageMixin;
     private String src;
     private String uml;
-    
+
     public PlantumlMaterialImage() {
         super(Document.get().createImageElement(), CssName.RESPONSIVE_IMG);
+    }
+
+    public PlantumlMaterialImage(String src, String uml) {
+        this();
+        this.src = src;
+        this.uml = uml;
+        setUrl(this.src, this.uml);
     }
 
     @Override
     protected void onLoad() {
         super.onLoad();
-        String uml = this.uml;
+        setUrl(this.src, this.uml);
+    }
+
+    private void setUrl(String src, String uml) {
         if (uml == null) {
             return;
         }
-        //String url = getSrc() + uml;
-        String url = getSrc() + URL.encodeQueryString(uml);
-        this.getElement().setAttribute("src", url);
+        // String url = getSrc() + uml;
+        String url = src + URL.encodeQueryString(uml);
+        // this.getElement().setAttribute("src", url);
         // setUrl(url);
-        //getImageMixin().setUrl(url);
+        getImageMixin().setUrl(url);
     }
 
     public void setSrc(String src) {
