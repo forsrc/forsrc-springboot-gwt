@@ -7,16 +7,16 @@
 
     <ui:with field="i18n" type="com.forsrc.gwt.client.resources.i18n.Messages" />
 
+
     <g:HTMLPanel>
         <m:MaterialLabel ui:field="searchLabel"/>
-        <uml:PlantumlMaterialImage src="{i18n.app_url_resource_plantuml}" uml="
-@startuml
-\n
-    A-> B
-\n
-    B-> A
-\n
-@enduml
-"/>
+        <uml:PlantumlMaterialImage src="{i18n.app_url_resource_plantuml}">
+            <![CDATA[
+                @startuml\n
+                    A-> B\n
+                    B-> A\n
+                @enduml
+            ]]>
+        </uml:PlantumlMaterialImage>
     </g:HTMLPanel>
 </ui:UiBinder>
