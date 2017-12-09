@@ -20,6 +20,7 @@ public class PlantumlMaterialImage extends MaterialWidget implements HasText, Ha
     private ImageMixin<PlantumlMaterialImage> imageMixin;
     private String src;
     private String uml;
+    private boolean isUi = true;
 
     public PlantumlMaterialImage() {
         super(Document.get().createImageElement(), CssName.RESPONSIVE_IMG);
@@ -29,13 +30,16 @@ public class PlantumlMaterialImage extends MaterialWidget implements HasText, Ha
         this();
         this.src = src;
         this.uml = uml;
+        this.isUi = false;
         setUrl(this.src, this.uml);
     }
 
     @Override
     protected void onLoad() {
         super.onLoad();
-        setUrl(this.src, this.uml);
+        if (this.isUi) {
+            setUrl(this.src, this.uml);
+        }
     }
 
     private void setUrl(String src, String uml) {
