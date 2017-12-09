@@ -27,7 +27,7 @@ public class PlantUmlController {
     @RequestMapping(value = "/svg", method = { RequestMethod.GET, RequestMethod.POST }, produces = { "image/svg+xml" })
     public ResponseEntity<byte[]> svg(@RequestParam("uml") String uml, UriComponentsBuilder ucBuilder)
             throws IOException {
-        SourceStringReader reader = new SourceStringReader(uml);
+        SourceStringReader reader = new SourceStringReader(param(uml));
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         reader.outputImage(out, new FileFormatOption(FileFormat.SVG, false));
         HttpHeaders headers = new HttpHeaders();
@@ -39,7 +39,7 @@ public class PlantUmlController {
             MediaType.IMAGE_PNG_VALUE })
     public ResponseEntity<byte[]> png(@RequestParam("uml") String uml, UriComponentsBuilder ucBuilder)
             throws IOException {
-        SourceStringReader reader = new SourceStringReader(uml);
+        SourceStringReader reader = new SourceStringReader(param(uml));
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         reader.outputImage(out, new FileFormatOption(FileFormat.PNG, false));
         HttpHeaders headers = new HttpHeaders();
@@ -51,11 +51,15 @@ public class PlantUmlController {
             MediaType.TEXT_PLAIN_VALUE })
     public ResponseEntity<byte[]> txt(@RequestParam("uml") String uml, UriComponentsBuilder ucBuilder)
             throws IOException {
-        SourceStringReader reader = new SourceStringReader(uml);
+        SourceStringReader reader = new SourceStringReader(param(uml));
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         reader.outputImage(out, new FileFormatOption(FileFormat.ATXT, false));
         HttpHeaders headers = new HttpHeaders();
         // headers.setContentType(MediaType.IMAGE_PNG);
         return new ResponseEntity<>(out.toByteArray(), headers, HttpStatus.OK);
+    }
+
+    private String param(String uml) {
+        return uml.replaceAll("(%0A)|(\\\\n)", "\n");
     }
 }
