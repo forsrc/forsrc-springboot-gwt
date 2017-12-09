@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -23,13 +24,14 @@ import net.sourceforge.plantuml.SourceStringReader;
 @RequestMapping(value = "/plantuml")
 public class PlantUmlController {
 
-    @RequestMapping(value = "/svg/{uml}", method = { RequestMethod.GET, RequestMethod.POST }, produces = {
-            MediaType.APPLICATION_JSON_UTF8_VALUE })
-    public ResponseEntity<byte[]> svg(@PathVariable("uml") String uml, UriComponentsBuilder ucBuilder) throws IOException {
+    @RequestMapping(value = "/svg", method = { RequestMethod.GET, RequestMethod.POST }, produces = { "image/svg+xml" })
+    public ResponseEntity<byte[]> svg(@RequestParam("uml") String uml, UriComponentsBuilder ucBuilder)
+            throws IOException {
         SourceStringReader reader = new SourceStringReader(uml);
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         reader.outputImage(out, new FileFormatOption(FileFormat.SVG, false));
         HttpHeaders headers = new HttpHeaders();
+        // headers.setContentType(MediaType.IMAGE_JPEG);
         return new ResponseEntity<>(out.toByteArray(), headers, HttpStatus.OK);
     }
 }
