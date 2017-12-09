@@ -34,4 +34,28 @@ public class PlantUmlController {
         // headers.setContentType(MediaType.IMAGE_JPEG);
         return new ResponseEntity<>(out.toByteArray(), headers, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/png", method = { RequestMethod.GET, RequestMethod.POST }, produces = {
+            MediaType.IMAGE_PNG_VALUE })
+    public ResponseEntity<byte[]> png(@RequestParam("uml") String uml, UriComponentsBuilder ucBuilder)
+            throws IOException {
+        SourceStringReader reader = new SourceStringReader(uml);
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        reader.outputImage(out, new FileFormatOption(FileFormat.PNG, false));
+        HttpHeaders headers = new HttpHeaders();
+        // headers.setContentType(MediaType.IMAGE_PNG);
+        return new ResponseEntity<>(out.toByteArray(), headers, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/atxt", method = { RequestMethod.GET, RequestMethod.POST }, produces = {
+            MediaType.TEXT_PLAIN_VALUE })
+    public ResponseEntity<byte[]> txt(@RequestParam("uml") String uml, UriComponentsBuilder ucBuilder)
+            throws IOException {
+        SourceStringReader reader = new SourceStringReader(uml);
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        reader.outputImage(out, new FileFormatOption(FileFormat.ATXT, false));
+        HttpHeaders headers = new HttpHeaders();
+        // headers.setContentType(MediaType.IMAGE_PNG);
+        return new ResponseEntity<>(out.toByteArray(), headers, HttpStatus.OK);
+    }
 }
