@@ -6,6 +6,7 @@ mvn clean package -DskipTests=true
 ```
 * run forsrc-gwt-ui
   * http://127.0.0.1:8888/
+    * password: forsrc@gmail.com/forsrc
 ```shell
 cd forsrc-gwt-ui
 mvn clean package -DskipTests=true gwt:run
@@ -27,6 +28,7 @@ mvn clean package -DskipTests=true spring-boot:run
 
 * run forsrc-springboot-gwt-ui
   * http://127.0.0.1:8080/
+    * password: forsrc@gmail.com/forsrc
 ```shell
 cd forsrc-springboot-gwt-ui
 mvn clean package -DskipTests=true spring-boot:run
