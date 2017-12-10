@@ -18,5 +18,10 @@
                 @enduml
             ]]>
         </uml:PlantumlMaterialImage>
+        <m:MaterialContainer addStyleNames="code" margin="10">
+            <uml:PlantumlMaterialImage ui:field="plantuml" src="{i18n.app_url_resource_plantuml}{storage.getAccessToken}"></uml:PlantumlMaterialImage>
+            <m:MaterialTextArea ui:field="uml" label="plantuml" resizeRule="AUTO"/>
+             <m:MaterialButton ui:field="send" waves="LIGHT" text="Send" width="100%"/>
+        </m:MaterialContainer>
     </g:HTMLPanel>
 </ui:UiBinder>

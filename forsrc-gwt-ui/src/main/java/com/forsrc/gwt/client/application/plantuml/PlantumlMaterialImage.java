@@ -32,6 +32,15 @@ public class PlantumlMaterialImage extends MaterialWidget implements HasText, Ha
         setUrl(this.src, this.uml);
     }
 
+    public PlantumlMaterialImage(String src, String uml, String accessToken) {
+        this();
+        this.src = src;
+        this.uml = uml;
+        this.isUi = false;
+        this.accessToken = accessToken;
+        setUrl(this.src, this.uml);
+    }
+
     @Override
     protected void onLoad() {
         super.onLoad();
@@ -40,7 +49,7 @@ public class PlantumlMaterialImage extends MaterialWidget implements HasText, Ha
         }
     }
 
-    private void setUrl(String src, String uml) {
+    public void setUrl(String src, String uml) {
         if (uml == null) {
             return;
         }
