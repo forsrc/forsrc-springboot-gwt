@@ -6,11 +6,11 @@
        xmlns:uml="urn:import:com.forsrc.gwt.client.application.plantuml">
 
     <ui:with field="i18n" type="com.forsrc.gwt.client.resources.i18n.Messages" />
-
+    <ui:with field='storage' type='com.forsrc.gwt.client.utils.StorageUtils'/>
 
     <g:HTMLPanel>
         <m:MaterialLabel ui:field="searchLabel"/>
-        <uml:PlantumlMaterialImage src="{i18n.app_url_resource_plantuml}">
+        <uml:PlantumlMaterialImage src="{i18n.app_url_resource_plantuml}{storage.getAccessToken}">
             <![CDATA[
                 @startuml\n
                     A-> B\n

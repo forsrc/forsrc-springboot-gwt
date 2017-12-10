@@ -1,26 +1,24 @@
 package com.forsrc.gwt.client.application.plantuml;
 
+import com.forsrc.gwt.client.commons.oauth.Oauth;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.http.client.URL;
 import com.google.gwt.resources.client.ImageResource;
-import com.google.gwt.safehtml.shared.SafeHtmlUtils;
-import com.google.gwt.safehtml.shared.UriUtils;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasText;
-import com.google.gwt.util.tools.shared.StringUtils;
 
 import gwt.material.design.client.base.HasImage;
 import gwt.material.design.client.base.MaterialWidget;
 import gwt.material.design.client.base.mixin.ImageMixin;
 import gwt.material.design.client.constants.CssName;
 
-public class PlantumlMaterialImage extends MaterialWidget implements HasText, HasImage {
+public class PlantumlMaterialImage extends MaterialWidget implements HasText, HasImage, Oauth {
 
     private ImageMixin<PlantumlMaterialImage> imageMixin;
     private String src;
     private String uml;
     private boolean isUi = true;
+    private String accessToken;
 
     public PlantumlMaterialImage() {
         super(Document.get().createImageElement(), CssName.RESPONSIVE_IMG);
@@ -47,7 +45,7 @@ public class PlantumlMaterialImage extends MaterialWidget implements HasText, Ha
             return;
         }
         // String url = getSrc() + uml;
-        String url = src + URL.encodeQueryString(uml);
+        String url = src + "&uml=" + URL.encodeQueryString(uml) + getAccessToken();
         // this.getElement().setAttribute("src", url);
         // setUrl(url);
         getImageMixin().setUrl(url);
@@ -96,5 +94,15 @@ public class PlantumlMaterialImage extends MaterialWidget implements HasText, Ha
             imageMixin = new ImageMixin<>(this);
         }
         return imageMixin;
+    }
+
+    @Override
+    public String getAccessToken() {
+        return this.accessToken != null ? this.accessToken : "";
+    }
+
+    @Override
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 }
