@@ -1,0 +1,27 @@
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" 
+       xmlns:g="urn:import:com.google.gwt.user.client.ui"
+       xmlns:m="urn:import:gwt.material.design.client.ui"
+       xmlns:m.html="urn:import:gwt.material.design.client.ui.html"
+       xmlns:ma="urn:import:gwt.material.design.addins.client"
+       xmlns:uml="urn:import:com.forsrc.gwt.client.application.plantuml">
+
+    <ui:with field="i18n" type="com.forsrc.gwt.client.resources.i18n.Messages" />
+    <ui:with field='storage' type='com.forsrc.gwt.client.utils.StorageUtils'/>
+
+    <g:HTMLPanel>
+        <m:MaterialLabel ui:field="searchLabel"/>
+        <uml:PlantumlMaterialImage src="{i18n.app_url_resource_plantuml}{storage.getAccessToken}">
+            <![CDATA[
+                @startuml\n
+                    A-> B\n
+                    B-> A\n
+                @enduml
+            ]]>
+        </uml:PlantumlMaterialImage>
+        <m:MaterialContainer addStyleNames="code" margin="10">
+            <uml:PlantumlMaterialImage ui:field="plantuml" src="{i18n.app_url_resource_plantuml}{storage.getAccessToken}"></uml:PlantumlMaterialImage>
+            <m:MaterialTextArea ui:field="uml" label="plantuml" resizeRule="AUTO"/>
+             <m:MaterialButton ui:field="send" waves="LIGHT" text="Send" width="100%"/>
+        </m:MaterialContainer>
+    </g:HTMLPanel>
+</ui:UiBinder>

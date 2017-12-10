@@ -136,7 +136,7 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
                             storage.setItem("/oauth/token/login_time", String.valueOf(System.currentTimeMillis()));
                             storage.setItem("/oauth/token/expires_in", String.valueOf(data.get("expires_in").isNumber().doubleValue() * 1000));
                         }
-                        getAccessToken(email, data);
+                        setAccessToken(email, data);
                         MaterialToast.fireToast("Response:" + response.getStatusCode());
                         PlaceRequest placeRequest = new PlaceRequest.Builder().nameToken(NameTokens.CHAT).build();
                         placeManager.revealPlace(placeRequest);
@@ -153,7 +153,7 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
 
     }
 
-    private void getAccessToken(String email, JSONObject accessToken) {
+    private void setAccessToken(String email, JSONObject accessToken) {
         this.accessToken.setAccessToken(accessToken.get("access_token").isString().stringValue());
         this.accessToken.setRefreshToken(accessToken.get("refresh_token").isString().stringValue());
         this.accessToken.setTokenType(accessToken.get("token_type").isString().stringValue());
