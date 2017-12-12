@@ -13,9 +13,9 @@ public class DemoEvent extends GwtEvent<DemoEvent.DemoEventHandler> {
         void onDemoHandler(DemoEvent event);
     }
 
-    public interface DemoUiHandlers extends UiHandlers {
-        void onDemoUiHandlers();
-    }
+//    public interface DemoUiHandlers extends UiHandlers {
+//        void onDemoUiHandlers();
+//    }
 
     public static Type<DemoEventHandler> TYPE = new Type<>();
 
