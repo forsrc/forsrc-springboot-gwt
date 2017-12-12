@@ -9,6 +9,7 @@ import com.forsrc.gwt.client.event.MyEvent.MyEventHandler;
 import com.forsrc.gwt.client.place.NameTokens;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
+import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
@@ -21,7 +22,7 @@ import gwt.material.design.client.ui.MaterialToast;
 public class DemoPresenter extends Presenter<DemoPresenter.MyView, DemoPresenter.MyProxy>
         implements MyEventHandler, DemoEventHandler, DemoUiHandlers {
 
-    interface MyView extends View {
+    interface MyView extends View, HasUiHandlers<DemoUiHandlers>  {
         public void onSearch(String text);
     }
 
@@ -34,6 +35,7 @@ public class DemoPresenter extends Presenter<DemoPresenter.MyView, DemoPresenter
     @Inject
     DemoPresenter(EventBus eventBus, MyView view, MyProxy proxy) {
         super(eventBus, view, proxy, ApplicationPresenter.SLOT_MAIN);
+        getView().setUiHandlers(this);
     }
 
     @Override
