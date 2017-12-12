@@ -10,6 +10,7 @@ public class NameTokens {
     public static final String CODE = "/code";
     public static final String PLANTUML = "/plantuml";
     public static final String DEMO = "/demo";
+    public static final String SRC = "/src";
 
     public static String getHome() {
         return HOME;
