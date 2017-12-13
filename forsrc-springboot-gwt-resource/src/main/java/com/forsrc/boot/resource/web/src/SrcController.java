@@ -32,7 +32,7 @@ public class SrcController {
         }
         File file = new File(name);
         Map<String, Object> map = new HashMap<>(5);
-        map.put("name", filename);
+        map.put("name", name);
         map.put("exists", file.exists());
         map.put("isFile", file.exists() ? file.isFile() : false);
         map.put("length", String.valueOf(file.length()));
@@ -50,6 +50,7 @@ public class SrcController {
             Map<String, Object> fileMap = new HashMap<>();
             fileMap.put("name", f.getName());
             fileMap.put("isFile", f.isFile());
+            fileMap.put("exists", f.exists());
             fileMap.put("length", f.isFile() ? String.valueOf(f.length()) : "0");
             fileMap.put("lastModified", String.valueOf(f.lastModified()));
             list.add(fileMap);
