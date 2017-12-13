@@ -98,14 +98,18 @@ public class SrcView extends ViewWithUiHandlers<SrcUiHandlers> implements SrcPre
         getUiHandlers().list(root);
     }
 
+    MyCodeMirrorPanel codeMirrorPanel;
     @Override
     public void setSrcTree(SrcFileVo srcFileVo) {
         if (srcFileVo.isFile()) {
+            if (codeMirrorPanel != null) {
+                materialContainer.remove(codeMirrorPanel);
+            }
             Config config = Config.getDefault();
             config.setOption(Config.MODE, "text/x-java");
             config.setOption("autoCloseTags", true);
             config.setOption("collapseRange", true);
-            MyCodeMirrorPanel codeMirrorPanel = new MyCodeMirrorPanel(config);
+            codeMirrorPanel = new MyCodeMirrorPanel(config);
             codeMirrorPanel.getTextArea().setValue(srcFileVo.getText());
             materialContainer.add(codeMirrorPanel);
         }
