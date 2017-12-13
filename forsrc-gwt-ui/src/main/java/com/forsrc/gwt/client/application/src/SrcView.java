@@ -84,18 +84,18 @@ public class SrcView extends ViewWithUiHandlers<SrcUiHandlers> implements SrcPre
     @Override
     public void setSrcTree(SrcFileVo srcFileVo) {
 
-        SrcTree st = null;
+        SrcTree clickSrcTree = null;
         if (this.root == null) {
             MaterialTreeItem item = new MaterialTreeItem(srcFileVo.getName(),
                     srcFileVo.isFile() ? IconType.INSERT_DRIVE_FILE : IconType.FOLDER);
             item.getElement().setAttribute("parentPath", "");
             this.root = item;
             this.tree = new SrcTree();
-            st = this.tree;
-            st.setSelf(item);
+            clickSrcTree = this.tree;
+            clickSrcTree.setSelf(item);
         } else {
-            st = find(this.tree, srcFileVo.getName());
-            if (st == null) {
+            clickSrcTree = find(this.tree, srcFileVo.getName());
+            if (clickSrcTree == null) {
                 return;
             }
             this.srcTree.remove(this.root);
@@ -115,11 +115,11 @@ public class SrcView extends ViewWithUiHandlers<SrcUiHandlers> implements SrcPre
             child.getElement().setAttribute("parentPath", srcFileVo.getName());
             items[i] = child;
             SrcTree s = new SrcTree();
-            s.setParent(st);
+            s.setParent(clickSrcTree);
             s.setSelf(child);
             children[i] = s;
         }
-        tree.setChildren(children);
+        clickSrcTree.setChildren(children);
 
         renderTree(srcTree, tree);
     }
