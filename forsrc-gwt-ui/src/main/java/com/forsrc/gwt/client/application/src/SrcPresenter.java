@@ -95,7 +95,7 @@ public class SrcPresenter extends Presenter<SrcPresenter.MyView, SrcPresenter.My
                             srcFileVo.setName(data.get("name").isString().stringValue());
                             srcFileVo.setExists(data.get("exists").isBoolean().booleanValue());
                             if (srcFileVo.isExists()) {
-                                srcFileVo.setExists(data.get("isFile").isBoolean().booleanValue());
+                                srcFileVo.setFile(data.get("isFile").isBoolean().booleanValue());
                                 srcFileVo.setLength(data.get("length").isString().stringValue());
                                 srcFileVo.setLastModified(data.get("lastModified").isString().stringValue());
                             }
