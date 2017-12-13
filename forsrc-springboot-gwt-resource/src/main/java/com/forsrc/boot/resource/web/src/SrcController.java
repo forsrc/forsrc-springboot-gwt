@@ -1,6 +1,8 @@
 package com.forsrc.boot.resource.web.src;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -21,34 +23,38 @@ public class SrcController {
 
     @GetMapping("/list")
     public ResponseEntity<Object> list(@RequestParam("filename") String filename) {
-
-        File file = new File(filename);
+        String name = filename;
+        try {
+            name = URLDecoder.decode(filename, "UTF-8");
+            name = URLDecoder.decode(name, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            name = filename;
+        }
+        File file = new File(name);
+        Map<String, Object> map = new HashMap<>(5);
+        map.put("name", filename);
+        map.put("exists", file.exists());
+        map.put("length", String.valueOf(file.length()));
+        map.put("lastModified", String.valueOf(file.lastModified()));
+        map.put("list", null);
         if (!file.exists()) {
-            Map<String, Object> map = new HashMap<>(3);
-            map.put("name", filename);
-            map.put("exists", false);
-            map.put("length", file.length() + "");
             return new ResponseEntity<>(map, HttpStatus.OK);
         }
         if (file.isFile()) {
-            Map<String, Object> map = new HashMap<>(3);
-            map.put("name", filename);
-            map.put("isFile", file.isFile());
-            map.put("length", file.length());
-            map.put("lastModified", file.lastModified());
             return new ResponseEntity<>(map, HttpStatus.OK);
         }
         File[] files = file.listFiles();
         List<Map<String, Object>> list = new ArrayList<>(files.length);
         Arrays.asList(files).forEach(f -> {
-            Map<String, Object> map = new HashMap<>();
-            map.put("name", f.getName());
-            map.put("isFile", f.isFile() );
-            map.put("length", f.isFile() ? f.length() : 0);
-            map.put("lastModified", f.lastModified());
-            list.add(map);
+            Map<String, Object> fileMap = new HashMap<>();
+            fileMap.put("name", f.getName());
+            fileMap.put("isFile", f.isFile());
+            fileMap.put("length", f.isFile() ? String.valueOf(f.length()) : "0");
+            fileMap.put("lastModified", String.valueOf(f.lastModified()));
+            list.add(fileMap);
         });
 
-        return new ResponseEntity<>(list, HttpStatus.OK);
+        map.put("list", list);
+        return new ResponseEntity<>(map, HttpStatus.OK);
     }
 }
