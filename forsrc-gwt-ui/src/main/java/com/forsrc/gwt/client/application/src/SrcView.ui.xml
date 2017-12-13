@@ -33,7 +33,7 @@
                     </m:MaterialRow>
                 </ma:overlay.MaterialOverlay>
             </m:MaterialColumn>
-            <m:MaterialColumn>
+            <m:MaterialColumn grid="l8 m6 s12">
                 <m:MaterialRow margin="10">
                     <m:MaterialContainer ui:field="materialContainer">
                     </m:MaterialContainer>
