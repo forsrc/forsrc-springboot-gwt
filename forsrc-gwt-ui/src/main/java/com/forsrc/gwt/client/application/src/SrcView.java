@@ -52,7 +52,7 @@ public class SrcView extends ViewWithUiHandlers<SrcUiHandlers> implements SrcPre
             @Override
             public void onClose(CloseEvent<MaterialTreeItem> event) {
                 // event.getTraget() returns MaterialTreeItem
-                MaterialToast.fireToast("Closed : " + event.getTarget().getText());
+                // MaterialToast.fireToast("Closed : " + event.getTarget().getText());
             }
         });
 
@@ -60,17 +60,23 @@ public class SrcView extends ViewWithUiHandlers<SrcUiHandlers> implements SrcPre
             @Override
             public void onOpen(OpenEvent<MaterialTreeItem> event) {
                 // event.getTraget() returns MaterialTreeItem
-                MaterialToast.fireToast("Opened : " + event.getTarget().getText());
+                // MaterialToast.fireToast("Opened : " + event.getTarget().getText());
+
             }
         });
         srcTree.addSelectionHandler(new SelectionHandler<MaterialTreeItem>() {
             @Override
             public void onSelection(SelectionEvent<MaterialTreeItem> event) {
-                MaterialToast.fireToast("Selected : " + event.getSelectedItem().getText());
+                // MaterialToast.fireToast("Selected : " + event.getSelectedItem().getText());
                 MaterialTreeItem item = event.getSelectedItem();
+                String isLoad = item.getElement().getAttribute("isLoad");
+                if ("true".equals(isLoad)) {
+                    return;
+                }
                 String parentPath = item.getElement().getAttribute("parentPath");
                 String path = parentPath.equals("") ? item.getText() : parentPath + "/" + item.getText();
                 getUiHandlers().list(path);
+                item.getElement().setAttribute("isLoad", "true");
             }
         });
 
@@ -86,6 +92,7 @@ public class SrcView extends ViewWithUiHandlers<SrcUiHandlers> implements SrcPre
                     srcFileVo.isFile() ? IconType.INSERT_DRIVE_FILE : IconType.FOLDER);
             root.getElement().setAttribute("parentPath", "");
             srcTree.add(root);
+            select = root;
         }
         SrcFileVo[] srcFileVos = srcFileVo.getList();
         if (srcFileVos == null) {
