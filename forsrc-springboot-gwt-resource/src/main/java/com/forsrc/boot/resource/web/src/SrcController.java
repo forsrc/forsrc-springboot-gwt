@@ -34,6 +34,7 @@ public class SrcController {
         Map<String, Object> map = new HashMap<>(5);
         map.put("name", filename);
         map.put("exists", file.exists());
+        map.put("isFile", file.exists() ? file.isFile() : false);
         map.put("length", String.valueOf(file.length()));
         map.put("lastModified", String.valueOf(file.lastModified()));
         map.put("list", null);
