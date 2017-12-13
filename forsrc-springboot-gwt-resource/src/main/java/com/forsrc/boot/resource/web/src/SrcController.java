@@ -1,6 +1,7 @@
 package com.forsrc.boot.resource.web.src;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,6 +44,11 @@ public class SrcController {
             return new ResponseEntity<>(map, HttpStatus.OK);
         }
         if (file.isFile()) {
+            try {
+                map.put("text", FileUtils.readFileToString(file));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             return new ResponseEntity<>(map, HttpStatus.OK);
         }
         File[] files = file.listFiles();
