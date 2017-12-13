@@ -44,9 +44,6 @@ public class SrcView extends ViewWithUiHandlers<SrcUiHandlers> implements SrcPre
     @UiField
     MaterialTree srcTree;
 
-    private SrcTree tree;
-    private MaterialTreeItem root;
-
     @Override
     protected void onAttach() {
         super.onAttach();
@@ -83,90 +80,25 @@ public class SrcView extends ViewWithUiHandlers<SrcUiHandlers> implements SrcPre
 
     @Override
     public void setSrcTree(SrcFileVo srcFileVo) {
-
-        SrcTree clickSrcTree = null;
-        if (this.root == null) {
-            MaterialTreeItem item = new MaterialTreeItem(srcFileVo.getName(),
+        MaterialTreeItem select = srcTree.getSelectedItem();
+        if (select == null) {
+            MaterialTreeItem root = new MaterialTreeItem(srcFileVo.getName(),
                     srcFileVo.isFile() ? IconType.INSERT_DRIVE_FILE : IconType.FOLDER);
-            item.getElement().setAttribute("parentPath", "");
-            this.root = item;
-            this.tree = new SrcTree();
-            clickSrcTree = this.tree;
-            clickSrcTree.setSelf(item);
-        } else {
-            clickSrcTree = find(this.tree, srcFileVo.getName());
-            if (clickSrcTree == null) {
-                return;
-            }
-            this.srcTree.remove(this.root);
+            root.getElement().setAttribute("parentPath", "");
+            srcTree.add(root);
         }
-
-        SrcFileVo[] list = srcFileVo.getList();
-        if (list == null) {
+        SrcFileVo[] srcFileVos = srcFileVo.getList();
+        if (srcFileVos == null) {
             return;
         }
-        SrcTree[] children = new SrcTree[list.length];
+        MaterialTreeItem item = null;
         SrcFileVo vo = null;
-        MaterialTreeItem[] items = new MaterialTreeItem[list.length];
-        for (int i = 0; i < list.length; i++) {
-            vo = list[i];
-            MaterialTreeItem child = new MaterialTreeItem(vo.getName(),
-                    vo.isFile() ? IconType.INSERT_DRIVE_FILE : IconType.FOLDER);
-            child.getElement().setAttribute("parentPath", srcFileVo.getName());
-            items[i] = child;
-            SrcTree s = new SrcTree();
-            s.setParent(clickSrcTree);
-            s.setSelf(child);
-            children[i] = s;
-        }
-        clickSrcTree.setChildren(children);
-
-        renderTree(srcTree, tree);
-    }
-
-    private SrcTree find(final SrcTree srcTree, final String path) {
-
-        MaterialTreeItem self = srcTree.getSelf();
-        if (path.equals(self.getText())) {
-            return srcTree;
+        for (int i = 0; i < srcFileVos.length; i++) {
+            vo = srcFileVos[i];
+            item = new MaterialTreeItem(vo.getName(), vo.isFile() ? IconType.INSERT_DRIVE_FILE : IconType.FOLDER);
+            item.getElement().setAttribute("parentPath", srcFileVo.getName());
+            select.add(item);
         }
 
-        SrcTree[] children = srcTree.getChildren();
-        if (children == null) {
-            return null;
-        }
-        SrcTree st = null;
-
-        for (int j = 0; j < children.length; j++) {
-            st = children[j];
-            String parentPath = st.getSelf().getElement().getAttribute("parentPath");
-            parentPath = parentPath.equals("") ? "" : parentPath + "/";
-            if (path.equals(parentPath + st.getSelf().getText())) {
-                return st;
-            } else {
-                st = find(st, path);
-                if (st != null) {
-                    return st;
-                }
-            }
-        }
-        return null;
-    }
-
-    private void renderTree(MaterialTree materialTree, SrcTree srcTree) {
-        MaterialTreeItem self = srcTree.getSelf();
-        SrcTree parent = srcTree.getParent();
-        SrcTree[] children = srcTree.getChildren();
-        if (parent == null) {
-            materialTree.add(self);
-        } else {
-            parent.getSelf().add(self);
-        }
-        if (children == null) {
-            return;
-        }
-        for (int j = 0; j < children.length; j++) {
-            renderTree(materialTree, children[j]);
-        }
     }
 }
