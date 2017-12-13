@@ -88,6 +88,7 @@ public class SrcView extends ViewWithUiHandlers<SrcUiHandlers> implements SrcPre
         if (this.root == null) {
             MaterialTreeItem item = new MaterialTreeItem(srcFileVo.getName(),
                     srcFileVo.isFile() ? IconType.INSERT_DRIVE_FILE : IconType.FOLDER);
+            item.getElement().setAttribute("parentPath", "");
             this.root = item;
             this.tree = new SrcTree();
             st = this.tree;
@@ -135,10 +136,12 @@ public class SrcView extends ViewWithUiHandlers<SrcUiHandlers> implements SrcPre
             return null;
         }
         SrcTree st = null;
-        String p = self.getText() + "/";
+
         for (int j = 0; j < children.length; j++) {
             st = children[j];
-            if (path.equals(p + st.getSelf().getText())) {
+            String parentPath = st.getSelf().getElement().getAttribute("parentPath");
+            parentPath = parentPath.equals("") ? "" : parentPath + "/";
+            if (path.equals(parentPath + st.getSelf().getText())) {
                 return st;
             } else {
                 st = find(st, path);
