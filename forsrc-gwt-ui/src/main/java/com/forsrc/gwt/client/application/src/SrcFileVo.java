@@ -9,6 +9,7 @@ public class SrcFileVo {
     private boolean isFile;
     private String length;
     private String lastModified;
+    private String text;
 
     private SrcFileVo[] list;
 
@@ -58,6 +59,14 @@ public class SrcFileVo {
 
     public void setList(SrcFileVo[] list) {
         this.list = list;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 
     @Override

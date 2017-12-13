@@ -99,6 +99,9 @@ public class SrcPresenter extends Presenter<SrcPresenter.MyView, SrcPresenter.My
                                 srcFileVo.setLength(data.get("length").isString().stringValue());
                                 srcFileVo.setLastModified(data.get("lastModified").isString().stringValue());
                             }
+                            if (srcFileVo.isFile()) {
+                                srcFileVo.setText(data.get("text").isString().stringValue());
+                            }
                             JSONArray jsonArray = data.get("list").isArray();
                             if (jsonArray != null) {
                                 int size = jsonArray.size();

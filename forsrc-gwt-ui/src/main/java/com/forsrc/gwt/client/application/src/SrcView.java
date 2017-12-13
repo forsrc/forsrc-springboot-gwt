@@ -1,14 +1,15 @@
 package com.forsrc.gwt.client.application.src;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+
 
 import javax.inject.Inject;
 
+import org.geomajas.codemirror.client.Config;
+
+import com.forsrc.gwt.client.application.codemirror.CodemirrorResources;
+import com.forsrc.gwt.client.application.codemirror.MyCodeMirrorPanel;
+import com.forsrc.gwt.client.utils.ScriptInjectorUtils;
+import com.google.gwt.dom.client.StyleInjector;
 import com.google.gwt.event.logical.shared.CloseEvent;
 import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.event.logical.shared.OpenEvent;
@@ -25,6 +26,7 @@ import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 import gwt.material.design.addins.client.tree.MaterialTree;
 import gwt.material.design.addins.client.tree.MaterialTreeItem;
 import gwt.material.design.client.constants.IconType;
+import gwt.material.design.client.ui.MaterialContainer;
 import gwt.material.design.client.ui.MaterialToast;
 
 public class SrcView extends ViewWithUiHandlers<SrcUiHandlers> implements SrcPresenter.MyView {
@@ -41,8 +43,20 @@ public class SrcView extends ViewWithUiHandlers<SrcUiHandlers> implements SrcPre
 
     }
 
+    static {
+        ScriptInjectorUtils.inject(CodemirrorResources.INSTANCE.codemirror());
+        ScriptInjectorUtils.inject(CodemirrorResources.INSTANCE.closetag());
+        ScriptInjectorUtils.inject(CodemirrorResources.INSTANCE.clike());
+        ScriptInjectorUtils.inject(CodemirrorResources.INSTANCE.collapserange());
+        ScriptInjectorUtils.inject(CodemirrorResources.INSTANCE.showHint());
+        //CodemirrorResources.INSTANCE.showHintCss().ensureInjected();
+        StyleInjector.injectStylesheet(CodemirrorResources.INSTANCE.showHintCss().getText());
+    }
+
     @UiField
     MaterialTree srcTree;
+    @UiField
+    MaterialContainer materialContainer;
 
     @Override
     protected void onAttach() {
@@ -86,6 +100,15 @@ public class SrcView extends ViewWithUiHandlers<SrcUiHandlers> implements SrcPre
 
     @Override
     public void setSrcTree(SrcFileVo srcFileVo) {
+        if (srcFileVo.isFile()) {
+            Config config = Config.getDefault();
+            config.setOption(Config.MODE, "text/x-java");
+            config.setOption("autoCloseTags", true);
+            config.setOption("collapseRange", true);
+            MyCodeMirrorPanel codeMirrorPanel = new MyCodeMirrorPanel(config);
+            codeMirrorPanel.getTextArea().setValue(srcFileVo.getText());
+            materialContainer.add(codeMirrorPanel);
+        }
         MaterialTreeItem select = srcTree.getSelectedItem();
         if (select == null) {
             MaterialTreeItem root = new MaterialTreeItem(srcFileVo.getName(),

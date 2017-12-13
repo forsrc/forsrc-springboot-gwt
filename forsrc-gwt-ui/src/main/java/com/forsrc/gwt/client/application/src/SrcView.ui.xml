@@ -32,5 +32,9 @@
                 </m:MaterialRow>
             </ma:overlay.MaterialOverlay>
         </m:MaterialRow>
+        <m:MaterialRow margin="10" float="RIGHT">
+            <m:MaterialContainer ui:field="materialContainer">
+            </m:MaterialContainer>
+        </m:MaterialRow>
     </g:HTMLPanel>
 </ui:UiBinder>
