@@ -20,7 +20,6 @@
                         <m:MaterialIcon ui:field="btnAdd" visible="false" tooltip="Add" iconType="ADD" iconColor="WHITE" circle="true" waves="DEFAULT" float="RIGHT" />
                     </m:MaterialPanel>
                     <ma:tree.MaterialTree ui:field="srcTree">
-                        <ma:tree.MaterialTreeItem iconType="FOLDER" text="Trash" />
                     </ma:tree.MaterialTree>
                 </m:MaterialColumn>
             </m:MaterialRow>
