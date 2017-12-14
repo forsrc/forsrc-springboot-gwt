@@ -118,6 +118,7 @@ public class SrcView extends ViewWithUiHandlers<SrcUiHandlers> implements SrcPre
             MaterialTreeItem root = new MaterialTreeItem(srcFileVo.getName(),
                     srcFileVo.isFile() ? IconType.INSERT_DRIVE_FILE : IconType.FOLDER);
             root.getElement().setAttribute("parentPath", "");
+            root.getElement().setAttribute("isLoad", "true");
             srcTree.add(root);
             select = root;
         }
