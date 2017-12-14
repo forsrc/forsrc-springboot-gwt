@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.io.FileUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +35,7 @@ public class SrcController {
             name = filename;
         }
         File file = new File(name);
-        Map<String, Object> map = new HashMap<>(5);
+        Map<String, Object> map = new HashMap<>(6);
         map.put("name", name);
         map.put("exists", file.exists());
         map.put("isFile", file.exists() ? file.isFile() : false);
@@ -54,16 +56,25 @@ public class SrcController {
         File[] files = file.listFiles();
         List<Map<String, Object>> list = new ArrayList<>(files.length);
         Arrays.asList(files).forEach(f -> {
-            Map<String, Object> fileMap = new HashMap<>();
+            Map<String, Object> fileMap = new HashMap<>(6);
             fileMap.put("name", f.getName());
             fileMap.put("isFile", f.isFile());
             fileMap.put("exists", f.exists());
-            fileMap.put("length", f.isFile() ? String.valueOf(f.length()) : "0");
+            fileMap.put("length", String.valueOf(f.length()));
             fileMap.put("lastModified", String.valueOf(f.lastModified()));
             list.add(fileMap);
         });
 
         map.put("list", list);
         return new ResponseEntity<>(map, HttpStatus.OK);
+    }
+
+    @GetMapping("/file/**")
+    public ResponseEntity<Object> list(HttpServletRequest request) {
+        String requestURL = request.getRequestURL().toString();
+        String split = "/file/";
+        String[] paths = requestURL.split(split);
+        String path = paths.length == 2 ? paths[1] : requestURL.replace(paths[0] + split, "");
+        return list("/" + path);
     }
 }
