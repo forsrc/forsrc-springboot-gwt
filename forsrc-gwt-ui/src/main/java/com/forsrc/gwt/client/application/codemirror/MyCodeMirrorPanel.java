@@ -90,4 +90,24 @@ public class MyCodeMirrorPanel extends CodeMirrorPanel {
             }
         });
     }
+
+    public TextArea getTextArea() {
+        return textArea;
+    }
+
+    public void setTextArea(TextArea textArea) {
+        this.textArea = textArea;
+    }
+
+    public Config getConfig() {
+        return config;
+    }
+
+    public void setConfig(Config config) {
+        this.config = config;
+    }
+
+    public void setEditor(CodeMirrorWrapper editor) {
+        this.editor = editor;
+    }
 }
