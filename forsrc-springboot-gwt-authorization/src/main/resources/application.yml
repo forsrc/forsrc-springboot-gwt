@@ -16,6 +16,62 @@ logging:
   level:
     org.springframework.security: INFO
     org.jgroups.protocols: WARN
+    
+
+spring:
+  artemis:
+    embedded:
+      queues: accounts
+  jpa:
+    open-in-view: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      dialect: org.hibernate.dialect.H2Dialect
+
+db:
+  driver: org.h2.Driver
+  url: jdbc:h2:~/db/mydb.h2/sprongboot-gwt;AUTO_SERVER=TRUE;
+  url1: jdbc:h2:~/db/mydb.h2/sprongboot-gwt-1;AUTO_SERVER=TRUE;
+  url2: jdbc:h2:~/db/mydb.h2/sprongboot-gwt-2;AUTO_SERVER=TRUE;
+  username: sa
+  password: sa
+  databasePlatform: h2
+  dialect: org.hibernate.dialect.H2Dialect
+  pojo1.packages: com.forsrc.pojo
+  pojo2.packages: com.forsrc.pojo
+
+  db1:
+    datasource:
+      url: ${db.url1}
+      username: ${db.username}
+      password: ${db.password}
+      driverClassName: ${db.driver}
+      driver-class-name: ${db.driver}
+      platform: h2
+      schema: classpath:schema.sql
+      data: classpath:data.sql
+
+  db2:
+    datasource:
+      url: ${db.url2}
+      username: ${db.username}
+      password: ${db.password}
+      driverClassName: ${db.driver}
+      driver-class-name: ${db.driver}
+      platform: h2
+      schema: classpath:schema.sql
+      data: classpath:data.sql
+
+transactionInterceptor:
+  
+
+com:
+  atomikos:
+    icatch:
+      service: com.atomikos.icatch.standalone.UserTransactionServiceFactory
+      log_base_dir: translogs
 
 # openssl genrsa -out private.pem 2048
 # openssl rsa -in private.pem -outform PEM -pubout -out public.pem
