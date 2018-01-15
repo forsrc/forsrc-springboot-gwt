@@ -13,44 +13,54 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 @Configuration
-@MapperScan("com.forsrc.**.dao.mapper")
+// @MapperScan("com.forsrc.**.dao.mapper")
 public class MyBatisConfig {
 
-    @Autowired
-    @Qualifier("dataSource1")
-    private DataSource dataSource1;
+    @Configuration
+    @MapperScan("com.forsrc.**.dao.mapper.databsae1")
+    public static class DataSource1 {
 
-    @Autowired
-    @Qualifier("dataSource2")
-    private DataSource dataSource2;
+        @Autowired
+        @Qualifier("dataSource1")
+        private DataSource dataSource1;
 
-    @Bean
-    @Qualifier("sqlSessionFactory1")
-    public SqlSessionFactory sqlSessionFactory1() throws Exception {
+        @Bean
+        @Qualifier("sqlSessionFactory1")
+        public SqlSessionFactory sqlSessionFactory1() throws Exception {
 
-        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setDataSource(dataSource1);
+            SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+            sqlSessionFactoryBean.setDataSource(dataSource1);
 
-        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+            PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 
-        sqlSessionFactoryBean
-                .setMapperLocations(resolver.getResources("classpath*:com/forsrc/**/dao/mapper/database1/*Mapper.xml"));
-        //sqlSessionFactoryBean.setConfigLocation(new ClassPathResource("config/mybatis-config.xml"));
-        return sqlSessionFactoryBean.getObject();
+            sqlSessionFactoryBean.setMapperLocations(
+                    resolver.getResources("classpath*:com/forsrc/**/dao/mapper/database1/*Mapper.xml"));
+            // sqlSessionFactoryBean.setConfigLocation(new ClassPathResource("config/mybatis-config.xml"));
+            return sqlSessionFactoryBean.getObject();
+        }
+
     }
 
-    @Bean
-    @Qualifier("sqlSessionFactory2")
-    public SqlSessionFactory sqlSessionFactory2() throws Exception {
+    @Configuration
+    @MapperScan("com.forsrc.**.dao.mapper.databsae2")
+    public static class DataSource2 {
+        @Autowired
+        @Qualifier("dataSource2")
+        private DataSource dataSource2;
 
-        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setDataSource(dataSource1);
+        @Bean
+        @Qualifier("sqlSessionFactory2")
+        public SqlSessionFactory sqlSessionFactory2() throws Exception {
 
-        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+            SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+            sqlSessionFactoryBean.setDataSource(dataSource2);
 
-        sqlSessionFactoryBean
-                .setMapperLocations(resolver.getResources("classpath*:com/forsrc/**/dao/mapper/database2/*Mapper.xml"));
-        //sqlSessionFactoryBean.setConfigLocation(new ClassPathResource("config/mybatis-config.xml"));
-        return sqlSessionFactoryBean.getObject();
+            PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+
+            sqlSessionFactoryBean.setMapperLocations(
+                    resolver.getResources("classpath*:com/forsrc/**/dao/mapper/database2/*Mapper.xml"));
+            // sqlSessionFactoryBean.setConfigLocation(new ClassPathResource("config/mybatis-config.xml"));
+            return sqlSessionFactoryBean.getObject();
+        }
     }
 }

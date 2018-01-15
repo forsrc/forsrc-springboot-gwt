@@ -2,11 +2,8 @@ package com.forsrc.boot.authorization.config;
 
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
-import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,13 +14,6 @@ import org.springframework.context.annotation.Primary;
 public class DataSourceConfig {
 
 
-    @Autowired
-    @Qualifier("dataSource1")
-    private DataSource dataSource1;
-
-    @Autowired
-    @Qualifier("dataSource2")
-    private DataSource dataSource2;
 
     @Bean(name = "dataSource1")
     @Qualifier("dataSource1")

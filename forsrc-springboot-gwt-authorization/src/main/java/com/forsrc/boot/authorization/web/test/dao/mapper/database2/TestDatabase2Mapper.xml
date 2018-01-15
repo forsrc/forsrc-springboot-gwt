@@ -1,14 +1,14 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.forsrc.boot.authorization.web.test.dao.mapper.database2.TestDatabase2">
+<mapper namespace="com.forsrc.boot.authorization.web.test.dao.mapper.database2.TestDatabase2Mapper">
 
 
-    <select id="findById" resultType="com.forsrc.boot.authorization.web.test.dao.mapper.database2.TestDatabase2">
+    <select id="findById" resultType="com.forsrc.boot.authorization.web.test.model.TestDatabase2">
         select * from t_test_database2 where user_id = #{id}
     </select>
 
-    <insert id="insert" parameterType="com.forsrc.boot.authorization.web.test.dao.mapper.database2.TestDatabase2">
+    <insert id="insert" parameterType="com.forsrc.boot.authorization.web.test.model.TestDatabase2">
         insert into t_test_database2(id, name) values (#{bean.id}, #{bean.testId});
     </insert>
 
