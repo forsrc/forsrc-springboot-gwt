@@ -3,13 +3,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.forsrc.boot.authorization.web.test.dao.mapper.database2.TestDatabase2Mapper">
 
+    <resultMap id="resultMap" type="com.forsrc.boot.authorization.web.test.model.TestDatabase2">
+        <id property="id" column="id" />
+        <result property="id" column="id" />
+        <result property="testId" column="test_id" />
+    </resultMap>  
 
-    <select id="findById" resultType="com.forsrc.boot.authorization.web.test.model.TestDatabase2">
+    <select id="findById" resultType="com.forsrc.boot.authorization.web.test.model.TestDatabase2" resultMap="resultMap">
         select * from t_test_database2 where user_id = #{id}
     </select>
 
-    <insert id="insert" parameterType="com.forsrc.boot.authorization.web.test.model.TestDatabase2">
-        insert into t_test_database2(id, name) values (#{bean.id}, #{bean.testId});
+    <insert id="insert" parameterType="com.forsrc.boot.authorization.web.test.model.TestDatabase2" resultMap="resultMap">
+        insert into t_test_database2(test_id) values (#{bean.testId});
     </insert>
 
 </mapper>

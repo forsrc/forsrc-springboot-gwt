@@ -24,8 +24,7 @@ public class MyBatisConfig {
         @Qualifier("dataSource1")
         private DataSource dataSource1;
 
-        @Bean
-        @Qualifier("sqlSessionFactory1")
+        @Bean("sqlSessionFactory1")
         public SqlSessionFactory sqlSessionFactory1() throws Exception {
 
             SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
@@ -48,8 +47,7 @@ public class MyBatisConfig {
         @Qualifier("dataSource2")
         private DataSource dataSource2;
 
-        @Bean
-        @Qualifier("sqlSessionFactory2")
+        @Bean("sqlSessionFactory2")
         public SqlSessionFactory sqlSessionFactory2() throws Exception {
 
             SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
