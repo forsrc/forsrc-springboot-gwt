@@ -1,5 +1,7 @@
 package com.forsrc.boot.authorization.web.test.service.impl;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,7 @@ import com.forsrc.boot.authorization.web.test.model.TestDatabase2;
 import com.forsrc.boot.authorization.web.test.service.TestService;
 
 @Service
+@Transactional
 public class TestServiceImpl implements TestService{
 
     @Autowired
@@ -20,13 +23,13 @@ public class TestServiceImpl implements TestService{
 
     @Override
     public void initDb() {
+
         testDatabase1.createTable();
         testDatabase2.createTable();
         TestDatabase1 test1 = new TestDatabase1();
-        test1.setName("test");
+        test1.setName("test-" + System.currentTimeMillis());
         long id = testDatabase1.insert(test1);
-        System.out.println("id: " + id);
-        System.out.println(testDatabase1.findById(id));
+        
 
         TestDatabase2 test2 = new TestDatabase2();
         test2.setTestId(id);

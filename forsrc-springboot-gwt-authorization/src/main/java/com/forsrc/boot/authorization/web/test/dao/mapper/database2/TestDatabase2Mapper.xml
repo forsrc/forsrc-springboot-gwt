@@ -13,7 +13,11 @@
         SELECT * FROM t_test_database2 WHERE id = #{id}
     </select>
 
-    <insert id="insert" parameterType="com.forsrc.boot.authorization.web.test.model.TestDatabase2" useGeneratedKeys="true" keyProperty="id">
+    <!-- SELECT LAST_INSERT_ID() -->
+    <insert id="insert" parameterType="com.forsrc.boot.authorization.web.test.model.TestDatabase2" useGeneratedKeys="true" keyProperty="">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT SCOPE_IDENTITY() AS id
+        </selectKey>
         INSERT INTO t_test_database2(test_id) VALUES (#{bean.testId})
     </insert>
 

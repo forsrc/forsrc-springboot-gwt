@@ -22,7 +22,7 @@ import com.atomikos.icatch.jta.UserTransactionManager;
 @ComponentScan
 @EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory", transactionManagerRef = "atomikosTransactionManager", basePackages = {
-"com.forsrc..dao" })
+"com.forsrc..service" })
 public class TransactionManagerConfig {
 
     @Bean(name = "userTransaction")
@@ -57,6 +57,8 @@ public class TransactionManagerConfig {
         transactionAttributes.setProperty("test*", "PROPAGATION_REQUIRED,-Throwable");
 
         transactionAttributes.setProperty("insert*", "PROPAGATION_REQUIRED,-Throwable");
+        
+        transactionAttributes.setProperty("init*", "PROPAGATION_REQUIRED,-Throwable");
 
         transactionAttributes.setProperty("update*", "PROPAGATION_REQUIRED,-Throwable");
 
