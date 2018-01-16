@@ -8,7 +8,9 @@ import com.forsrc.boot.authorization.web.test.model.TestDatabase1;
 @Mapper
 public interface TestDatabase1Mapper {
 
-    public TestDatabase1 findByUserId(@Param("id") Long id);
+    public TestDatabase1 findById(@Param("id") Long id);
 
-    public TestDatabase1 insert(@Param("bean") TestDatabase1 bean);
+    public Long insert(@Param("bean") TestDatabase1 bean);
+
+    public void createTable();
 }

@@ -10,11 +10,18 @@
     </resultMap>  
 
     <select id="findById" resultType="com.forsrc.boot.authorization.web.test.model.TestDatabase2" resultMap="resultMap">
-        select * from t_test_database2 where user_id = #{id}
+        SELECT * FROM t_test_database2 WHERE id = #{id}
     </select>
 
-    <insert id="insert" parameterType="com.forsrc.boot.authorization.web.test.model.TestDatabase2" resultMap="resultMap">
-        insert into t_test_database2(test_id) values (#{bean.testId});
+    <insert id="insert" parameterType="com.forsrc.boot.authorization.web.test.model.TestDatabase2" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_test_database2(test_id) VALUES (#{bean.testId})
     </insert>
 
+    <insert id="createTable">
+        CREATE TABLE IF NOT EXISTS t_test_database2
+        (
+            id      bigint PRIMARY KEY AUTO_INCREMENT,
+            test_id bigint
+        )
+    </insert>
 </mapper>

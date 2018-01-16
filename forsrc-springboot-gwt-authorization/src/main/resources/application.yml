@@ -32,9 +32,9 @@ spring:
 
 db:
   driver: org.h2.Driver
-  url: jdbc:h2:~/db/mydb.h2/sprongboot-gwt;AUTO_SERVER=TRUE;
-  url1: jdbc:h2:~/db/mydb.h2/sprongboot-gwt-1;AUTO_SERVER=TRUE;
-  url2: jdbc:h2:~/db/mydb.h2/sprongboot-gwt-2;AUTO_SERVER=TRUE;
+  url:  jdbc:h2:~/db/mydb.h2/sprongboot-gwt;AUTO_SERVER=TRUE;
+  url1: jdbc:h2:~/db/mydb.h2/db1/sprongboot-gwt-1;
+  url2: jdbc:h2:~/db/mydb.h2/db2/sprongboot-gwt-2;
   username: sa
   password: sa
   databasePlatform: h2

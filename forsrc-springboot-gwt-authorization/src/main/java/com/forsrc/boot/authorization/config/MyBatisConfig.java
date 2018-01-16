@@ -19,7 +19,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 public class MyBatisConfig {
 
     @Configuration
-    @MapperScan(basePackages = {"com.forsrc.**.dao.mapper.databsae1"},
+    @MapperScan(basePackages = {"com.forsrc.**.mapper.databsae1"},
         sqlSessionFactoryRef ="sqlSessionFactory1",
         sqlSessionTemplateRef = "sqlSessionTemplate1")
     public static class DataSource1 {
@@ -39,7 +39,7 @@ public class MyBatisConfig {
             PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 
             sqlSessionFactoryBean.setMapperLocations(
-                    resolver.getResources("classpath*:com/forsrc/**/dao/mapper/database1/*Mapper.xml"));
+                    resolver.getResources("classpath*:com/forsrc/**/mapper/database1/*Mapper.xml"));
             // sqlSessionFactoryBean.setConfigLocation(new ClassPathResource("config/mybatis-config.xml"));
             return sqlSessionFactoryBean.getObject();
         }
@@ -53,7 +53,7 @@ public class MyBatisConfig {
     }
 
     @Configuration
-    @MapperScan(basePackages = {"com.forsrc.**.dao.mapper.databsae2"},
+    @MapperScan(basePackages = {"com.forsrc.**.mapper.databsae2"},
         sqlSessionFactoryRef ="sqlSessionFactory2",
         sqlSessionTemplateRef = "sqlSessionTemplate2")
     public static class DataSource2 {
@@ -71,7 +71,7 @@ public class MyBatisConfig {
             PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 
             sqlSessionFactoryBean.setMapperLocations(
-                    resolver.getResources("classpath*:com/forsrc/**/dao/mapper/database2/*Mapper.xml"));
+                    resolver.getResources("classpath*:com/forsrc/**/mapper/database2/*Mapper.xml"));
             // sqlSessionFactoryBean.setConfigLocation(new ClassPathResource("config/mybatis-config.xml"));
             return sqlSessionFactoryBean.getObject();
         }

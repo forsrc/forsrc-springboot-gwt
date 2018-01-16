@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.forsrc.boot.authorization.config.InfinispanConfig;
+import com.forsrc.boot.authorization.web.test.service.TestService;
 
 
 @RestController
@@ -27,6 +28,10 @@ public class TestController {
 
     @Autowired
     private EmbeddedCacheManager cacheManager;
+
+
+    @Autowired
+    private TestService testService;
 
     private static final Logger logger = LoggerFactory.getLogger(TestController.class);
 
@@ -53,5 +58,16 @@ public class TestController {
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/test/init", method = { RequestMethod.GET, RequestMethod.POST }, produces = {
+            MediaType.APPLICATION_JSON_UTF8_VALUE })
+    public ResponseEntity<Map<String, String>> init(UriComponentsBuilder ucBuilder) {
+        Map<String, String> map = new HashMap<>();
+        Cache<String, String> cache = cacheManager.getCache(InfinispanConfig.CACHE_NAME);
+        cache.put("time", new Date().toString());
+        map.put("test", "hello world");
+        map.put("time", cache.get("time"));
+        testService.initDb();
+        return new ResponseEntity<>(map, HttpStatus.OK);
+    }
 
 }

@@ -32,4 +32,9 @@ public class TestDatabase1 {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "TestDatabase1 [id=" + id + ", name=" + name + "]";
+    }
+
 }

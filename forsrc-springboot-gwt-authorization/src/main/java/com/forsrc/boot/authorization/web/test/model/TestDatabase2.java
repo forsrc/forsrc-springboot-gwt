@@ -1,5 +1,6 @@
 package com.forsrc.boot.authorization.web.test.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +15,8 @@ public class TestDatabase2 {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Long testTd;
+    @Column(name = "test_id", nullable = false)
+    private Long testId;
 
     public Long getId() {
         return id;
@@ -24,13 +26,17 @@ public class TestDatabase2 {
         this.id = id;
     }
 
-
-    public Long getTestTd() {
-        return testTd;
+    public Long getTestId() {
+        return testId;
     }
 
-    public void setTestTd(Long testTd) {
-        this.testTd = testTd;
+    public void setTestId(Long testId) {
+        this.testId = testId;
+    }
+
+    @Override
+    public String toString() {
+        return "TestDatabase2 [id=" + id + ", testId=" + testId + "]";
     }
 
 }
