@@ -23,14 +23,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class JpaConfig {
 
     @Autowired
-    @Qualifier("dataSource1")
-    private DataSource dataSource1;
-
-    @Autowired
-    @Qualifier("dataSource2")
-    private DataSource dataSource2;
-
-    @Autowired
     private JpaProperties jpaProperties;
 
     @Configuration
@@ -38,6 +30,10 @@ public class JpaConfig {
         transactionManagerRef = "transactionManager1",
         basePackages = { "com.forsrc..dao", "com.forsrc..dao.database1" })
     class Jap1 {
+
+        @Autowired
+        @Qualifier("dataSource1")
+        private DataSource dataSource1;
 
         @Bean(name = "entityManagerFactory1")
         @Qualifier("entityManagerFactory1")
@@ -70,6 +66,11 @@ public class JpaConfig {
         transactionManagerRef = "transactionManager2",
         basePackages = { "com.forsrc..dao", "com.forsrc..dao.database2" })
     class Jap2 {
+
+        @Autowired
+        @Qualifier("dataSource2")
+        private DataSource dataSource2;
+
         @Bean(name = "entityManager2")
         @Qualifier("entityManager2")
         public EntityManager entityManager2(EntityManagerFactoryBuilder builder) {
@@ -79,8 +80,8 @@ public class JpaConfig {
         @Bean(name = "entityManagerFactory2")
         @Qualifier("entityManagerFactory2")
         public LocalContainerEntityManagerFactoryBean entityManagerFactory2(EntityManagerFactoryBuilder builder) {
-            return builder.dataSource(dataSource1)
-                    .properties(getVendorProperties(dataSource1))
+            return builder.dataSource(dataSource2)
+                    .properties(getVendorProperties(dataSource2))
                     .packages("com.forsrc.pojo", "com.forsrc..model")
                     .persistenceUnit("persistenceUnit-database-2")
                     .build();
