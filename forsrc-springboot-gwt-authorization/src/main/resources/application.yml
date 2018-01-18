@@ -44,8 +44,7 @@ db:
   password: sa
   databasePlatform: h2
   dialect: org.hibernate.dialect.H2Dialect
-  pojo1.packages: com.forsrc.pojo
-  pojo2.packages: com.forsrc.pojo
+
 
   db1:
     datasource:
@@ -55,6 +54,26 @@ db:
       driverClassName: ${db.driver}
       driver-class-name: ${db.driver}
       platform: h2
+    jpa:
+      packages: com.forsrc.boot.authorization.web.test.model.database1
+      schema: classpath:schema.sql
+      data: classpath:data.sql
+      open-in-view: true
+      show-sql: true
+      hibernate:
+        ddl-auto: update
+        naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+        dialect: org.hibernate.dialect.H2Dialect
+  db2:
+    datasource:
+      url: ${db.url2}
+      username: ${db.username}
+      password: ${db.password}
+      driverClassName: ${db.driver}
+      driver-class-name: ${db.driver}
+      platform: h2
+    jpa:
+      packages: com.forsrc.boot.authorization.web.test.model.database2
       schema: classpath:schema.sql
       data: classpath:data.sql
       open-in-view: true
@@ -64,24 +83,7 @@ db:
         naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
         dialect: org.hibernate.dialect.H2Dialect
 
-  db2:
-    datasource:
-      url: ${db.url2}
-      username: ${db.username}
-      password: ${db.password}
-      driverClassName: ${db.driver}
-      driver-class-name: ${db.driver}
-      platform: h2
-      schema: classpath:schema.sql
-      data: classpath:data.sql
-      open-in-view: true
-      show-sql: true
-      hibernate:
-        ddl-auto: update
-        naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
-        dialect: org.hibernate.dialect.H2Dialect
-transactionInterceptor:
-  
+
 
 com:
   atomikos:

@@ -13,6 +13,7 @@ import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -25,6 +26,9 @@ public class JpaConfig {
 
     @Autowired
     private JpaProperties jpaProperties;
+
+    @Autowired
+    private Environment environment;
 
     @Configuration
     @EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory1",
@@ -42,7 +46,8 @@ public class JpaConfig {
         public LocalContainerEntityManagerFactoryBean entityManagerFactory1(EntityManagerFactoryBuilder builder) {
             return builder.dataSource(dataSource1)
                     .properties(getVendorProperties(dataSource1))
-                    .packages("com.forsrc.boot.authorization.web.test.model.database1")
+                    //.packages("com.forsrc.boot.authorization.web.test.model.database1")
+                    .packages(environment.getProperty("db.db1.jpa.packages").split("\\s*,\\s*"))
                     .persistenceUnit("persistenceUnit-database-1")
                     .build();
         }
@@ -83,7 +88,8 @@ public class JpaConfig {
         public LocalContainerEntityManagerFactoryBean entityManagerFactory2(EntityManagerFactoryBuilder builder) {
             return builder.dataSource(dataSource2)
                     .properties(getVendorProperties(dataSource2))
-                    .packages("com.forsrc.boot.authorization.web.test.model.database2")
+                    //.packages("com.forsrc.boot.authorization.web.test.model.database2")
+                    .packages(environment.getProperty("db.db2.jpa.packages").split("\\s*,\\s*"))
                     .persistenceUnit("persistenceUnit-database-2")
                     .build();
         }
