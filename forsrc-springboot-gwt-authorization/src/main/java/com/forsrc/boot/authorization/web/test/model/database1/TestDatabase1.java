@@ -1,4 +1,4 @@
-package com.forsrc.boot.authorization.web.test.model;
+package com.forsrc.boot.authorization.web.test.model.database1;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

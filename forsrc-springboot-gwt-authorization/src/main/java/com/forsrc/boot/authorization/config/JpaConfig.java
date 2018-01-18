@@ -7,6 +7,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
@@ -28,7 +29,7 @@ public class JpaConfig {
     @Configuration
     @EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory1",
         transactionManagerRef = "transactionManager1",
-        basePackages = { "com.forsrc..dao", "com.forsrc..dao.database1" })
+        basePackages = { "com.forsrc..dao.database1", "com.forsrc.boot.authorization.web.test.dao.database1" })
     class Jap1 {
 
         @Autowired
@@ -41,7 +42,7 @@ public class JpaConfig {
         public LocalContainerEntityManagerFactoryBean entityManagerFactory1(EntityManagerFactoryBuilder builder) {
             return builder.dataSource(dataSource1)
                     .properties(getVendorProperties(dataSource1))
-                    .packages("com.forsrc.pojo", "com.forsrc..model")
+                    .packages("com.forsrc.boot.authorization.web.test.model.database1")
                     .persistenceUnit("persistenceUnit-database-1")
                     .build();
         }
@@ -64,7 +65,7 @@ public class JpaConfig {
     @Configuration
     @EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory2",
         transactionManagerRef = "transactionManager2",
-        basePackages = { "com.forsrc..dao", "com.forsrc..dao.database2" })
+        basePackages = { "com.forsrc..dao.database2", "com.forsrc.boot.authorization.web.test.dao.database2" })
     class Jap2 {
 
         @Autowired
@@ -82,7 +83,7 @@ public class JpaConfig {
         public LocalContainerEntityManagerFactoryBean entityManagerFactory2(EntityManagerFactoryBuilder builder) {
             return builder.dataSource(dataSource2)
                     .properties(getVendorProperties(dataSource2))
-                    .packages("com.forsrc.pojo", "com.forsrc..model")
+                    .packages("com.forsrc.boot.authorization.web.test.model.database2")
                     .persistenceUnit("persistenceUnit-database-2")
                     .build();
         }

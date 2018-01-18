@@ -1,4 +1,4 @@
-package com.forsrc.boot.authorization.web.test.model;
+package com.forsrc.boot.authorization.web.test.model.database2;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

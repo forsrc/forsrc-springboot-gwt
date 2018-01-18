@@ -3,7 +3,7 @@ package com.forsrc.boot.authorization.web.test.dao.mapper.database1;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.forsrc.boot.authorization.web.test.model.TestDatabase1;
+import com.forsrc.boot.authorization.web.test.model.database1.TestDatabase1;
 
 @Mapper
 public interface TestDatabase1Mapper {
