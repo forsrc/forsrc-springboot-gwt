@@ -10,7 +10,7 @@ public interface TestDatabase1Mapper {
 
     public TestDatabase1 findById(@Param("id") Long id);
 
-    public Long insert(@Param("bean") TestDatabase1 bean);
+    public int insert(@Param("bean") TestDatabase1 bean);
 
     public void createTable();
 }

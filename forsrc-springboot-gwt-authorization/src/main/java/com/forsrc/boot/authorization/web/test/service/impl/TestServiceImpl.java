@@ -28,12 +28,14 @@ public class TestServiceImpl implements TestService{
         testDatabase2.createTable();
         TestDatabase1 test1 = new TestDatabase1();
         test1.setName("test-" + System.currentTimeMillis());
-        long id = testDatabase1.insert(test1);
-        
+        int count = testDatabase1.insert(test1);
+        Long id = test1.getId();
+        System.out.println(testDatabase1.findById(id));
 
         TestDatabase2 test2 = new TestDatabase2();
         test2.setTestId(id);
-        id = testDatabase2.insert(test2);
+        count = testDatabase2.insert(test2);
+        id = test2.getId();
         System.out.println("id: " + id);
         System.out.println(testDatabase2.findById(id));
     }
