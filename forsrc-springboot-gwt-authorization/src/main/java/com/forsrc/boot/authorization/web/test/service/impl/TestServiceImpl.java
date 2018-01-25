@@ -3,6 +3,7 @@ package com.forsrc.boot.authorization.web.test.service.impl;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
 import com.forsrc.boot.authorization.web.test.dao.database1.TestDatabase1Dao;
@@ -29,6 +30,9 @@ public class TestServiceImpl implements TestService{
     @Autowired
     private TestDatabase2Dao testDatabase2Dao;
 
+    @Autowired
+    private JmsTemplate jmsTemplate;
+
 //    public TestServiceImpl(TestDatabase1Dao testDatabase1Dao, TestDatabase2Dao testDatabase2Dao) {
 //        this.testDatabase1Dao = testDatabase1Dao;
 //        this.testDatabase2Dao = testDatabase2Dao;
@@ -37,6 +41,7 @@ public class TestServiceImpl implements TestService{
     @Override
     public void initDb() {
 
+    	this.jmsTemplate.convertAndSend("jms/queues/test", "test ...");
         testDatabase1.createTable();
         testDatabase2.createTable();
         TestDatabase1 test1 = new TestDatabase1();
@@ -64,6 +69,7 @@ public class TestServiceImpl implements TestService{
         testDatabase2Dao.save(test2);
         id = test2.getId();
         System.out.println(testDatabase2Dao.getOne(id));
+        this.jmsTemplate.convertAndSend("jms/queues/test", "test OK");
     }
 
 }

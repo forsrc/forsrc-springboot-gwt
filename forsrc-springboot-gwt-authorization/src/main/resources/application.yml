@@ -16,12 +16,12 @@ logging:
   level:
     org.springframework.security: INFO
     org.jgroups.protocols: WARN
-    
+    com.atomikos.icatch.imp: ERROR
 
 spring:
   artemis:
     embedded:
-      queues: accounts
+      queues: jms/queues/test
   h2:
     console:
       enabled: true
