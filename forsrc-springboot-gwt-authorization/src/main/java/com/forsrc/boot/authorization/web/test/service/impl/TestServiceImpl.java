@@ -14,9 +14,13 @@ import javax.jms.TextMessage;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.connection.JmsTransactionManager;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.SessionCallback;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -46,6 +50,9 @@ public class TestServiceImpl implements TestService {
 
     @Autowired
     private JmsTemplate jmsTemplate;
+
+    @Autowired
+    private JmsTransactionManager jmsTransactionManager;
 
     // public TestServiceImpl(TestDatabase1Dao testDatabase1Dao, TestDatabase2Dao
     // testDatabase2Dao) {
@@ -101,9 +108,9 @@ public class TestServiceImpl implements TestService {
         jmsTemplate.execute(new SessionCallback() {
             @Override
             public Object doInJms(Session session) throws JMSException {
- 
-                Destination destination = jmsTemplate.getDestinationResolver()
-                        .resolveDestinationName(session, "jms/queues/test", false);
+
+                Destination destination = jmsTemplate.getDestinationResolver().resolveDestinationName(session,
+                        "jms/queues/test", false);
                 MessageProducer producer = session.createProducer(destination);
                 TextMessage textMessage = session.createTextMessage();
                 try {
@@ -116,6 +123,31 @@ public class TestServiceImpl implements TestService {
                 return textMessage;
             }
         });
+        this.jmsTemplate.convertAndSend("jms/queues/test/transactionStatus", test1);
+        new Thread() {
+            @Override
+            public void run() {
+                transactionStatus();
+            }
+            
+        }.start();
+        
     }
 
+    public void transactionStatus() {
+        DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+        def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRES_NEW);
+        Integer item = System.identityHashCode(def);
+        def.setName("test/" + item);
+        TransactionStatus status = jmsTransactionManager.getTransaction(def);
+        try {
+            System.out.println("--> transactionStatus()");
+            TextMessage message = (TextMessage) jmsTemplate.receive("jms/queues/test/transactionStatus");
+            System.out.println("--> transactionStatus(): " + message);
+            jmsTransactionManager.commit(status);
+        } catch (Exception e) {
+            jmsTransactionManager.rollback(status);
+            System.out.println("M1 Generic Connector Roll Back");
+        }
+    }
 }
