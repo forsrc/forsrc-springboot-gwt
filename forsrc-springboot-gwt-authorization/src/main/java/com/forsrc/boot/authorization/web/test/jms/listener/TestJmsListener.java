@@ -1,6 +1,7 @@
 package com.forsrc.boot.authorization.web.test.jms.listener;
 
 import javax.jms.JMSException;
+import javax.jms.MapMessage;
 import javax.jms.TextMessage;
 
 import org.springframework.jms.annotation.JmsListener;
@@ -15,4 +16,9 @@ public class TestJmsListener {
         System.out.println("  --> " + message.getText());
     }
 
+    //@JmsListener(destination = "jms/queues/test")
+    public void onMapMessage(MapMessage message) throws JMSException {
+        System.out.println("----> " + message);
+        System.out.println("  --> " + message.getString("id"));
+    }
 }
