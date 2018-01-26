@@ -1,0 +1,44 @@
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" 
+       xmlns:g="urn:import:com.google.gwt.user.client.ui"
+       xmlns:m="urn:import:gwt.material.design.client.ui"
+       xmlns:m.html="urn:import:gwt.material.design.client.ui.html"
+       xmlns:ma="urn:import:gwt.material.design.addins.client">
+
+    <ui:with field="i18n" type="com.forsrc.gwt.client.resources.i18n.Messages" />
+
+    <g:HTMLPanel>
+
+        <m:MaterialRow margin="10">
+            <m:MaterialColumn grid="l4 m6 s12">
+                <m:MaterialRow>
+                    <m:MaterialColumn shadow="1" padding="0" grid="l4 m6 s12" height="500px" width="100%" overflow="AUTO">
+                        <m:MaterialPanel ui:field="titlePanel" backgroundColor="BLUE" padding="8" height="40px">
+                            <m:MaterialLabel text="FOLDERS" textColor="WHITE" fontWeight="BOLD" float="LEFT"/>
+                            <m:MaterialIcon ui:field="btnDeselectItem" tooltip="Deselect selected item" iconType="CLEAR" iconColor="WHITE" circle="true" waves="DEFAULT" float="RIGHT"/>
+                            <m:MaterialIcon ui:field="btnCollapse" tooltip="Collapse" iconType="VERTICAL_ALIGN_CENTER" iconColor="WHITE" circle="true" waves="DEFAULT" float="RIGHT"/>
+                            <m:MaterialIcon ui:field="btnExpand" tooltip="Expand" iconType="ZOOM_OUT_MAP" iconColor="WHITE" circle="true" waves="DEFAULT" float="RIGHT"/>
+                            <m:MaterialIcon ui:field="btnDelete" visible="false" tooltip="Delete" iconType="DELETE" iconColor="WHITE" circle="true" waves="DEFAULT" float="RIGHT"/>
+                            <m:MaterialIcon ui:field="btnAdd" visible="false" tooltip="Add" iconType="ADD" iconColor="WHITE" circle="true" waves="DEFAULT" float="RIGHT" />
+                        </m:MaterialPanel>
+                        <ma:tree.MaterialTree ui:field="srcTree">
+                        </ma:tree.MaterialTree>
+                    </m:MaterialColumn>
+                </m:MaterialRow>
+        
+                <ma:overlay.MaterialOverlay ui:field="addOverlay" width="400px" padding="20" height="150px" visibility="HIDDEN" opacity="0" shadow="2" backgroundColor="WHITE">
+                    <m:MaterialTextBox ui:field="txtName" placeholder="Folder Name"/>
+                    <m:MaterialRow>
+                        <m:MaterialButton ui:field="btnFinish" text="Add" type="FLAT" float="RIGHT"/>
+                        <m:MaterialButton ui:field="btnCancel" text="Cancel" type="FLAT" float="RIGHT"/>
+                    </m:MaterialRow>
+                </ma:overlay.MaterialOverlay>
+            </m:MaterialColumn>
+            <m:MaterialColumn grid="l8 m6 s12">
+                <m:MaterialRow margin="10">
+                    <m:MaterialContainer ui:field="materialContainer">
+                    </m:MaterialContainer>
+                </m:MaterialRow>
+            </m:MaterialColumn>
+        </m:MaterialRow>
+    </g:HTMLPanel>
+</ui:UiBinder>

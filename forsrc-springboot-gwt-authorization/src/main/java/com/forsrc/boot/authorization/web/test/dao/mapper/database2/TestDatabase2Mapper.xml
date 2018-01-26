@@ -1,0 +1,28 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.forsrc.boot.authorization.web.test.dao.mapper.database2.TestDatabase2Mapper">
+
+    <resultMap id="resultMap" type="com.forsrc.boot.authorization.web.test.model.database2.TestDatabase2">
+        <id property="id" column="id" />
+        <result property="id" column="id" />
+        <result property="testId" column="test_id" />
+    </resultMap>  
+
+    <select id="findById" resultType="com.forsrc.boot.authorization.web.test.model.database2.TestDatabase2" resultMap="resultMap">
+        SELECT * FROM t_test_database2 WHERE id = #{id}
+    </select>
+
+    <!-- SELECT LAST_INSERT_ID() -->
+    <insert id="insert" parameterType="com.forsrc.boot.authorization.web.test.model.database2.TestDatabase2" useGeneratedKeys="true" keyProperty="bean.id">
+        INSERT INTO t_test_database2(test_id) VALUES (#{bean.testId})
+    </insert>
+
+    <insert id="createTable">
+        CREATE TABLE IF NOT EXISTS t_test_database2
+        (
+            id      bigint PRIMARY KEY AUTO_INCREMENT,
+            test_id bigint
+        )
+    </insert>
+</mapper>
