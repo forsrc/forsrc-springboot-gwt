@@ -1,14 +1,18 @@
 package com.forsrc.boot.authorization.web.test.jms.listener;
 
+import javax.jms.JMSException;
+import javax.jms.TextMessage;
+
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
 @Component
 public class TestJmsListener {
 
-	@JmsListener(destination = "jms/queues/test")
-	public void onMessage(String content) {
-		System.out.println("----> " + content);
-	}
+    @JmsListener(destination = "jms/queues/test")
+    public void onMessage(TextMessage message) throws JMSException {
+        System.out.println("----> " + message);
+        System.out.println("  --> " + message.getText());
+    }
 
 }
