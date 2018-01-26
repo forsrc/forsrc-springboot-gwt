@@ -11,6 +11,8 @@ security:
     resource:
       jwt:
         key-uri: ${auth-server:http://localhost:9999/uaa}/oauth/token_key
+  basic:
+    enabled: false
 
 spring:
   jackson:

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
 @SpringBootApplication
-@EnableResourceServer
+//@EnableResourceServer
 public class ResourceApplication {
 
     public static void main(String[] args) {

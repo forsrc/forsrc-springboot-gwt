@@ -16,6 +16,80 @@ logging:
   level:
     org.springframework.security: INFO
     org.jgroups.protocols: WARN
+    com.atomikos.icatch.imp: ERROR
+
+spring:
+  artemis:
+    embedded:
+      queues: jms/queues/test
+  h2:
+    console:
+      enabled: true
+  jpa:
+    open-in-view: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      dialect: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+db:
+  driver: org.h2.Driver
+  url:  jdbc:h2:~/db/mydb.h2/sprongboot-gwt;AUTO_SERVER=TRUE;
+  url1: jdbc:h2:~/db/mydb.h2/db1/sprongboot-gwt-1;
+  url2: jdbc:h2:~/db/mydb.h2/db2/sprongboot-gwt-2;
+  username: sa
+  password: sa
+  databasePlatform: h2
+  dialect: org.hibernate.dialect.H2Dialect
+
+
+  db1:
+    datasource:
+      url: ${db.url1}
+      username: ${db.username}
+      password: ${db.password}
+      driverClassName: ${db.driver}
+      driver-class-name: ${db.driver}
+      platform: h2
+    jpa:
+      packages: com.forsrc.boot.authorization.web.test.model.database1
+      schema: classpath:schema.sql
+      data: classpath:data.sql
+      open-in-view: true
+      show-sql: true
+      hibernate:
+        ddl-auto: update
+        naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+        dialect: org.hibernate.dialect.H2Dialect
+  db2:
+    datasource:
+      url: ${db.url2}
+      username: ${db.username}
+      password: ${db.password}
+      driverClassName: ${db.driver}
+      driver-class-name: ${db.driver}
+      platform: h2
+    jpa:
+      packages: com.forsrc.boot.authorization.web.test.model.database2
+      schema: classpath:schema.sql
+      data: classpath:data.sql
+      open-in-view: true
+      show-sql: true
+      hibernate:
+        ddl-auto: update
+        naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+        dialect: org.hibernate.dialect.H2Dialect
+
+
+
+com:
+  atomikos:
+    icatch:
+      service: com.atomikos.icatch.standalone.UserTransactionServiceFactory
+      log_base_dir: translogs
 
 # openssl genrsa -out private.pem 2048
 # openssl rsa -in private.pem -outform PEM -pubout -out public.pem
