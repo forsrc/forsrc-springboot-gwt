@@ -32,6 +32,7 @@ public class JmsConfig {
         });
 
         configurer.configure(factory, connectionFactory);
+        factory.setMessageConverter(jacksonJmsMessageConverter());
         return factory;
     }
 
