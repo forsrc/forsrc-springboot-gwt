@@ -16,6 +16,11 @@ public class MessageController {
 
     final List<Message> messages = Collections.synchronizedList(new LinkedList<>());
 
+    @RequestMapping(path = "api/me")
+    Principal me(Principal principal) {
+        return principal;
+    }
+
     @RequestMapping(path = "api/messages", method = RequestMethod.GET)
     List<Message> getMessages(Principal principal) {
         return messages;
