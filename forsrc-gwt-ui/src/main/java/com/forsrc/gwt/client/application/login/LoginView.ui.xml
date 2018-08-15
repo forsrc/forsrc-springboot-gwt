@@ -12,7 +12,7 @@
                 <m:MaterialColumn grid="s12 m12 l6">
                     <m:MaterialPanel padding="12" shadow="1" >
                         <m:MaterialPanel>
-                            <m:MaterialImage type="CIRCLE" addStyleNames="z-depth-1" width="96" height="96" url="https://lh3.googleusercontent.com/-nGpPOoLCzBs/AAAAAAAAAAI/AAAAAAAAAAA/ACnBePbE-Yhw8HuCDAoRVa3_OFxQn1wEGg/s96-c-mo/photo.jpg"/>
+                            <m:MaterialImage type="CIRCLE" addStyleNames="z-depth-1" width="96" height="96" url="https://lh3.googleusercontent.com/-nGpPOoLCzBs/AAAAAAAAAAI/AAAAAAAAAAA/APUIFaPNhbnoHkvujiXeZojfTRtQXBQ9rA/s96-c-mo/photo.jpg"/>
                             <m:MaterialTextBox ui:field="email" name="email" iconType="ACCOUNT_CIRCLE" label="Email" placeholder="You email" validateOnBlur="true" allowBlank="false"/>
                             <m:MaterialTextBox ui:field="password" name="password" type="PASSWORD" iconType="LOCK" placeholder="You password" label="Password" validateOnBlur="true" allowBlank="false"/>
                             <m:MaterialButton ui:field="login" waves="LIGHT" text="Login" width="100%" marginTop="20"/>

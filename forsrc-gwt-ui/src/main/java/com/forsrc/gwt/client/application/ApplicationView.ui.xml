@@ -26,7 +26,7 @@
 
             <m:MaterialSideNavCard m:id="sidenavCard" ui:field="sideNav" width="300">
                 <ma:sideprofile.MaterialSideProfile url="http://static1.squarespace.com/static/51609147e4b0715db61d32b6/521b97cee4b05f031fd12dde/5519e33de4b06a1002802805/1431718693701/?format=1500w">
-                    <m:MaterialImage url="https://lh3.googleusercontent.com/-nGpPOoLCzBs/AAAAAAAAAAI/AAAAAAAAAAA/ACnBePbE-Yhw8HuCDAoRVa3_OFxQn1wEGg/s96-c-mo/photo.jpg" />
+                    <m:MaterialImage url="https://lh3.googleusercontent.com/-nGpPOoLCzBs/AAAAAAAAAAI/AAAAAAAAAAA/APUIFaPNhbnoHkvujiXeZojfTRtQXBQ9rA/s96-c-mo/photo.jpg" />
                     <m:MaterialLabel text="GWT Material" textColor="WHITE"/>
                     <m:MaterialLink text="forsrc@gmail.com" activates="dropProfile" iconType="ARROW_DROP_DOWN" iconPosition="RIGHT" textColor="WHITE"/>
                 </ma:sideprofile.MaterialSideProfile>
