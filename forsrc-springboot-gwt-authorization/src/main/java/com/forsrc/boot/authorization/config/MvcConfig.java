@@ -14,8 +14,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class MvcConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/login").setViewName("loginhtml/login");
-        registry.addViewController("/index").setViewName("loginhtml/index");
+//        registry.addViewController("/login").setViewName("loginhtml/login");
+//        registry.addViewController("/index").setViewName("loginhtml/index");
+        registry.addViewController("/login").setViewName("gwt/login");
+        registry.addViewController("/index").setViewName("gwt/index");
         registry.addViewController("/").setViewName("loginhtml/index");
     }
 

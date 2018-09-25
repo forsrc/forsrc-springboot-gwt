@@ -1,6 +1,7 @@
 package com.forsrc.boot.authorization.web.test.controller;
 
 
+import java.security.Principal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,6 +36,11 @@ public class TestController {
 
     private static final Logger logger = LoggerFactory.getLogger(TestController.class);
 
+    @RequestMapping(value = "/me")
+    public Principal me(Principal user) {
+        System.out.println("user --> " + user);
+        return user;
+    }
 
     @RequestMapping(value = "/test", method = { RequestMethod.GET, RequestMethod.POST }, produces = {
             MediaType.APPLICATION_JSON_UTF8_VALUE })
