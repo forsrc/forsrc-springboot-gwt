@@ -30,8 +30,8 @@ public class AuthorizationApplication {
         SpringApplication.run(AuthorizationApplication.class, args);
     }
 
-    @Profile("!cloud")
-    @Bean
+    //@Profile("!cloud")
+    //@Bean
     RequestDumperFilter requestDumperFilter() {
         return new RequestDumperFilter();
     }

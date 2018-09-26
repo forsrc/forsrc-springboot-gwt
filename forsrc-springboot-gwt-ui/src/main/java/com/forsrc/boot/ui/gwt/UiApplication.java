@@ -18,8 +18,8 @@ public class UiApplication {
         SpringApplication.run(UiApplication.class, args);
     }
 
-    @Profile("!cloud")
-    @Bean
+//    @Profile("!cloud")
+//    @Bean
     RequestDumperFilter requestDumperFilter() {
         return new RequestDumperFilter();
     }

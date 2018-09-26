@@ -28,6 +28,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             request.get('/api/messages')
                     .end(function (err, res) {
+                        console.log("/api/messages -> " + JSON.stringify(res.body));
                         document.getElementById('messages').innerHTML = res.body.map(rowTemplate).join('');
                     });
         }, false);
@@ -37,7 +38,7 @@
                     .set('X-CSRF-TOKEN', form._csrf.value)
                     .send({text: form.text.value})
                     .end(function (err, res) {
-                        var current = document.getElementById('messages').innerHTML
+                        var current = document.getElementById('messages').innerHTML;
                         document.getElementById('messages').innerHTML = rowTemplate(res.body) + current;
                         form.text.value = '';
                     });
