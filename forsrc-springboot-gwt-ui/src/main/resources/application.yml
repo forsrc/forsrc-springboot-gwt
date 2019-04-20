@@ -1,4 +1,6 @@
 auth-server: http://localhost:9999/uaa
+resource-server: http://localhost:7777
+
 server:
   port: 8080
 security:
@@ -24,4 +26,14 @@ zuul:
   routes:
     message:
       path: /api/messages/**
-      url: http://localhost:7777/api/messages
+      url: ${resource-server}/api/messages
+    resource:
+      path: /resource/**
+      url: ${resource-server}
+    user:
+      path: /me/**
+      url: ${auth-server}/me
+    logout:
+      path: /logout/**
+      url: ${auth-server}/logout
+      

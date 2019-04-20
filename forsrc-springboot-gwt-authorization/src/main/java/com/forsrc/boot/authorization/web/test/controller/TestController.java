@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.forsrc.boot.authorization.config.InfinispanConfig;
@@ -25,6 +26,7 @@ import com.forsrc.boot.authorization.web.test.service.TestService;
 
 
 @RestController
+@SessionAttributes("authorizationRequest")
 public class TestController {
 
     @Autowired
