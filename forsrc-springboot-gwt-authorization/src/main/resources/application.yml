@@ -12,6 +12,9 @@ security:
 server:
   port: 9999
   context-path: /uaa
+  session:
+    cookie:
+      name: AUTH_SESSIONID
 logging:
   level:
     org.springframework.security: INFO
@@ -19,6 +22,8 @@ logging:
     com.atomikos.icatch.imp: ERROR
 
 spring:
+  session:
+    store-type: none
   artemis:
     embedded:
       queues: jms/queues/test

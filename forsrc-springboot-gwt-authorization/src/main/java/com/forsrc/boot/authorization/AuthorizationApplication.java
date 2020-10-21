@@ -5,8 +5,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.oauth2.authserver.AuthorizationServerProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Profile;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
@@ -14,6 +12,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @EnableAuthorizationServer
 @EnableConfigurationProperties({ AuthorizationServerProperties.class })
 @EnableResourceServer
+//@EnableRedisHttpSession
 public class AuthorizationApplication {
 
     /*

@@ -3,6 +3,7 @@ resource-server: http://localhost:7777
 
 server:
   port: 8080
+  session:    cookie:      name: UI_SESSIONID
 security:
   basic:
     enabled: false
@@ -16,24 +17,40 @@ security:
     resource:
       jwt:
         key-uri: ${auth-server}/oauth/token_key
+
 logging:
   level:
     org.springframework.security: DEBUG
 spring:
+  session:
+    store-type: none
   jackson:
     date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
+  thymeleaf:
+    prefix: 'classpath:/templates/'
+    suffix: .html
+    cache:  false
+    mode: LEGACYHTML5
 zuul:
   routes:
     message:
       path: /api/messages/**
       url: ${resource-server}/api/messages
+      sensitiveHeaders: "*"
     resource:
       path: /resource/**
       url: ${resource-server}
+      sensitiveHeaders: "*"
     user:
       path: /me/**
       url: ${auth-server}/me
+      sensitiveHeaders: "*"
     logout:
       path: /logout/**
       url: ${auth-server}/logout
-      
+      sensitiveHeaders: "*"
+    test:
+      path: /server/**
+      url: ${auth-server}/
+      sensitiveHeaders: "*"
+  sensitive-headers: "*"

@@ -4,6 +4,9 @@
 
 server:
   port:  7777
+  session:
+    cookie:
+      name: RESOURCE_SESSIONID
 
 
 security:
@@ -15,5 +18,7 @@ security:
     enabled: false
 
 spring:
+  session:
+    store-type: none
   jackson:
     date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
