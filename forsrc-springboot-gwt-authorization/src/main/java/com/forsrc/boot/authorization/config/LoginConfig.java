@@ -46,7 +46,7 @@ public class LoginConfig extends WebSecurityConfigurerAdapter {
                     //.permitAll()
                 .and()
                     .requestMatchers()
-                    .antMatchers("/login", "/oauth/authorize", "/oauth/confirm_access", "/test")
+                    .antMatchers("/login", "/oauth/token_key", "/oauth/authorize", "/oauth/confirm_access", "/test")
 //                .and()
 //                    .authorizeRequests()
 //                    .antMatchers("/test", "/oauth/token")
