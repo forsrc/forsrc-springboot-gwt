@@ -5,13 +5,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.oauth2.authserver.AuthorizationServerProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
+import org.springframework.web.context.request.RequestContextListener;
 
 @SpringBootApplication
 @EnableAuthorizationServer
 @EnableConfigurationProperties({ AuthorizationServerProperties.class })
-@EnableResourceServer
 //@EnableRedisHttpSession
 public class AuthorizationApplication {
 
@@ -29,6 +30,12 @@ public class AuthorizationApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(AuthorizationApplication.class, args);
+    }
+    
+    @Bean
+    @Order(-1000)
+    public RequestContextListener requestContextListener() {
+        return new RequestContextListener();
     }
 
     //@Profile("!cloud")

@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.csrf.*;
@@ -21,7 +23,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.WebUtils;
 
 @Configuration
-@Order(-20)
+@Order(-30)
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class LoginConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -29,35 +33,36 @@ public class LoginConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                     .loginPage("/login")
                     .permitAll()
-                .and()
-                    .headers()
-                    .frameOptions()
-                    .disable()
+//                .and()
+//                    .headers()
+//                    .frameOptions()
+//                    .disable()
                  .and()
                     .logout()
                     .deleteCookies("AUTH_SESSIONID")
                     .invalidateHttpSession(true)
                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                     .logoutSuccessUrl("/login?logout")
-                    .permitAll()
+                    //.permitAll()
                 .and()
                     .requestMatchers()
-                    .antMatchers("/", "/login", "/logout", "/oauth/authorize", "/oauth/confirm_access", "/test")
-                .and()
-                    .authorizeRequests()
-                    .antMatchers("/test", "/oauth/token")
-                    .permitAll()
-                .and()
-                    .csrf()
-                    .ignoringAntMatchers("/test", "/oauth/token")
-                    .csrfTokenRepository(csrfTokenRepository())
+                    .antMatchers("/login", "/oauth/authorize", "/oauth/confirm_access", "/test")
+//                .and()
+//                    .authorizeRequests()
+//                    .antMatchers("/test", "/oauth/token")
+//                    .permitAll()
+
                 .and()
                     .authorizeRequests()
                     .anyRequest()
                     .authenticated()
                 .and()
+                    .csrf()
+                    .ignoringAntMatchers("/test", "/oauth/token")
+                    .csrfTokenRepository(csrfTokenRepository())
+                .and()
                 .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
-                    ;
+                ;
     }
 
     @Bean

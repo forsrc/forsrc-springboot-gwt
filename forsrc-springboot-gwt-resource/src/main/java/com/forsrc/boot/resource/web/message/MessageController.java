@@ -18,6 +18,7 @@ public class MessageController {
 
     @RequestMapping(path = "api/messages", method = RequestMethod.GET)
     List<Message> getMessages(Principal principal) {
+    	System.out.println(messages.size());
         return messages;
     }
 
@@ -26,6 +27,7 @@ public class MessageController {
         message.username = principal.getName();
         message.createdAt = LocalDateTime.now();
         messages.add(0, message);
+        System.out.println(message.text);
         return message;
     }
 
